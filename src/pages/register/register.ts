@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import * as Enums from '../enums/enums';
 /**
  * Generated class for the RegisterPage page.d
  *
@@ -19,8 +20,8 @@ export class RegisterPage {
   public user:FormGroup;
   sex:  any=['เด็กชาย','เด็กหญิง','นางสาว','นาง','นาย'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-              public http: HttpClient,public formBuilder: FormBuilder 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public http: HttpClient,public formBuilder: FormBuilder
             ) {
               this.user = this.formBuilder.group({
                 tuser: ['', Validators.required],
@@ -31,21 +32,21 @@ export class RegisterPage {
                 tage: ['', Validators.required],
                 taddress: ['', Validators.required],
                 tphone: ['',Validators.required]
-              });  
+              });
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
- 
+
   doLogin(){
-    
+
     console.log(this.user.value);
     console.log(this.user.valid);
-    
-    
 
-    let url = "http://localhost/todoslim3/public/index.php/register";
+
+
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/register';
     let postdataset = JSON.stringify({
       tuser:  this.user.value.tuser,
       tpassword:  this.user.value.tpassword,
@@ -58,12 +59,12 @@ export class RegisterPage {
 
     });
     console.log(postdataset);
-    
+
     let postdata = JSON.parse(postdataset);
     this.http.post(url,postdata)
     .subscribe(call=>{
         console.log(call);
-        
+
     //if(call != null){
     //  alert("Input Success");
     //  this.navCtrl.push("HomePage");
@@ -72,5 +73,5 @@ export class RegisterPage {
     //}
     })
   }
-  
+
 }

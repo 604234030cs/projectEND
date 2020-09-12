@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content padding>
-  
+
 
 <ion-card>
   <ion-card-content>
@@ -25,7 +25,7 @@
         <ion-col>
            <ion-item >
              <ion-label floating>รหัสผู้ใช้</ion-label>
-             <ion-input type="text" [(ngModel)]="teacher.tuser" value="{{teacher.tuser}}" disabled></ion-input>
+             <ion-input type="text" [(ngModel)]="teacher.teacher_user" value="{{teacher.teacher_user}}" disabled></ion-input>
            </ion-item>
         </ion-col>
      </ion-row>
@@ -33,7 +33,7 @@
         <ion-col>
            <ion-item >
              <ion-label floating>คำนำหน้าชื่อ</ion-label>
-             <ion-input type="text" [(ngModel)]="teacher.title" value="{{teacher.title}}" disabled></ion-input>
+             <ion-input type="text" [(ngModel)]="teacher.teacher_title" value="{{teacher.teacher_title}}" disabled></ion-input>
            </ion-item>
         </ion-col>
      </ion-row>
@@ -41,13 +41,13 @@
          <ion-col>
             <ion-item >
               <ion-label floating>ชื่อ</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tname" value="{{teacher.tname}}" disabled></ion-input>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_name" value="{{teacher.teacher_name}}" disabled></ion-input>
             </ion-item>
          </ion-col>
          <ion-col>
             <ion-item >
               <ion-label floating>นามสกุล</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tlassname" value="{{teacher.tlassname}}" disabled></ion-input>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_sname" value="{{teacher.teacher_sname}}" disabled></ion-input>
             </ion-item>
          </ion-col>
       </ion-row>
@@ -61,7 +61,7 @@
          <ion-col>
             <ion-item >
               <ion-label floating>เบอร์โทร</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tphone" value="{{teacher.tphone}}" disabled></ion-input>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_tel" value="{{teacher.teacher_tel}}" disabled></ion-input>
             </ion-item>
          </ion-col>
       </ion-row>
@@ -69,7 +69,7 @@
         <ion-col>
           <ion-item >
             <ion-label floating>ที่อยู่</ion-label>
-            <ion-input type="text" [(ngModel)]="teacher.taddress" value="{{teacher.taddress}}" disabled></ion-input>
+            <ion-input type="text" [(ngModel)]="teacher.teacher_address" value="{{teacher.teacher_address}}" disabled></ion-input>
           </ion-item>
        </ion-col>
       </ion-row>
@@ -82,7 +82,7 @@
          <ion-col>
             <ion-item >
               <ion-label floating>รหัสผู้ใช้</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tuser" value="{{teacher.tuser}}" disabled></ion-input>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_user" value="{{teacher.teacher_user}}" disabled></ion-input>
             </ion-item>
          </ion-col>
       </ion-row>
@@ -90,35 +90,35 @@
          <ion-col>
             <ion-item >
               <ion-label floating>คำนำหน้าชื่อ</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.title" value="{{teacher.title}}" ></ion-input>
-            </ion-item>
-         </ion-col>
-      </ion-row>
-      <ion-row>   
-         <ion-col>
-            <ion-item >
-              <ion-label floating>ชื่อ</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tname" value="{{teacher.tname}}" ></ion-input>
-            </ion-item>
-         </ion-col>
-         <ion-col>
-            <ion-item >
-              <ion-label floating>นามสกุล</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tlassname" value="{{teacher.tlassname}}" ></ion-input>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_title" value="{{teacher.teacher_title}}" ></ion-input>
             </ion-item>
          </ion-col>
       </ion-row>
       <ion-row>
          <ion-col>
             <ion-item >
-              <ion-label floating>อายุ</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.tage" value="{{teacher.tage}}" ></ion-input>
+              <ion-label floating>ชื่อ</ion-label>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_name" value="{{teacher.teacher_name}}" ></ion-input>
             </ion-item>
          </ion-col>
          <ion-col>
+            <ion-item >
+              <ion-label floating>นามสกุล</ion-label>
+              <ion-input type="text" [(ngModel)]="teacher.teacher_sname" value="{{teacher.teacher_sname}}" ></ion-input>
+            </ion-item>
+         </ion-col>
+      </ion-row>
+      <ion-row>
+         <!-- <ion-col>
+            <ion-item >
+              <ion-label floating>อายุ</ion-label>
+              <ion-input type="text" [(ngModel)]="teacher.tage" value="{{teacher.tage}}" ></ion-input>
+            </ion-item>
+         </ion-col> -->
+         <ion-col>
           <ion-item >
             <ion-label floating>เบอร์โทร</ion-label>
-            <ion-input type="text" [(ngModel)]="teacher.tphone" value="{{teacher.tphone}}" ></ion-input>
+            <ion-input type="text" [(ngModel)]="teacher.teacher_tel" value="{{teacher.teacher_tel}}" ></ion-input>
           </ion-item>
          </ion-col>
       </ion-row>
@@ -126,15 +126,15 @@
         <ion-col>
           <ion-item >
             <ion-label floating>ที่อยู่</ion-label>
-            <ion-input type="text" [(ngModel)]="teacher.taddress" value="{{teacher.taddress}}" ></ion-input>
+            <ion-input type="text" [(ngModel)]="teacher.teacher_address" value="{{teacher.teacher_address}}" ></ion-input>
           </ion-item>
        </ion-col>
       </ion-row>
       <button ion-button *ngIf="edit==true" (click)="editAccount()" block color="primary">ยืนยันการแก้ไข</button>
     </ion-grid>
-    
-      
- 
+
+
+
   </ion-card-content>
 </ion-card>
 

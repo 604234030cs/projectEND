@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { TeacherPage } from '../teacher/teacher';
 import { Storage } from '@ionic/storage';
 import { TestPage } from '../test/test';
+import * as Enums from '../enums/enums';
 
 @Component({
   selector: 'page-home',
@@ -14,8 +15,8 @@ import { TestPage } from '../test/test';
 export class HomePage {
   //inputlogin:any={};
   public login:FormGroup;
-  
-  
+
+
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -23,17 +24,17 @@ export class HomePage {
               public loadingCtrl: LoadingController, public alertCtrl: AlertController,
               private storage: Storage
               ) {
-              
+
                 //this.login.value.tuser="";
-                //this.login.value.tpassword="";
-                
+                //this.login.value.	teacher_password="";
+
               this.login = this.formBuilder.group({
-                tuser: ['', Validators.required],
-                tpassword: ['',Validators.required]
+                teacher_user: ['', Validators.required],
+                teacher_password: ['',Validators.required]
               });
-              
-              
-    
+
+
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
@@ -56,34 +57,34 @@ export class HomePage {
     });
 
   }
-  
-   
+
+
   // ฟังก์ชั่นส่งค่าเมื่อ submit ฟอร์ม
   doLogin(){
     console.log(this.login.value);
     console.log(this.login.valid);
-  }  
+  }
   register(){
 
     this.navCtrl.push(TestPage);
   }
-  logincheck(tuser,tpassword){
+  logincheck(teacher_user,teacher_password){
 
-      
 
-    
-      console.log("tuser", this.login.value.tuser);
-      console.log("tpassword", this.login.value.tpassword);
-      let url ='http://localhost/todoslim3/public/index.php/login/user='+this.login.value.tuser+'&&'+'pass='+this.login.value.tpassword;
+
+
+      console.log("teacher_user", this.login.value.teacher_user);
+      console.log("teacher_password", this.login.value.teacher_password);
+      let url = Enums.APIURL.URL + '/todoslim3/public/index.php/login/user='+this.login.value.teacher_user+'&&'+'pass='+this.login.value.teacher_password;
       this.http.get(url).subscribe((data:any={})=>{
 
 
         let account = {
-          tid:data['tid'],
-          tuser:data['tuser'],
-          tpassword:data['tpassword']
+          teacher_id:data['teacher_id'],
+          teacher_user:data['teacher_user'],
+          teacher_password:data['teacher_password']
         }
-        if(data != "false"){
+        if(data != false){
           console.log(data);
           const loader = this.loadingCtrl.create({
             content: "Pleas  wait.....",
@@ -91,12 +92,12 @@ export class HomePage {
           });
           loader.present();
           this.storage.set('accoutuser',account);
-          this.navCtrl.setRoot(TeacherPage,tuser,tpassword);
+          this.navCtrl.setRoot(TeacherPage,teacher_user,teacher_password);
         //  this.storage.ready().then(()=>{
         //  this.storage.set('accoutuser',account)
         //});
-          
-        }else if(data == "false"){
+
+        }else if(data == false){
          let alert = this.alertCtrl.create({
            message: "รหัสผู้ใช้ หรือ พาสเวิร์ด ไม่ถูกต้อง",
            buttons: [
@@ -108,18 +109,18 @@ export class HomePage {
            ]
          });
          alert.present();
-         this.login.value.tuser = "";
-         this.login.value.tpassword = "";
+         this.login.value.teacher_user = "";
+         this.login.value.teacher_password = "";
         }
-      
+
       });
     }
 
-    
+
 
   }
 
 
-  
+
 
 

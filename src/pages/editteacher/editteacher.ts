@@ -4,6 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { MainteacherPage } from '../mainteacher/mainteacher';
+import * as Enums from '../enums/enums';
 
 /**
  * Generated class for the EditteacherPage page.
@@ -36,10 +37,10 @@ export class EditteacherPage {
     console.log(this.user.value);
     console.log(this.user.valid);
     if(this.user.value.tuser != ""&&this.user.value.tname != "" &&this.user.value.tlassname){
-      let url = 'http://localhost/todoslim3/public/index.php/editteacher/'+this.user.value.tid+'&&'+this.user.value.title
+      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editteacher/'+this.user.value.tid+'&&'+this.user.value.title
       +'&&'+this.user.value.tname+'&&'+this.user.value.tlassname+'&&'+this.user.value.tage+'&&'+this.user.value.taddress
       +'&&'+this.user.value.tphone;
-      let url2 = 'http://localhost/todoslim3/public/index.php/checkuser/'+this.user.value.tuser;
+      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkuser/'+this.user.value.tuser;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['tuser'] == this.user.value.tuser){
@@ -58,13 +59,13 @@ export class EditteacherPage {
                 tlassname: this.user.value.tlassname,
                 tage: this.user.value.tage,
                 taddress: this.user.value.taddress,
-                tphone: this.user.value.tphone 
+                tphone: this.user.value.tphone
           });
           let datapost = JSON.parse(setdata);
           const confirm = this.alertCtrl.create({
             title: 'ยืนยันการสมัคร',
             message: 'กดปุ่มยืนยันเพื่อลงทะเบียนเข้าสู่ระบบ',
-            buttons:[ 
+            buttons:[
               {
                 text: 'ยืนยัน',
                 handler: () =>{
@@ -79,7 +80,7 @@ export class EditteacherPage {
                             const loader = this.loadingCtrl.create({
                               content: "Pleas wait...",
                               duration: 500,
-                            
+
                             });
                             loader.present();
                             this.navCtrl.setRoot(MainteacherPage);

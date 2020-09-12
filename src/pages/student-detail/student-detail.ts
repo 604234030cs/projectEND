@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HttpClient} from '@angular/common/http';
 
 import { MainstudentPage } from '../mainstudent/mainstudent';
-
+import * as Enums from '../enums/enums';
 /**
  * Generated class for the StudentDetailPage page.
  *
@@ -29,19 +29,19 @@ export class StudentDetailPage {
     console.log('ionViewDidLoad StudentDetailPage');
     this.detailstudent = this.navParams.data;
     console.log(this.detailstudent);
-    
+
   }
   ionViewDidLeave(){
     this.parent=false
     this.student=false
     this.dorefres();
-    
+
   }
   editstudent(){
 
-    let url = 'http://localhost/todoslim3/public/index.php/editteacher/'+this.detailstudent.tid+'&&'+this.detailstudent.title+'&&'+this.detailstudent.tname
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editteacher/'+this.detailstudent.tid+'&&'+this.detailstudent.title+'&&'+this.detailstudent.tname
                +'&&'+this.detailstudent.tlassname+'&&'+this.detailstudent.tage+'&&'+this.detailstudent.taddress+'&&'+this.detailstudent.tphone;
-    
+
       this.http.get(url).subscribe(data=>{
       this.detailstudent = data;
       if(data != false){
@@ -66,16 +66,16 @@ export class StudentDetailPage {
 
         //
       }
-      
-      
+
+
     })
 
   }
   editparent(){
 
-    let url = 'http://localhost/todoslim3/public/index.php/editparent/'+this.detailstudent.p_id+'&&'+this.detailstudent.pr_title+'&&'+this.detailstudent.pr_name
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editparent/'+this.detailstudent.p_id+'&&'+this.detailstudent.pr_title+'&&'+this.detailstudent.pr_name
                +'&&'+this.detailstudent.pr_lassname+'&&'+this.detailstudent.pr_address+'&&'+this.detailstudent.pr_phone;
-    
+
       this.http.get(url).subscribe(data=>{
       this.detailstudent = data;
       if(data != false){
@@ -100,8 +100,8 @@ export class StudentDetailPage {
 
         //
       }
-      
-      
+
+
     })
 
   }
@@ -111,7 +111,7 @@ export class StudentDetailPage {
   },500)
 }
 deletest(){
-  let url = 'http://localhost/todoslim3/public/index.php/deletest/'+this.detailstudent.s_id;
+  let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+this.detailstudent.s_id;
   this.http.get(url).subscribe(dl=>{
     this.detailstudent = dl;
   })
@@ -128,15 +128,15 @@ deletest(){
       text: 'ยกเลิก',
       handler: () => {}
     }
-      
+
     ]
 
   });
   confirm.present();
-  
 
 
-  
+
+
 }
 
 }

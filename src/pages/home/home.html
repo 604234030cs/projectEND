@@ -7,25 +7,25 @@
 </ion-header>
 
 <ion-content padding>
-     
+
   <form [formGroup]="login" (ngSubmit)="doLogin()">
     <ion-list>
-      <ion-item>        
+      <ion-item>
         <ion-label floating>รหัสผู้ใช้</ion-label>
-        <ion-input type="text" formControlName="tuser" name="tuser" id="tuser"></ion-input>
+        <ion-input type="text" formControlName="teacher_user" name="teacher_user" id="teacher_user"></ion-input>
       </ion-item>
-     
-      <ion-item>        
+
+      <ion-item>
         <ion-label floating>พาสเวิร์ด</ion-label>
-        <ion-input type="password" formControlName="tpassword" name="tpassword" id="tpassword"></ion-input>
+        <ion-input type="password" formControlName="teacher_password" name="teacher_password" id="teacher_password"></ion-input>
       </ion-item>
     </ion-list>
     <div>
-      <button type="submit" [disabled]="!login.valid" block ion-button color="danger" (click)="logincheck(tuser,tpassword)">ล็อคอิน</button>
+      <button type="submit" [disabled]="!login.valid" block ion-button color="danger" (click)="logincheck(teacher_user,teacher_password)">ล็อคอิน</button>
       <div style="margin-top: 10px;">
         <button type="submit" block ion-button color="secondary" (click)="register()">สมัครสมาชิก</button>
       </div>
-      
-    </div>     
-  </form>    
+
+    </div>
+  </form>
 </ion-content>

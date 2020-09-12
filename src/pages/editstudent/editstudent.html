@@ -6,10 +6,160 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>editstudent</ion-title>
+    <ion-title>editstudent  {{acount[0].student_name}} </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+          <ion-label>แก้ไขข้อมูลนักเรียน</ion-label>
+          <ion-toggle [(ngModel)]="editstudent" disabled="false" color="primary" ></ion-toggle>
+      </ion-item>
+
+      <ion-grid *ngIf="editstudent==false">
+        <ion-row>
+          <ion-col>
+             <ion-item >
+               <ion-label floating>ชื่อนักเรียน</ion-label>
+               <ion-input type="text" [(ngModel)]="acount[0].student_name" value="{{acount[0].student_name}}" disabled></ion-input>
+             </ion-item>
+          </ion-col>
+
+          <ion-col>
+             <ion-item >
+               <ion-label floating>นามสกุล</ion-label>
+               <ion-input type="text" [(ngModel)]="acount[0].student_sname" value="{{acount[0].student_sname}}" disabled></ion-input>
+             </ion-item>
+          </ion-col>
+       </ion-row>
+       <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>ชื่อเล่น</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].student_nickname" value="{{acount[0].student_nickname}}" disabled></ion-input>
+              </ion-item>
+           </ion-col>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>เพศ</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].Student_sex" value="{{acount[0].Student_sex}}" disabled></ion-input>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+
+      <!--false-->
+
+      <ion-grid *ngIf="editstudent==true">
+        <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>ชื่อ</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].student_name" value="{{acount[0].student_name}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>นามสกุล</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].student_sname" value="{{acount[0].student_sname}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+        <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>ชื่อเล่น</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].student_nickname" value="{{acount[0].student_nickname}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>เพศ</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].Student_sex" value="{{acount[0].Student_sex}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+
+        <button ion-button *ngIf="editstudent==true" (click)="editAccountstudent()" block color="primary">ยืนยันการแก้ไข</button>
+      </ion-grid>
+
+
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+          <ion-label>แก้ไขข้อมูลผู้ปกครอง</ion-label>
+          <ion-toggle [(ngModel)]="editparent" disabled="false" color="primary" ></ion-toggle>
+      </ion-item>
+
+      <ion-grid *ngIf="editparent==false">
+        <ion-row>
+          <ion-col>
+             <ion-item >
+               <ion-label floating>ชื่อผู้ปกครอง</ion-label>
+               <ion-input type="text" [(ngModel)]="acount[0].par_name" value="{{acount[0].par_name}}" disabled></ion-input>
+             </ion-item>
+          </ion-col>
+
+          <ion-col>
+             <ion-item >
+               <ion-label floating>นามสกุล</ion-label>
+               <ion-input type="text" [(ngModel)]="acount[0].par_sname" value="{{acount[0].par_sname}}" disabled></ion-input>
+             </ion-item>
+          </ion-col>
+       </ion-row>
+
+       <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>โทรศัพท์</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].par_tel" value="{{acount[0].par_tel}}" disabled></ion-input>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+
+      <!--false-->
+
+      <ion-grid *ngIf="editparent==true">
+        <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>ชื่อผู้ปกครอง</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].par_name" value="{{acount[0].par_name}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>นามสกุล</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].par_sname" value="{{acount[0].par_sname}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+
+        <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label floating>โทรศัพท์</ion-label>
+                <ion-input type="text" [(ngModel)]="acount[0].par_tel" value="{{acount[0].par_tel}}" ></ion-input>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+
+        <button ion-button *ngIf="editparent==true" (click)="editAccountparent()" block color="primary">ยืนยันการแก้ไข</button>
+      </ion-grid>
+
+
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

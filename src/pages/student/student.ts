@@ -4,6 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import { MainstudentPage } from '../mainstudent/mainstudent';
+import * as Enums from '../enums/enums';
 /**
  * Generated class for the StudentPage page.d
  *
@@ -20,11 +21,12 @@ export class StudentPage {
 
   user:FormGroup;
   perent:any =[];
+
   sex:  any=['เด็กชาย','เด็กหญิง'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
               public http: HttpClient,public formBuilder: FormBuilder,
-              public alertCtrl:AlertController,public loadingCtrl:LoadingController) 
+              public alertCtrl:AlertController,public loadingCtrl:LoadingController)
               {
                 this.loaddata();
                 this.user = this.formBuilder.group({
@@ -34,19 +36,21 @@ export class StudentPage {
                   st_lassname: ['', Validators.required],
                   st_class: ['', Validators.required],
                   pr_user: ['', Validators.required],
-                  
+
+
                 });
               }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StudentPage');
+
   }
   loaddata(){
-    let url3 = "http://localhost/todoslim3/public/index.php/allparent";
+    let url3 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
     this.http.get(url3).subscribe(dataparent=>{
       this.perent = dataparent;
       console.log(dataparent);
-      
+
     })
   }
 
@@ -57,8 +61,8 @@ export class StudentPage {
 
 
     if(this.user.value.st_id != ""){
-      let url = "http://localhost/todoslim3/public/index.php/registerstudent";
-      let url2 = 'http://localhost/todoslim3/public/index.php/checkstudent/'+this.user.value.st_id;
+      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/registerstudent';
+      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkstudent/'+this.user.value.st_id;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['st_id'] == this.user.value.st_id){
@@ -76,13 +80,13 @@ export class StudentPage {
                 st_lassname: this.user.value.st_lassname,
                 st_class: this.user.value.st_class,
                 pr_user: this.user.value.pr_user
-                
+
           });
           let datapost = JSON.parse(setdata);
           const confirm = this.alertCtrl.create({
             title: 'ยืนยันการเพิ่มสมาชิค',
             message: 'กดปุ่มยืนยันเพื่อเพิ่มสมาชิค',
-            buttons:[ 
+            buttons:[
               {
                 text: 'ยืนยัน',
                 handler: () =>{
@@ -97,10 +101,10 @@ export class StudentPage {
                             const loader = this.loadingCtrl.create({
                               content: "Pleas wait...",
                               duration: 500,
-                            
+
                             });
                             loader.present();
-                            
+
                           }
                         }]
                       });
@@ -141,6 +145,7 @@ export class StudentPage {
       st_lassname: new FormControl("",Validators.required),
       st_class: new FormControl("",Validators.required),
       pr_user: new FormControl("",Validators.required),
+
     });
   }
 
@@ -149,4 +154,3 @@ export class StudentPage {
 
 
 
-  

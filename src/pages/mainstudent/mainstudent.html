@@ -6,28 +6,21 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>ข้อมูลนักเรียน</ion-title>
+    <ion-title text-center>ชั้นเรียน</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-buttons >
-    <button ion-button color="secondary" (click)="student()" >เพิ่มข้อมูลนักเรียน</button>
-</ion-buttons>
   
-    <ion-card *ngFor="let student of datastudent" (click)="detail(student)">
-        <ion-card-header>
-          นักเรียน:
-          {{student.st_id}}
-          {{student.st_name}}
-          {{student.st_lassname}}
-        </ion-card-header>
-        <ion-card-content >
-            ผู้ปกครอง:
-            {{student.pr_user}}
-            {{student.pr_name}}
-            {{student.pr_lassname}}  
-        </ion-card-content>
+    <ion-buttons >
+      <button ion-button block color="secondary" (click)="classroom()" >เพิ่มเพิ่มชั้นเรียน</button>
+    </ion-buttons>
+    
+    <ion-card *ngFor="let data of dataclass" >
+      <ion-card-header text-center (click)="goClass(data.class_id,data.class_name)">
+        {{data.class_name}}
+      </ion-card-header>
+
     </ion-card>
 
 </ion-content>
