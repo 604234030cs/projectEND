@@ -40,7 +40,7 @@ export class MainstudentPage {
   }
 
   loaddataclass(){
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/allclass';
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/class';
     this.http.get(url).subscribe(data=>{
       this.dataclass = data;
       console.log(data);

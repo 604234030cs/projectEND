@@ -11,6 +11,7 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-buttons >
     <button ion-button block color="secondary" (click)="addparent(idclass,nameclass)" >เพิ่มผู้ปกครอง</button>
   </ion-buttons>
@@ -18,13 +19,25 @@
     <button ion-button block color="tertiary" (click)="test(idclass,nameclass)" >เพิ่มนักเรียน</button>
   </ion-buttons>
 
-  <ion-card *ngFor="let data of parentandstudent" (click)="editstandpar(data.class_id,data.par_user)" >
+  <div text-center>
+    <button ion-button block color="primary" (click)="setting(idclass,nameclass,ck_date)" >จัดการนักเรียนรายวัน
+      <ion-input style="margin-left: 90px;"  type="text"  [(ngModel)]="ck_date" value="{{ck_date2}}" disabled></ion-input>
+      <!-- <ion-input style="margin-left: 90px;"  type="text"  [(ngModel)]="ck_date" value="{{nbYear}}-{{nbMonth}}-{{nbDate}}" disabled></ion-input> -->
+    </button>
+  </div>
+
+
+  <!-- <ion-buttons >
+    <button ion-button block color="primary" (click)="setting(idclass,nameclass,ck_date)" >จัดการนักเรียนรายวัน  </button>
+  </ion-buttons> -->
+  <ion-card *ngFor="let data of parentandstudent" (click)="editstandpar(data.class_id,data.par_user,ck_date)" >
     <ion-card-content >
       <ion-item >
       <ion-icon item-right color="medium" name="create"></ion-icon><ion-icon item-right color="danger" name="trash" (click)="deletestandpar(data.par_user)"></ion-icon>
       <p>นักเรียน: <b>{{data.student_name}} {{data.student_sname}}</b> ชื่อเล่น: <b>น้อง{{data.student_nickname}}</b>  </p>
       <p>ผู้ปกครอง: <b>{{data.par_name}} {{data.par_sname}}</b></p>
       </ion-item>
+    </ion-card-content>
 <!--
       <p>นักเรียน: <b>{{data.student_name}} {{data.student_sname}}</b> ชื่อเล่น: <b>น้อง{{data.student_nickname}}</b>  </p>
       <p>ผู้ปกครอง: <b>{{data.par_name}} {{data.par_sname}}</b></p>
@@ -32,7 +45,7 @@
         <button ion-button  (click)="deletedata()"><ion-icon name="power" color="danger"></ion-icon></button>
       </ion-buttons> -->
 
-    </ion-card-content>
+
 
 
   </ion-card>

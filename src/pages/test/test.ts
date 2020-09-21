@@ -62,7 +62,7 @@ export class TestPage {
                 teacher_sname: this.user.value.teacher_sname,
                 teacher_address: this.user.value.teacher_address,
                 teacher_tel: this.user.value.teacher_tel,
-                teacher_latitude: this.user.value.	teacher_latitude,
+                teacher_latitude: this.user.value.teacher_latitude,
                 teacher_longitude: this.user.value.teacher_longitude
 
           });

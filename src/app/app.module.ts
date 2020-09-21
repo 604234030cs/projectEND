@@ -1,7 +1,8 @@
+import { EditstatusPage } from './../pages/editstatus/editstatus';
 import { EditstudentPage } from './../pages/editstudent/editstudent';
 import { TestaddstudentPage } from './../pages/testaddstudent/testaddstudent';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { enableProdMode, ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,7 +13,6 @@ import { TeacherPage } from '../pages/teacher/teacher';
 import { MainteacherPage } from '../pages/mainteacher/mainteacher';
 import { StudentPage } from '../pages/student/student';
 
-import { RecordStudentPage } from '../pages/record-student/record-student';
 import { IonicStorageModule } from '@ionic/storage';
 import { TestPage } from '../pages/test/test';
 import { StudentDetailPage } from '../pages/student-detail/student-detail';
@@ -23,6 +23,8 @@ import { ClassPage } from '../pages/class/class';
 import { MainstudentPage } from '../pages/mainstudent/mainstudent';
 import { AddparentPage } from '../pages/addparent/addparent';
 import { AddstudentPage } from '../pages/addstudent/addstudent';
+import { SettingPage } from '../pages/setting/setting';
+import { Test2Page } from '../pages/test2/test2';
 
 
 
@@ -34,8 +36,7 @@ import { AddstudentPage } from '../pages/addstudent/addstudent';
     MainteacherPage,
     MainstudentPage,
     StudentPage,
-
-    RecordStudentPage,
+    SettingPage,
     TestPage,
     StudentDetailPage,
     EditteacherPage,
@@ -44,7 +45,9 @@ import { AddstudentPage } from '../pages/addstudent/addstudent';
     AddparentPage,
     AddstudentPage,
     TestaddstudentPage,
-    EditstudentPage
+    EditstudentPage,
+    Test2Page,
+    EditstatusPage
 
 
   ],
@@ -64,8 +67,7 @@ import { AddstudentPage } from '../pages/addstudent/addstudent';
     MainteacherPage,
     StudentPage,
     MainstudentPage,
-
-    RecordStudentPage,
+    SettingPage,
     TestPage,
     StudentDetailPage,
     EditteacherPage,
@@ -74,7 +76,10 @@ import { AddstudentPage } from '../pages/addstudent/addstudent';
     AddparentPage,
     AddstudentPage,
     TestaddstudentPage,
-    EditstudentPage
+    EditstudentPage,
+    Test2Page,
+    EditstatusPage
+
 
   ],
   providers: [
@@ -85,3 +90,4 @@ import { AddstudentPage } from '../pages/addstudent/addstudent';
   ]
 })
 export class AppModule {}
+enableProdMode();

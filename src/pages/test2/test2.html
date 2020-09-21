@@ -1,0 +1,40 @@
+<!--
+  Generated template for the Test2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>test2</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- <div *ngIf="testList.length > 0">
+    <ion-item *ngFor="let member of setting2">
+      <ion-label>{{member?.testName || 'N/A'}}</ion-label>
+      <ion-checkbox color="dark" (click)="selectMember(member)" [(ngModel)]="member.checked"></ion-checkbox>
+    </ion-item>
+  </div>
+  <button ion-button (click)="checkAll()">Done</button> -->
+
+  <div *ngIf="testList.length > 0">
+    <ion-item *ngFor="let member of testList">
+      <ion-label>{{member?.testName || 'N/A'}}</ion-label>
+      <ion-checkbox color="dark" (change)="addCheckbox($event,member.testName)"></ion-checkbox>
+    </ion-item>
+  </div>
+  <button (click)='getCheckedBoxes()'>Done</button>
+
+  <!-- <div *ngIf="testList.length > 0">
+    <ion-item *ngFor="let member of testList">
+      <ion-label>{{member?.testName || 'N/A'}}</ion-label>
+      <ion-checkbox color="dark" (ionChange)="addCheckbox($event,member.testName)"></ion-checkbox>
+    </ion-item>
+  </div>
+
+  <button (click)='getCheckedBoxes()'>Done</button> -->
+
+</ion-content>

@@ -6,14 +6,71 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>editstudent  {{acount[0].student_name}} </ion-title>
+    <ion-title text-center>จัดการข้อมูล </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
     <ion-card-content>
-      <ion-item>
+      <ion-item text-center>
+          <ion-label>จัดการข้อมูลสถานะ</ion-label>
+          <ion-toggle [(ngModel)]="editstatus" disabled="false" color="primary" ></ion-toggle>
+      </ion-item>
+      <ion-item >
+        <ion-label >วันที่ {{ck_date}} </ion-label>
+      </ion-item>
+
+      <ion-grid *ngIf="editstatus==false">
+        <ion-row>
+          <ion-col>
+             <ion-item  >
+               <ion-label >มาเรียน</ion-label>
+               <!-- <ion-input type="text" [(ngModel)]="acount[0].student_name" value="{{acount[0].student_name}}" ></ion-input> -->
+               <ion-checkbox slot="end" [(ngModel)]="ck_status"    checked="ck_status" disabled></ion-checkbox>
+             </ion-item>
+          </ion-col>
+          <ion-col>
+             <ion-item >
+               <ion-label >รับกลับ</ion-label>
+               <!-- <ion-input type="text" [(ngModel)]="acount[0].student_sname" value="{{acount[0].student_sname}}" ></ion-input> -->
+               <ion-checkbox slot="end" [(ngModel)]="ck_receive"  checked="ck_receive" disabled></ion-checkbox>
+             </ion-item>
+          </ion-col>
+       </ion-row>
+
+
+      </ion-grid>
+
+      <!--false-->
+
+      <ion-grid *ngIf="editstatus==true">
+        <ion-row>
+           <ion-col>
+              <ion-item >
+                <ion-label >มาเรียน</ion-label>
+                <!-- <ion-input type="text" [(ngModel)]="acount[0].student_name" value="{{acount[0].student_name}}" ></ion-input> -->
+                <ion-checkbox slot="end" [(ngModel)]="ck_status" (click)="statusstudy(acount[0].st_id,ck_status,ck_date)"  checked="ck_status" ></ion-checkbox>
+              </ion-item>
+           </ion-col>
+           <ion-col>
+              <ion-item >
+                <ion-label >รับกลับ</ion-label>
+                <!-- <ion-input type="text" [(ngModel)]="acount[0].student_sname" value="{{acount[0].student_sname}}" ></ion-input> -->
+                <ion-checkbox slot="end" [(ngModel)]="ck_receive"  checked="ck_receive" ></ion-checkbox>
+              </ion-item>
+           </ion-col>
+        </ion-row>
+        <!-- <button ion-button *ngIf="editstatus==true" (click)="status()" block color="primary">ยืนยันการจัดการ</button> -->
+      </ion-grid>
+
+
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item text-center>
           <ion-label>แก้ไขข้อมูลนักเรียน</ion-label>
           <ion-toggle [(ngModel)]="editstudent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
@@ -93,12 +150,20 @@
   </ion-card>
   <ion-card>
     <ion-card-content>
-      <ion-item>
+      <ion-item text-center>
           <ion-label>แก้ไขข้อมูลผู้ปกครอง</ion-label>
           <ion-toggle [(ngModel)]="editparent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
 
       <ion-grid *ngIf="editparent==false">
+        <ion-row>
+          <ion-col >
+            <ion-item >
+              <ion-label floating>บัญชีผู้ใช้</ion-label>
+              <ion-input type="text" [(ngModel)]="acount[0].par_user" value="{{acount[0].par_user}}" disabled></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
         <ion-row>
           <ion-col>
              <ion-item >
@@ -130,7 +195,17 @@
       <!--false-->
 
       <ion-grid *ngIf="editparent==true">
+
         <ion-row>
+          <ion-col >
+            <ion-item >
+              <ion-label floating>บัญชีผู้ใช้</ion-label>
+              <ion-input type="text" [(ngModel)]="acount[0].par_user" value="{{acount[0].par_user}}" disabled></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+
            <ion-col>
               <ion-item >
                 <ion-label floating>ชื่อผู้ปกครอง</ion-label>

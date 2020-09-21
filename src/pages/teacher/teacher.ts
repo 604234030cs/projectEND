@@ -1,8 +1,9 @@
+import { Test2Page } from './../test2/test2';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { MainteacherPage } from '../mainteacher/mainteacher';
 
-import { RecordStudentPage } from '../record-student/record-student';
+
 import { HttpClient} from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
@@ -40,11 +41,13 @@ export class TeacherPage {
   mainteacher(){
     this.navCtrl.push(MainteacherPage);
   }
-  recordstudent(){
-    this.navCtrl.push(RecordStudentPage);
-  }
+
   toteacher(){
     this.navCtrl.push(MainstudentPage);
+  }
+
+  test(){
+    this.navCtrl.push(Test2Page)
   }
 
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the RecordStudentPage page.
+ * Generated class for the EditstatusPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-record-student',
-  templateUrl: 'record-student.html',
+  selector: 'page-editstatus',
+  templateUrl: 'editstatus.html',
 })
-export class RecordStudentPage {
+export class EditstatusPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RecordStudentPage');
+    console.log('ionViewDidLoad EditstatusPage');
   }
 
 }

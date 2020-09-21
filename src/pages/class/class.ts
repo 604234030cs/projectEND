@@ -1,3 +1,4 @@
+import { SettingPage } from './../setting/setting';
 import { EditstudentPage } from './../editstudent/editstudent';
 import { TestaddstudentPage } from './../testaddstudent/testaddstudent';
 import { Component } from '@angular/core';
@@ -20,19 +21,53 @@ import * as Enums from '../enums/enums';
 })
 export class ClassPage {
 
-
+  ck_date2 = "2020-9-22";
   parentandstudent:any=[];
   dataclass: any=[];
   idclass;
   nameclass:string='';
+
+  monthNames: string[];
+  nbDate: number;
+  nbMonth: number;
+  stMonth: string;
+  nbYear: number;
+  ck_status;
+  ck_receive;
+  ck_other;
+  ck_date;
+
+  ckdate;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
               public alertCtrl:AlertController,public loadingCtrl: LoadingController) {
+
+
 
     // this.loaddata();
 
     this.idclass = this.navParams.get('clsss_id');
     this.nameclass = this.navParams.get('class_name');
     console.log(this.idclass);
+    console.log(this.idclass);
+
+    console.log(this.ck_date2);
+
+    let date = new Date();
+
+
+    this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    this.nbDate = date.getDate();
+    this.nbMonth = date.getMonth() + 1;
+    this.stMonth = this.monthNames[date.getMonth()];
+    this.nbYear = date.getFullYear();
+
+    console.log("this.nbDate: ", this.nbDate);
+    console.log("this.nbMonth: ", this.nbMonth);
+    console.log("this.stMonth: ", this.stMonth);
+    console.log("this.nbYear: ", this.nbYear);
 
 
 
@@ -120,11 +155,63 @@ export class ClassPage {
       class_name:namecl
     });
   }
-  editstandpar(idclass,userpar){
+  editstandpar(idclass,userpar,ck_date){
+    console.log(ck_date);
+
     this.navCtrl.push(EditstudentPage,{
       class_id:idclass,
-      par_user:userpar
+      par_user:userpar,
+      ckdate:ck_date
+
     });
+  }
+
+
+
+
+  setting(idcl,namecl,setting){
+    console.log(setting);
+    if(setting != ""){
+      let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/adddate2';
+      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkdate2/'+setting;
+
+      this.http.get(url2).subscribe((err:any)=>{
+        if(err['check_data'] == setting){
+/////////
+//////////
+/////////
+          this.navCtrl.push(SettingPage,{
+            class_id:idcl,
+            class_name:namecl,
+            check_data:setting
+          })
+        }else if(err['setting'] != setting){
+
+          let setdata = JSON.stringify({
+            check_data: setting
+
+
+          });
+          let datapost = JSON.parse(setdata);
+
+                    this.http.post(url,datapost).subscribe((status:any)=>{
+                      console.log(status);
+                    });
+
+
+                  this.navCtrl.setRoot(SettingPage,{
+                    class_id:idcl,
+                    class_name:namecl,
+                    check_data:setting
+                  });
+
+        }
+      });
+    }else{
+
+    }
+
+
   }
 
 
