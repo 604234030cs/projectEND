@@ -1,3 +1,5 @@
+import { CheckreceivePage } from './../checkreceive/checkreceive';
+import { Test2Page } from './../test2/test2';
 import { SettingPage } from './../setting/setting';
 import { EditstudentPage } from './../editstudent/editstudent';
 import { TestaddstudentPage } from './../testaddstudent/testaddstudent';
@@ -21,7 +23,8 @@ import * as Enums from '../enums/enums';
 })
 export class ClassPage {
 
-  ck_date2 = "2020-9-22";
+  // ck_date2 = "2020-9-22";
+  ck_date2 ;
   parentandstudent:any=[];
   dataclass: any=[];
   idclass;
@@ -38,6 +41,7 @@ export class ClassPage {
   ck_date;
 
   ckdate;
+  st_id;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
@@ -46,15 +50,16 @@ export class ClassPage {
 
 
     // this.loaddata();
-
     this.idclass = this.navParams.get('clsss_id');
     this.nameclass = this.navParams.get('class_name');
     console.log(this.idclass);
     console.log(this.idclass);
 
-    console.log(this.ck_date2);
+
 
     let date = new Date();
+
+
 
 
     this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -64,10 +69,14 @@ export class ClassPage {
     this.stMonth = this.monthNames[date.getMonth()];
     this.nbYear = date.getFullYear();
 
+    // this.ck_date2 = [date.getFullYear(),date.getMonth() + 1,date.getDate()];
+    this.ck_date2 = this.nbYear+'-'+this.nbMonth +'-'+this.nbDate;
+
     console.log("this.nbDate: ", this.nbDate);
     console.log("this.nbMonth: ", this.nbMonth);
     console.log("this.stMonth: ", this.stMonth);
     console.log("this.nbYear: ", this.nbYear);
+    console.log(this.ck_date2);
 
 
 
@@ -84,6 +93,15 @@ export class ClassPage {
     // console.log( this.nameclass);
   }
 
+  ionViewWillLoad() {
+    // console.log('ionViewDidLoad EditstudentPage');
+    // console.log(this.classid);
+    // console.log(this.paruser);
+     this.loaddata();
+
+
+  }
+
   loaddata(){
     let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+this.idclass;
     this.http.get(url).subscribe(data=>{
@@ -94,14 +112,7 @@ export class ClassPage {
   }
 
 
-  ionViewWillEnter() {
 
-    // this.dataclass = this.navParams.data;
-    // console.log(this.dataclass);
-
-
-
-  }
   addparent(idcl,namecl){
     this.navCtrl.push(AddparentPage,{
       clsss_id:idcl,
@@ -109,45 +120,48 @@ export class ClassPage {
     });
   }
   deletestandpar(paruser){
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+paruser;
-      this.http.get(url).subscribe(deletest=>{
-        this.parentandstudent = deletest;
+    const confirm = this.alertCtrl.create({
+      title: 'ต้องการลบข้อมูลหรือไม่?',
+      buttons:[{
+        text: 'ตกลง',
+        handler: () =>{
+          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+paruser;
+          this.http.get(url).subscribe(deletest=>{
+            this.parentandstudent = deletest;
+            console.log(deletest);
 
-        if(deletest != false){
+            if(deletest == 'Success'){
+              let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletepar/'+paruser;
+              this.http.get(url1).subscribe(deletepar=>{
+              this.parentandstudent = deletepar;
+              })
+              const loadder = this.loadingCtrl.create({
+                content: "pleas wait.....",
+                duration: 200,
 
-          let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletepar/'+paruser;
-          this.http.get(url1).subscribe(deletepar=>{
-          this.parentandstudent = deletepar;
+              })
+              loadder.present();
+
+            }else{
+
+            }
           })
-          const loadder = this.loadingCtrl.create({
-            content: "pleas wait.....",
-            duration: 200,
 
-          })
-          loadder.present();
-
-        }else{
-
-        }
-      })
-      const confirm = this.alertCtrl.create({
-        title: 'ต้องการลบข้อมูลหรือไม่?',
-        buttons:[{
-          text: 'ตกลง',
-          handler: () =>{
-            this.navCtrl.push(MainstudentPage);
-          }
-
-        },
-        {
-          text: 'ยกเลิก',
-          handler: () => {}
+          this.navCtrl.push(MainstudentPage);
         }
 
-        ]
+      },
+      {
+        text: 'ยกเลิก',
+        handler: () => {}
+      }
 
-      });
-      confirm.present();
+      ]
+
+    });
+    confirm.present();
+
+
   }
   test(idcl,namecl){
     this.navCtrl.push(TestaddstudentPage,{
@@ -155,15 +169,52 @@ export class ClassPage {
       class_name:namecl
     });
   }
-  editstandpar(idclass,userpar,ck_date){
+  editstandpar(idclass,userpar,ck_date,id){
     console.log(ck_date);
+    let statusstudy;
+    let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+id+'&&'+ck_date;
 
-    this.navCtrl.push(EditstudentPage,{
-      class_id:idclass,
-      par_user:userpar,
-      ckdate:ck_date
+    this.http.get(url5).subscribe((data:any)=>{
 
-    });
+
+      if(data == false){
+        console.log('1');
+
+        this.navCtrl.push(EditstudentPage,{
+          class_id:idclass,
+          par_user:userpar,
+          ckdate:ck_date,
+          st_id:id,
+          statusstudy:false,
+          statusreceive:false
+
+        });
+        console.log(statusstudy);
+
+
+
+      }else if (data != false){
+        console.log('2');
+        console.log(data.ck_receive);
+
+
+        this.navCtrl.push(EditstudentPage,{
+          class_id:idclass,
+          par_user:userpar,
+          ckdate:ck_date,
+          st_id:id,
+          statusstudy:data.ck_status,
+          statusreceive:data.ck_receive
+
+        });
+        console.log();
+
+      }
+
+    })
+
+
+
   }
 
 
@@ -213,7 +264,33 @@ export class ClassPage {
 
 
   }
+//   dorefres(){
+//     setTimeout(()=>{
+//     this.ionViewWillLoad();
+//   },500)
+// }
 
+checkname(idcl,namecl){
+  console.log(this.ck_date2);
+
+  this.navCtrl.setRoot(Test2Page,{
+    class_id:idcl,
+    class_name:namecl,
+    ckdate:this.ck_date2
+  });
+
+}
+checkreceive(idcl,namecl){
+
+  console.log(this.ck_date2);
+
+  this.navCtrl.setRoot(CheckreceivePage,{
+    class_id:idcl,
+    class_name:namecl,
+    ckdate:this.ck_date2
+  });
+
+}
 
 
 }

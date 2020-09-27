@@ -6,35 +6,24 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>test2</ion-title>
+    <ion-title text-center>เช็คชื่อนักเรียน</ion-title>
+    <ion-buttons large end>
+      <button ion-button (click)="gohome()" ><ion-icon name="home" color="primary"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <!-- <div *ngIf="testList.length > 0">
-    <ion-item *ngFor="let member of setting2">
-      <ion-label>{{member?.testName || 'N/A'}}</ion-label>
-      <ion-checkbox color="dark" (click)="selectMember(member)" [(ngModel)]="member.checked"></ion-checkbox>
-    </ion-item>
-  </div>
-  <button ion-button (click)="checkAll()">Done</button> -->
+    <ion-item >เช็คชื่อ {{ck_date}}</ion-item>
 
-  <div *ngIf="testList.length > 0">
-    <ion-item *ngFor="let member of testList">
-      <ion-label>{{member?.testName || 'N/A'}}</ion-label>
-      <ion-checkbox color="dark" (change)="addCheckbox($event,member.testName)"></ion-checkbox>
-    </ion-item>
-  </div>
-  <button (click)='getCheckedBoxes()'>Done</button>
 
-  <!-- <div *ngIf="testList.length > 0">
-    <ion-item *ngFor="let member of testList">
-      <ion-label>{{member?.testName || 'N/A'}}</ion-label>
-      <ion-checkbox color="dark" (ionChange)="addCheckbox($event,member.testName)"></ion-checkbox>
-    </ion-item>
-  </div>
+  <ion-card *ngFor="let res of item3" >
 
-  <button (click)='getCheckedBoxes()'>Done</button> -->
+   <button ion-item (click)="check(res)">
+        นักเรียน: {{res.student_name}}: {{res.student_sname}} ชื่อเล่น:{{res.student_nickname}}
+  </button>
+  </ion-card>
+  <button ion-button full (click)="ISNERT_CHECK(item3,ck_date)">บันทึก</button>
 
 </ion-content>

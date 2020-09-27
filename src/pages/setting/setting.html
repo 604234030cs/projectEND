@@ -33,15 +33,15 @@
         </ion-item>
       </ion-card-content>
     </ion-card>
-    <!-- <ion-list >
+    <ion-list >
     <ion-item *ngFor="let item of setting; let i = index ">
       <ion-label>
       {{item.student_name}} {{item.student_sname}} ชื่อเล่น: {{item.student_nickname}}
     </ion-label>
-      <ion-checkbox [(ngModel)]="myBooolean" (click)="onMyBooleanChange(item,myBooolean)" checked="myBooolean[i]"  >สถานะมาเรียน</ion-checkbox>
-       <ion-toggle [(ngModel)]="item.editstudent" disabled="false" color="primary" (click)="test(item)" ></ion-toggle>
+      <ion-checkbox [(ngModel)]="myBooolean[i]" (click)="onMyBooleanChange(item,myBooolean)" checked="myBooolean[i]"  >สถานะมาเรียน</ion-checkbox>
+       <!-- <ion-toggle [(ngModel)]="item.editstudent" disabled="false" color="primary" (click)="test(item)" ></ion-toggle> -->
     </ion-item>
-  </ion-list> -->
+  </ion-list>
 
 
 

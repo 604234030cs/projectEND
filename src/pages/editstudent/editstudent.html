@@ -15,36 +15,36 @@
     <ion-card-content>
       <ion-item text-center>
           <ion-label>จัดการข้อมูลสถานะ</ion-label>
-          <ion-toggle [(ngModel)]="editstatus" disabled="false" color="primary" ></ion-toggle>
+          <!-- <ion-toggle [(ngModel)]="editstatus" disabled="false" color="primary" ></ion-toggle> -->
       </ion-item>
       <ion-item >
         <ion-label >วันที่ {{ck_date}} </ion-label>
       </ion-item>
-
+<!--
       <ion-grid *ngIf="editstatus==false">
         <ion-row>
           <ion-col>
              <ion-item  >
                <ion-label >มาเรียน</ion-label>
-               <!-- <ion-input type="text" [(ngModel)]="acount[0].student_name" value="{{acount[0].student_name}}" ></ion-input> -->
+
                <ion-checkbox slot="end" [(ngModel)]="ck_status"    checked="ck_status" disabled></ion-checkbox>
              </ion-item>
           </ion-col>
           <ion-col>
              <ion-item >
                <ion-label >รับกลับ</ion-label>
-               <!-- <ion-input type="text" [(ngModel)]="acount[0].student_sname" value="{{acount[0].student_sname}}" ></ion-input> -->
+
                <ion-checkbox slot="end" [(ngModel)]="ck_receive"  checked="ck_receive" disabled></ion-checkbox>
              </ion-item>
           </ion-col>
        </ion-row>
 
 
-      </ion-grid>
+      </ion-grid> -->
 
       <!--false-->
 
-      <ion-grid *ngIf="editstatus==true">
+      <ion-grid >
         <ion-row>
            <ion-col>
               <ion-item >
@@ -57,11 +57,23 @@
               <ion-item >
                 <ion-label >รับกลับ</ion-label>
                 <!-- <ion-input type="text" [(ngModel)]="acount[0].student_sname" value="{{acount[0].student_sname}}" ></ion-input> -->
-                <ion-checkbox slot="end" [(ngModel)]="ck_receive"  checked="ck_receive" ></ion-checkbox>
+                <ion-checkbox slot="end" [(ngModel)]="ck_receive" (click)="statusreceive(acount[0].st_id,ck_receive,ck_date)"  checked="ck_receive" ></ion-checkbox>
               </ion-item>
            </ion-col>
         </ion-row>
-        <!-- <button ion-button *ngIf="editstatus==true" (click)="status()" block color="primary">ยืนยันการจัดการ</button> -->
+        <form [formGroup]="user" >
+        <ion-row>
+          <ion-col >
+            <ion-item >
+              <ion-label  color="danger">*หมายเหตุ</ion-label>
+              <ion-input type="text" formControlName="ck_other"  ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div>
+          <button type="submit" [disabled]="!user.valid" block ion-button color="secondary">ส่งหมายเหตุ</button>
+        </div>
+      </form>
       </ion-grid>
 
 

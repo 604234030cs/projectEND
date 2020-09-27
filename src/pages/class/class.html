@@ -18,35 +18,40 @@
   <ion-buttons >
     <button ion-button block color="tertiary" (click)="test(idclass,nameclass)" >เพิ่มนักเรียน</button>
   </ion-buttons>
-
+<!--
   <div text-center>
     <button ion-button block color="primary" (click)="setting(idclass,nameclass,ck_date)" >จัดการนักเรียนรายวัน
       <ion-input style="margin-left: 90px;"  type="text"  [(ngModel)]="ck_date" value="{{ck_date2}}" disabled></ion-input>
-      <!-- <ion-input style="margin-left: 90px;"  type="text"  [(ngModel)]="ck_date" value="{{nbYear}}-{{nbMonth}}-{{nbDate}}" disabled></ion-input> -->
+       <ion-input style="margin-left: 90px;"  type="text"  [(ngModel)]="ck_date" value="{{nbYear}}-{{nbMonth}}-{{nbDate}}" disabled></ion-input>
     </button>
-  </div>
+  </div> -->
+
+
+      <ion-buttons >
+        <button ion-button block color="dark"  outline  (click)="checkname(idclass,nameclass)">เช็คชื่อมาเรียน</button>
+      </ion-buttons>
+      <ion-buttons  >
+        <button ion-button block color="tertiary"  outline  (click)="checkreceive(idclass,nameclass)">เช็คชื่อกลับบ้าน</button>
+      </ion-buttons>
+
+
+
+
+
+
+
 
 
   <!-- <ion-buttons >
     <button ion-button block color="primary" (click)="setting(idclass,nameclass,ck_date)" >จัดการนักเรียนรายวัน  </button>
   </ion-buttons> -->
-  <ion-card *ngFor="let data of parentandstudent" (click)="editstandpar(data.class_id,data.par_user,ck_date)" >
+  <ion-card *ngFor="let data of parentandstudent" (click)="editstandpar(data.class_id,data.par_user,ck_date,data.st_id)" >
     <ion-card-content >
       <ion-item >
-      <ion-icon item-right color="medium" name="create"></ion-icon><ion-icon item-right color="danger" name="trash" (click)="deletestandpar(data.par_user)"></ion-icon>
+      <ion-icon item-right color="medium" name="create"></ion-icon> <ion-icon item-right color="danger" name="trash" (click)="deletestandpar(data.par_user)"></ion-icon>
       <p>นักเรียน: <b>{{data.student_name}} {{data.student_sname}}</b> ชื่อเล่น: <b>น้อง{{data.student_nickname}}</b>  </p>
       <p>ผู้ปกครอง: <b>{{data.par_name}} {{data.par_sname}}</b></p>
       </ion-item>
     </ion-card-content>
-<!--
-      <p>นักเรียน: <b>{{data.student_name}} {{data.student_sname}}</b> ชื่อเล่น: <b>น้อง{{data.student_nickname}}</b>  </p>
-      <p>ผู้ปกครอง: <b>{{data.par_name}} {{data.par_sname}}</b></p>
-      <ion-buttons large end>
-        <button ion-button  (click)="deletedata()"><ion-icon name="power" color="danger"></ion-icon></button>
-      </ion-buttons> -->
-
-
-
-
   </ion-card>
 </ion-content>

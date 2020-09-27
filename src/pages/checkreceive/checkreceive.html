@@ -1,0 +1,25 @@
+<!--
+  Generated template for the CheckreceivePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>เช็คชื่อกลับบ้าน</ion-title>
+    <ion-buttons large end>
+      <button ion-button (click)="gohome()" ><ion-icon name="home" color="primary"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngFor="let data of item3" >
+    <ion-card-header text-center >
+     <p><b> นักเรียน:{{data.studetn_name}} {{data.student_sname}} ชื่อเล่น: น้อง{{data.student_nickname}} </b></p>
+    </ion-card-header>
+
+  </ion-card>
+
+</ion-content>

@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import * as Enums from '../enums/enums';
+import { MainstudentPage } from '../mainstudent/mainstudent';
 /**
  * Generated class for the TestaddstudentPage page.
  *
@@ -123,12 +124,13 @@ export class TestaddstudentPage {
                     });
 
 
-                  this.navCtrl.setRoot(ClassPage);
+                  this.navCtrl.setRoot(MainstudentPage);
                 }
               },
               {
                 text: 'ยกเลิก',
                 handler: ()=>{
+                  this.navCtrl.setRoot(ClassPage)
                 }
               }
             ]

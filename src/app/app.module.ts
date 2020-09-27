@@ -1,3 +1,4 @@
+import { CheckreceivePage } from './../pages/checkreceive/checkreceive';
 import { EditstatusPage } from './../pages/editstatus/editstatus';
 import { EditstudentPage } from './../pages/editstudent/editstudent';
 import { TestaddstudentPage } from './../pages/testaddstudent/testaddstudent';
@@ -47,7 +48,8 @@ import { Test2Page } from '../pages/test2/test2';
     TestaddstudentPage,
     EditstudentPage,
     Test2Page,
-    EditstatusPage
+    EditstatusPage,
+    CheckreceivePage
 
 
   ],
@@ -78,7 +80,8 @@ import { Test2Page } from '../pages/test2/test2';
     TestaddstudentPage,
     EditstudentPage,
     Test2Page,
-    EditstatusPage
+    EditstatusPage,
+    CheckreceivePage
 
 
   ],

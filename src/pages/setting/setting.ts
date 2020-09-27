@@ -35,6 +35,8 @@ export class SettingPage {
   addsetting: any=[];
   editsetting: any=[];
 
+  i = 0;
+
   st_id;
   student_name;
   student_sname;
@@ -56,7 +58,7 @@ export class SettingPage {
   selectedArray;
   editstudent: boolean;
   //myBooolean: boolean=false;
-  myBooolean=false;
+  myBooolean: boolean;
 
   idclass3;
   ck_date3;
@@ -65,6 +67,7 @@ export class SettingPage {
 
 
     this.editstudent = false;
+    this.myBooolean = true;
 
     this.idclass = this.navParams.get('class_id');
     this.ck_date2 = this.navParams.get('check_data');
@@ -102,6 +105,22 @@ export class SettingPage {
 
 
   }
+
+  actualizaFutbol(){
+    this.showAlert();
+  }
+
+  showAlert(){
+    let alert = this.alertCtrl.create({
+      title: 'dfsd',
+      subTitle: 'sdfsdfsdf'+ this.myBooolean,
+      buttons: ['ok']
+    })
+    alert.present();
+  }
+
+
+
   loaddata(){
     let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+this.idclass;
     this.http.get(url).subscribe(data=>{
