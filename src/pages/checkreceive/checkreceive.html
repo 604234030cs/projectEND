@@ -23,11 +23,11 @@
       <ion-navbar >
         <p><b> นักเรียน:{{data.studetn_name}} {{data.student_sname}} ชื่อเล่น: น้อง{{data.student_nickname}} </b></p>
         <ion-buttons large end>
-          <button ion-button  ><ion-icon name="map" color="tertiary" (click)="distance(data.st_id,data.par_user)"> ระยะทาง</ion-icon></button>
+          <button ion-button  (click)="distance(data.st_id,data.par_user)"><ion-icon name="map" color="tertiary" > ระยะทาง</ion-icon></button>
         </ion-buttons>
       </ion-navbar>
 
-      
+
 
      <ion-item>
       <ion-label>สถานะการรับ</ion-label>

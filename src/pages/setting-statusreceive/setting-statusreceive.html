@@ -6,24 +6,14 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>setting_statusreceive</ion-title>
+    <ion-title>ระยะทาง</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-navbar >
+    <ion-title></ion-title>
+  </ion-navbar>
 
-  <ion-card>
-   <!-- <p>นักเรียน<b>{{students.student_name}} {{students.student_sname}}</b></p> -->
-    <ion-card-header>
-      <p><b> นักเรียน:{{students[0].student_name}} {{students[0].student_sname}} ชื่อเล่น: น้อง{{students[0].student_nickname}} </b></p>
-    </ion-card-header>
-    <ion-item>
-      <ion-label>สถานะการรับนักเรียน </ion-label>
-      <ion-select [(ngModel)]="ck_receive">
-        <ion-option value="f">ยังไม่ถูกรับ</ion-option>
-        <ion-option value="m">รับกลับไปแล้ว</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-card>
 
 </ion-content>
