@@ -131,14 +131,14 @@ export class Test2Page {
     this.c_success = 0;
     // console.log('data',data);
     // console.log(ckdate);
-    let receive = "false";
-    let other = "false";
+    let receive = "";
+    let other = "";
     let i;
     let setdata2;
     let setdata3;
     // console.log(data);
     if(checkdate['ck_date'] == ckdate){
-
+      
       const alert = this.alertCtrl.create({
         title: 'แจ้งเตือน',
         subTitle: 'ได้ทำการเช็คชื่อวันนี้ไปแล้ว',
@@ -177,8 +177,8 @@ export class Test2Page {
           par_user: data[i].par_user,
           ck_date: ckdate,
           ck_status: "1",
-          ck_receive: receive,
-          ck_other: other
+          ck_receive: "1",
+          ck_other: "ไมมี"
         });
 
         let datapost = JSON.parse(setdata2);
@@ -186,6 +186,7 @@ export class Test2Page {
 
         this.http.post(url,datapost).subscribe((data: any) => {
           console.log('data', data);
+          this.navCtrl.push(ClassPage)
 
 
           // if(data != "have" && this.c_success == this.c_length){}
@@ -205,8 +206,8 @@ export class Test2Page {
           par_user: data[i].par_user,
           ck_date: ckdate,
           ck_status: data[i].status,
-          ck_receive: receive,
-          ck_other: other
+          ck_receive: "1",
+          ck_other: "ไมมี"
         });
 
         let datapost = JSON.parse(setdata2);
@@ -214,6 +215,7 @@ export class Test2Page {
         this.http.post(url,datapost).subscribe((status: any) => {
           console.log('status', status);
 
+          this.navCtrl.push(ClassPage)
 
           // if(data != "have" && this.c_success == this.c_length){}
         });
