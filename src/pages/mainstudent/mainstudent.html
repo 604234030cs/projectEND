@@ -11,16 +11,34 @@
 </ion-header>
 
 <ion-content padding>
-  
+
     <ion-buttons >
       <button ion-button block color="secondary" (click)="classroom()" >เพิ่มเพิ่มชั้นเรียน</button>
     </ion-buttons>
-    
-    <ion-card *ngFor="let data of dataclass" >
-      <ion-card-header text-center (click)="goClass(data.class_id,data.class_name)">
-        {{data.class_name}}
-      </ion-card-header>
 
+
+    <ion-card *ngFor="let data of dataclass" >
+      <ion-navbar text-center> จัดการชั้นเรียน
+        <ion-buttons large end>
+          <button ion-button style="max-width: 30px;"  (click)="editclass(data.class_id)"><ion-icon name="create" color="medium" ></ion-icon></button>
+        </ion-buttons>
+        <ion-buttons large left>
+          <button ion-button (click)="deleteclass(data.class_id)" ><ion-icon name="trash" color="danger"></ion-icon></button>
+        </ion-buttons>
+      </ion-navbar>
+      <ion-card-header text-center (click)="goClass(data.class_id,data.class_name)">
+          <ion-title>{{data.class_name}}</ion-title>
+      </ion-card-header>
     </ion-card>
+    <ion-fab right bottom>
+      <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab (click)="goallcheckname()"><ion-icon name="md-clipboard"></ion-icon></button>
+        <button ion-fab (click)="goparent()"><ion-icon name="ios-contacts"></ion-icon></button>
+        <button ion-fab (click)="gohome()"><ion-icon name="home" ></ion-icon></button>
+        <!-- <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button> -->
+      </ion-fab-list>
+    </ion-fab>
+
 
 </ion-content>

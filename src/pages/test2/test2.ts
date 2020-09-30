@@ -1,12 +1,15 @@
+import { MainstudentPage } from './../mainstudent/mainstudent';
 import { TeacherPage } from './../teacher/teacher';
 import { ClassPage } from './../class/class';
-import { text } from '@angular/core/src/render3/instructions';
+// import { text } from '@angular/core/src/render3/instructions';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,LoadingController } from 'ionic-angular';
 import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
-import { MainstudentPage } from '../mainstudent/mainstudent';
+
+
+
 
 /**
  * Generated class for the Test2Page page.
@@ -38,7 +41,7 @@ export class Test2Page {
   c_length = 0;
   c_success = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public alertCtrl: AlertController,public loadingCtrl:LoadingController) {
 
     this.idclass = this.navParams.get('class_id');
     this.ck_date = this.navParams.get('ckdate');
@@ -122,7 +125,19 @@ export class Test2Page {
   }
 
   ISNERT_CHECK(data,ckdate) {
-    let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent3/'+ckdate;
+
+    // if(ckdate != ""){
+    //   let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/adddate2';
+    //   let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkdate2/'+ckdate;
+    //   this.http.get(url2).subscribe((err:any)=>{
+
+    //   })
+
+    // }
+
+
+    let url3 =  Enums.APIURL.URL + '/todoslim3/public/index.php/adddate2';
+    let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkdate2/'+ckdate;
     this.http.get(url5).subscribe((checkdate:any)=>{
 
 
@@ -131,14 +146,12 @@ export class Test2Page {
     this.c_success = 0;
     // console.log('data',data);
     // console.log(ckdate);
-    let receive = "";
-    let other = "";
     let i;
     let setdata2;
-    let setdata3;
-    // console.log(data);
-    if(checkdate['ck_date'] == ckdate){
-      
+
+
+    if(checkdate['check_data'] == ckdate){
+
       const alert = this.alertCtrl.create({
         title: 'แจ้งเตือน',
         subTitle: 'ได้ทำการเช็คชื่อวันนี้ไปแล้ว',
@@ -158,6 +171,15 @@ export class Test2Page {
 
     }else{
 
+      let setdata = JSON.stringify({
+        check_data: ckdate
+
+
+      });
+      let datapost = JSON.parse(setdata);
+      this.http.post(url3,datapost).subscribe((datadate:any)=>{
+        console.log(datadate);
+      });
 
 
     for (i = 0; i < data.length; i++) {
@@ -178,7 +200,7 @@ export class Test2Page {
           ck_date: ckdate,
           ck_status: "1",
           ck_receive: "1",
-          ck_other: "ไมมี"
+          ck_other: "ไม่มี"
         });
 
         let datapost = JSON.parse(setdata2);
@@ -186,7 +208,8 @@ export class Test2Page {
 
         this.http.post(url,datapost).subscribe((data: any) => {
           console.log('data', data);
-          this.navCtrl.push(ClassPage)
+
+
 
 
           // if(data != "have" && this.c_success == this.c_length){}
@@ -207,7 +230,7 @@ export class Test2Page {
           ck_date: ckdate,
           ck_status: data[i].status,
           ck_receive: "1",
-          ck_other: "ไมมี"
+          ck_other: "ไม่มี"
         });
 
         let datapost = JSON.parse(setdata2);
@@ -215,62 +238,41 @@ export class Test2Page {
         this.http.post(url,datapost).subscribe((status: any) => {
           console.log('status', status);
 
+
+
+
           this.navCtrl.push(ClassPage)
 
           // if(data != "have" && this.c_success == this.c_length){}
         });
       }
-
-      // console.log(setdata2);
-
-
-      // if(datatest[i].status ==null){
-      //     datatest[i] ="มาเรียน";
-
-      //     console.log(datatest);
-
-
-      //   data[i].status == 'มาเรียน'
-      //   console.log(data[i].status);
-
-      //   let setdata2 = JSON.stringify({
-      //     st_id: data[i].st_id,
-      //     student_name: data[i].student_name,
-      //     student_sname: data[i].student_sname,
-      //     student_nickname: data[i].student_nickname,
-      //     Student_sex: data[i].Student_sex,
-      //     class_id: data[i].class_id,
-      //     par_user: data[i].par_user,
-      //     ck_date: ckdate,
-      //     ck_status: data[i].status,
-      //     ck_receive:receive,
-      //     ck_other: other
-
-      //   })
-      //   console.log(setdata2);
-
-      // }
-      // else{
-      //   let setdata2 = JSON.stringify({
-      //     st_id: data[i].st_id,
-      //     student_name: data[i].student_name,
-      //     student_sname: data[i].student_sname,
-      //     student_nickname: data[i].student_nickname,
-      //     Student_sex: data[i].Student_sex,
-      //     class_id: data[i].class_id,
-      //     par_user: data[i].par_user,
-      //     ck_date: ckdate,
-      //     ck_status: data[i].status,
-      //     ck_receive:receive,
-      //     ck_other: other
-
-      //   })
       console.log(setdata2);
+
+
+
 
 
       // }
 
     }
+    const alert = this.alertCtrl.create({
+      title: 'สำเร็จ',
+      subTitle: 'บันทึกการเช็คชื่อเรียบร้อย',
+      buttons: [{
+        text: 'ตกลง',
+        handler: ()=>{
+          const loader = this.loadingCtrl.create({
+            content: "Pleas wait...",
+            duration: 500,
+
+          });
+          loader.present();
+
+        }
+      }]
+    });
+    alert.present();
+    this.navCtrl.push(MainstudentPage)
       }
 
     });
@@ -280,6 +282,10 @@ export class Test2Page {
 
   gohome(){
     this.navCtrl.push(TeacherPage)
+  }
+
+  poppage(){
+    this.navCtrl.push(MainstudentPage);
   }
 
 

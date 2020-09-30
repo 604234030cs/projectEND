@@ -1,3 +1,5 @@
+import { AllchecknamePage } from './../allcheckname/allcheckname';
+import { AllrarentPage } from './../allrarent/allrarent';
 import { Test2Page } from './../test2/test2';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
@@ -86,6 +88,16 @@ export class TeacherPage {
 
 
 
+  }
+
+  gohome(){
+    this.navCtrl.push(TeacherPage);
+  }
+  goparent(){
+    this.navCtrl.push(AllrarentPage);
+  }
+  goallcheckname(){
+    this.navCtrl.push(AllchecknamePage);
   }
 
 

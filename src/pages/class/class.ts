@@ -1,3 +1,5 @@
+import { AllchecknamePage } from './../allcheckname/allcheckname';
+import { AllrarentPage } from './../allrarent/allrarent';
 import { CheckreceivePage } from './../checkreceive/checkreceive';
 import { Test2Page } from './../test2/test2';
 import { SettingPage } from './../setting/setting';
@@ -9,6 +11,7 @@ import { AddparentPage } from '../addparent/addparent';
 import { HttpClient} from '@angular/common/http';
 import { MainstudentPage } from '../mainstudent/mainstudent';
 import * as Enums from '../enums/enums';
+import { TeacherPage } from '../teacher/teacher';
 /**
  * Generated class for the ClassPage page.
  *
@@ -23,8 +26,10 @@ import * as Enums from '../enums/enums';
 })
 export class ClassPage {
 
-  // ck_date2 = "2020-9-22";
+  // ck_date2 = "2020-9-15";
   ck_date2 ;
+
+
   parentandstudent:any=[];
   dataclass: any=[];
   idclass;
@@ -70,6 +75,8 @@ export class ClassPage {
     this.nbYear = date.getFullYear();
 
     // this.ck_date2 = [date.getFullYear(),date.getMonth() + 1,date.getDate()];
+
+
     this.ck_date2 = this.nbYear+'-'+this.nbMonth +'-'+this.nbDate;
 
     console.log("this.nbDate: ", this.nbDate);
@@ -130,21 +137,21 @@ export class ClassPage {
             this.parentandstudent = deletest;
             console.log(deletest);
 
-            if(deletest == 'Success'){
-              let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletepar/'+paruser;
-              this.http.get(url1).subscribe(deletepar=>{
-              this.parentandstudent = deletepar;
-              })
-              const loadder = this.loadingCtrl.create({
-                content: "pleas wait.....",
-                duration: 200,
+            // if(deletest == 'Success'){
+            //   let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletepar/'+paruser;
+            //   this.http.get(url1).subscribe(deletepar=>{
+            //   this.parentandstudent = deletepar;
+            //   })
+            //   const loadder = this.loadingCtrl.create({
+            //     content: "pleas wait.....",
+            //     duration: 200,
 
-              })
-              loadder.present();
+            //   })
+            //   loadder.present();
 
-            }else{
+            // }else{
 
-            }
+            // }
           })
 
           this.navCtrl.push(MainstudentPage);
@@ -170,7 +177,7 @@ export class ClassPage {
     });
   }
   editstandpar(idclass,userpar,ck_date,id){
-    console.log(ck_date);
+    // console.log(ck_date);
     let statusstudy;
     let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+id+'&&'+ck_date;
 
@@ -189,13 +196,13 @@ export class ClassPage {
           statusreceive:false
 
         });
-        console.log(statusstudy);
+        // console.log(statusstudy);
 
 
 
       }else if (data != false){
-        console.log('2');
-        console.log(data.ck_receive);
+        // console.log('2');
+        // console.log(data.ck_receive);
 
 
         this.navCtrl.push(EditstudentPage,{
@@ -290,6 +297,16 @@ checkreceive(idcl,namecl){
     ckdate:this.ck_date2
   });
 
+}
+
+gohome(){
+  this.navCtrl.push(TeacherPage);
+}
+goparent(){
+  this.navCtrl.push(AllrarentPage);
+}
+goallcheckname(){
+  this.navCtrl.push(AllchecknamePage);
 }
 
 

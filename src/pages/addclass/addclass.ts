@@ -1,3 +1,4 @@
+import { TeacherPage } from './../teacher/teacher';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
@@ -35,7 +36,7 @@ export class AddclassPage {
     console.log(this.user.valid);
     if(this.user.value.class_name != ""){
       let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/addclass';
-      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkclass/'+this.user.value.class_name;
+      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkclassname/'+this.user.value.class_name;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['class_name'] == this.user.value.class_name){
@@ -86,7 +87,7 @@ export class AddclassPage {
                     });
 
 
-                  this.navCtrl.setRoot(MainstudentPage);
+                  this.navCtrl.setRoot(TeacherPage);
                 }
               },
               {

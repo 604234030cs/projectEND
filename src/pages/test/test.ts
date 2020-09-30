@@ -144,5 +144,10 @@ export class TestPage {
     });
   }
 
+
+  // poppage(){
+  //   this.navCtrl.pop();
+  // }
+
 }
 

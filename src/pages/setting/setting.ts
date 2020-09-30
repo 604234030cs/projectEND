@@ -1,4 +1,4 @@
-import { EditstatusPage } from './../editstatus/editstatus';
+// import { EditstatusPage } from './../editstatus/editstatus';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController , LoadingController} from 'ionic-angular';
 import * as Enums from '../enums/enums';
@@ -165,108 +165,108 @@ export class SettingPage {
 
     })
   }
-       checkbox(item,ck_date2,status){
-          if(item != null){
+  //      checkbox(item,ck_date2,status){
+  //         if(item != null){
 
-            let url = Enums.APIURL.URL +'/todoslim3/public/index.php/checks';
-            this.http.get(url).subscribe((data:any)=>{
-              if(data['st_id'] != item.st_id && data['ck_date'] != ck_date2 && status == true){
-                this.selectedArray.push(item);
-
-
-
-              }
-
-          })
-       }
+  //           let url = Enums.APIURL.URL +'/todoslim3/public/index.php/checks';
+  //           this.http.get(url).subscribe((data:any)=>{
+  //             if(data['st_id'] != item.st_id && data['ck_date'] != ck_date2 && status == true){
+  //               this.selectedArray.push(item);
 
 
 
-  //   if(item != null){
-  //     if(item.checked == true){
-  //       this.selectedArray.push(item);
+  //             }
 
-  //         let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
-  //        +'&&'+this.setting[0].student_sname+'&&'+this.setting[0].student_nickname+'&&'+this.setting[0].Student_sex+'&&'+this.setting[0].class_id
-  //        +'&&'+this.setting[0].par_user+'&&'+this.setting[0].ck_date+'&&'+this.myBooolean;
-  //        this.http.get(url).subscribe((data:any)=>{
-  //          this.check = data;
-  //        }
-  //        );
-  //     }else{
-  //       let newarry = this.selectedArray.filter(function (el){
-  //         return el.ck_status != item.ck_status;
-  //       });
-  //       this.selectedArray = newarry;
-  //       let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
-  //        +'&&'+this.setting[0].student_sname+'&&'+this.setting[0].student_nickname+'&&'+this.setting[0].Student_sex+'&&'+this.setting[0].class_id
-  //        +'&&'+this.setting[0].par_user+'&&'+this.setting[0].ck_date+'&&'+this.myBooolean;
-  //        this.http.get(url).subscribe((data:any)=>{
-  //       this.check = data;
+  //         })
+  //      }
+
+
+
+  // //   if(item != null){
+  // //     if(item.checked == true){
+  // //       this.selectedArray.push(item);
+
+  // //         let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
+  // //        +'&&'+this.setting[0].student_sname+'&&'+this.setting[0].student_nickname+'&&'+this.setting[0].Student_sex+'&&'+this.setting[0].class_id
+  // //        +'&&'+this.setting[0].par_user+'&&'+this.setting[0].ck_date+'&&'+this.myBooolean;
+  // //        this.http.get(url).subscribe((data:any)=>{
+  // //          this.check = data;
+  // //        }
+  // //        );
+  // //     }else{
+  // //       let newarry = this.selectedArray.filter(function (el){
+  // //         return el.ck_status != item.ck_status;
+  // //       });
+  // //       this.selectedArray = newarry;
+  // //       let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
+  // //        +'&&'+this.setting[0].student_sname+'&&'+this.setting[0].student_nickname+'&&'+this.setting[0].Student_sex+'&&'+this.setting[0].class_id
+  // //        +'&&'+this.setting[0].par_user+'&&'+this.setting[0].ck_date+'&&'+this.myBooolean;
+  // //        this.http.get(url).subscribe((data:any)=>{
+  // //       this.check = data;
+
+  // //     }
+  // //     );
+  // //   }
+  // //   console.log(this.selectedArray);
+  // // }else if(item == null){
+
+  // // }
+  // //  }
+  //     }
+
+  //     editstatus(data){
+  //       console.log(data);
+  //       console.log(data.st_id);
+  //       console.log(this.ck_date2);
+  //       console.log(this.setting3.check_id);
+  //        if(data != ""){
+  //          let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/addsettingstudent2';
+  //          let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckstudentname2';
+  //          let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+data.st_id+'&&'+this.setting3.check_id;
+  //         this.http.get(url5).subscribe((err:any)=>{
+  //           console.log(err);
+  //           if(err['st_id'] == data.st_id && err['ck_date'] == this.setting3.check_id){ //err['st_id'] == data.st_id && err['ck_date'] == this.ck_date2
+  //   /////////
+  //   //////////
+  //   /////////
+  //             this.navCtrl.push(EditstatusPage,{
+  //               idclass3:data.class_id,
+  //               ck_date3:this.ck_date2
+
+  //             })
+  //           }else if(err['st_id'] == data.st_id && err['ck_date'] != this.setting3.check_id){
+  //             let setdata = JSON.stringify({
+  //                        st_id: data.st_id,
+  //                        student_name: data.student_name,
+  //                        student_sname: data.student_sname,
+  //                        student_nickname: data.student_nickname,
+  //                        Student_sex: data.Student_sex,
+  //                        class_id: this.idclass,
+  //                        par_user: data.par_user,
+  //                        ck_date: this.setting3.check_id,
+  //                        ck_status: this.ck_status,
+  //                        ck_receive: this.ck_receive,
+  //                        ck_other: this.ck_other
+
+
+  //             });
+  //             let datapost = JSON.parse(setdata);
+  //                       this.http.post(url,datapost).subscribe((status:any)=>{
+  //                         console.log(status);
+  //                       });
+  //                     this.navCtrl.setRoot(EditstatusPage,{
+  //                       idclass3:data.class_id,
+  //                       ck_date3:this.ck_date2
+  //                     });
+
+  //           }
+  //         });
+  //       }else{
+
+  //       }
+
 
   //     }
-  //     );
-  //   }
-  //   console.log(this.selectedArray);
-  // }else if(item == null){
-
-  // }
-  //  }
-      }
-
-      editstatus(data){
-        console.log(data);
-        console.log(data.st_id);
-        console.log(this.ck_date2);
-        console.log(this.setting3.check_id);
-         if(data != ""){
-           let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/addsettingstudent2';
-           let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckstudentname2';
-           let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+data.st_id+'&&'+this.setting3.check_id;
-          this.http.get(url5).subscribe((err:any)=>{
-            console.log(err);
-            if(err['st_id'] == data.st_id && err['ck_date'] == this.setting3.check_id){ //err['st_id'] == data.st_id && err['ck_date'] == this.ck_date2
-    /////////
-    //////////
-    /////////
-              this.navCtrl.push(EditstatusPage,{
-                idclass3:data.class_id,
-                ck_date3:this.ck_date2
-
-              })
-            }else if(err['st_id'] == data.st_id && err['ck_date'] != this.setting3.check_id){
-              let setdata = JSON.stringify({
-                         st_id: data.st_id,
-                         student_name: data.student_name,
-                         student_sname: data.student_sname,
-                         student_nickname: data.student_nickname,
-                         Student_sex: data.Student_sex,
-                         class_id: this.idclass,
-                         par_user: data.par_user,
-                         ck_date: this.setting3.check_id,
-                         ck_status: this.ck_status,
-                         ck_receive: this.ck_receive,
-                         ck_other: this.ck_other
-
-
-              });
-              let datapost = JSON.parse(setdata);
-                        this.http.post(url,datapost).subscribe((status:any)=>{
-                          console.log(status);
-                        });
-                      this.navCtrl.setRoot(EditstatusPage,{
-                        idclass3:data.class_id,
-                        ck_date3:this.ck_date2
-                      });
-
-            }
-          });
-        }else{
-
-        }
-
-
-      }
 
   onMyBooleanChange(i,s){
 

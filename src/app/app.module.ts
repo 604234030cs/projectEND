@@ -1,6 +1,9 @@
+import { EditparentPage } from './../pages/editparent/editparent';
+import { AllrarentPage } from './../pages/allrarent/allrarent';
+import { EditclassPage } from './../pages/editclass/editclass';
 import { SettingStatusreceivePage } from './../pages/setting-statusreceive/setting-statusreceive';
 import { CheckreceivePage } from './../pages/checkreceive/checkreceive';
-import { EditstatusPage } from './../pages/editstatus/editstatus';
+// import { EditstatusPage } from './../pages/editstatus/editstatus';
 import { EditstudentPage } from './../pages/editstudent/editstudent';
 import { TestaddstudentPage } from './../pages/testaddstudent/testaddstudent';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +30,8 @@ import { AddparentPage } from '../pages/addparent/addparent';
 import { AddstudentPage } from '../pages/addstudent/addstudent';
 import { SettingPage } from '../pages/setting/setting';
 import { Test2Page } from '../pages/test2/test2';
+import { AllchecknamePage } from '../pages/allcheckname/allcheckname';
+
 
 
 
@@ -49,9 +54,13 @@ import { Test2Page } from '../pages/test2/test2';
     TestaddstudentPage,
     EditstudentPage,
     Test2Page,
-    EditstatusPage,
+    // EditstatusPage,
     CheckreceivePage,
-    SettingStatusreceivePage
+    SettingStatusreceivePage,
+    EditclassPage,
+    AllrarentPage,
+    AllchecknamePage,
+    EditparentPage
 
 
   ],
@@ -82,9 +91,14 @@ import { Test2Page } from '../pages/test2/test2';
     TestaddstudentPage,
     EditstudentPage,
     Test2Page,
-    EditstatusPage,
+    // EditstatusPage,
     CheckreceivePage,
-    SettingStatusreceivePage
+    SettingStatusreceivePage,
+    EditclassPage,
+    AllrarentPage,
+    AllchecknamePage,
+    EditparentPage
+
 
 
   ],
