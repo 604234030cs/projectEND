@@ -1,9 +1,9 @@
-import { TeacherPage } from './../teacher/teacher';
+import { MainstudentPage } from './../mainstudent/mainstudent';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
-import { MainstudentPage } from '../mainstudent/mainstudent';
+// import { MainstudentPage } from '../mainstudent/mainstudent';
 import * as Enums from '../enums/enums';
 /**
  * Generated class for the AddclassPage page.
@@ -87,7 +87,7 @@ export class AddclassPage {
                     });
 
 
-                  this.navCtrl.setRoot(TeacherPage);
+                  this.navCtrl.setRoot(MainstudentPage);
                 }
               },
               {

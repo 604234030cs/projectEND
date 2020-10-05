@@ -93,9 +93,7 @@ export class HomePage {
           loader.present();
           this.storage.set('accoutuser',account);
           this.navCtrl.setRoot(TeacherPage,teacher_user,teacher_password);
-        //  this.storage.ready().then(()=>{
-        //  this.storage.set('accoutuser',account)
-        //});
+
 
         }else if(data == false){
          let alert = this.alertCtrl.create({

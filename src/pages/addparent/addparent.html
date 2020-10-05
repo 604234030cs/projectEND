@@ -6,7 +6,10 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>เพิ่มข้อมูลชั้น {{nameclass}}</ion-title>
+    <ion-title text-center>เพิ่มข้อมูลผู้ปกครอง</ion-title>
+    <ion-buttons end >
+      <button ion-button (click)="closeModal()"><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -28,6 +31,15 @@
       </ion-item>
 
       <ion-item>
+        <ion-label>คำนำหน้า</ion-label>
+        <ion-select formControlName="par_title" >
+          <ion-option value="1">นาย</ion-option>
+          <ion-option value="2">นาง</ion-option>
+          <ion-option value="3">นางสาว</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
         <ion-label floating>ชื่อ</ion-label>
         <ion-input type="text" formControlName="par_name"></ion-input>
       </ion-item>
@@ -40,6 +52,10 @@
       <ion-item>
         <ion-label floating>โทรศัพท์</ion-label>
         <ion-input type="text" formControlName="par_tel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>ที่อยู่</ion-label>
+        <ion-input type="text" formControlName="par_address"></ion-input>
       </ion-item>
       <!-- ส่วนข้อมูลนักเรียน
       <p> <b>เพิ่มข้อมูล:</b> นักเรียน</p>

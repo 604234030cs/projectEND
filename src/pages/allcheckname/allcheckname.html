@@ -17,22 +17,26 @@
       <ion-option style="margin-right: 30px;" *ngFor="let data of alllistcheckdate" value="{{data.check_data}}" >{{data.check_data}}</ion-option>
     </ion-select>
   </ion-item>
+  <ion-item style="margin-top: 10px;">
+    <ion-label>เลือกชั้นเรียน</ion-label>
+    <ion-select [(ngModel)]="class_id" >
+      <ion-option style="margin-right: 30px;" *ngFor="let data2 of alllistclass" value="{{data2.class_id}}" >{{data2.class_name}}</ion-option>
+    </ion-select>
+  </ion-item>
   <ion-buttons  >
-    <button ion-button block color="primary"    (click)="listcheckname(ck_date)">ส่ง</button>
+    <button ion-button block color="primary"    (click)="listcheckname(ck_date,class_id)">ส่ง</button>
   </ion-buttons>
   <ion-card *ngFor="let data2 of listchecknameformdate" >
     <ion-card-header text-center >
-      <ion-navbar >
-        <p><b> นักเรียน:{{data2.studetn_name}} {{data2.student_sname}} ชื่อเล่น: น้อง{{data2.student_nickname}} </b></p>
-        <ion-buttons large end>
+      <ion-navbar  >
+        <p><b> นักเรียน:{{title}}{{data2.student_name}} {{data2.student_sname}} ชื่อเล่น: น้อง{{data2.student_nickname}} </b></p>
+        <!-- <ion-buttons large end>
           <button ion-button  (click)="editcheckname(data2.ck_id)"><ion-icon name="create" color="dark" > </ion-icon></button>
         </ion-buttons>
         <ion-buttons large left>
           <button ion-button  (click)="editcheckname(data2.ck_id)"><ion-icon name="trash" color="danger" ></ion-icon></button>
-        </ion-buttons>
+        </ion-buttons> -->
       </ion-navbar>
-
-
 
      <ion-item>
       <ion-label>สถานะการรับ</ion-label>
@@ -47,7 +51,7 @@
     </ion-item>
     </ion-card-header>
     <ion-buttons  >
-      <button ion-button block color="secondary"  outline  (click)="settingreceive(data2.ck_id,data2.ck_receive,data.ck_other)">บันทึก</button>
+      <button ion-button block color="secondary"  outline  (click)="settingreceive(data2.ck_id,data2.ck_receive,data2.ck_other)">บันทึก</button>
     </ion-buttons>
   </ion-card>
 

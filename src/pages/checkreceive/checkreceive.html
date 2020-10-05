@@ -18,18 +18,26 @@
 
 <ion-content padding>
   <!-- (click)="settingreceive(data.st_id,data.ck_date,data.par_user)" -->
+  <ion-navbar >
+   <button ion-button  round outline color="tertiary">ยังไม่ถูกรับ</button>
+  </ion-navbar>
   <ion-item >เช็คชื่อ {{ck_date}}</ion-item>
 
-  <ion-card *ngFor="let data of item3; let i = index " >
+  <ion-card *ngFor="let data of item3; let i = index; "  >
     <!-- <form [formGroup]="user" (ngSubmit)="settingreceive(data.st_id,ck_receive,ck_other)"> -->
     <ion-card-header text-center >
       <ion-navbar >
-        <p><b> นักเรียน:{{data.studetn_name}} {{data.student_sname}} ชื่อเล่น: น้อง{{data.student_nickname}} </b></p>
+        <p><b> นักเรียน: {{data.student_name}} {{data.student_sname}}</b></p>
         <ion-buttons large end>
           <button ion-button  (click)="distance(data.st_id,data.par_user)"><ion-icon name="map" color="tertiary" > ระยะทาง</ion-icon></button>
         </ion-buttons>
       </ion-navbar>
-
+      <ion-navbar color="tertiary" *ngIf="data.ck_receive ==1"style="opacity: 0.5;">
+        <p><b> นักเรียน: {{data.student_name}} {{data.student_sname}}</b></p>
+        <ion-buttons large end>
+          <button ion-button  (click)="distance(data.st_id,data.par_user)"><ion-icon name="map" color="tertiary" > ระยะทาง</ion-icon></button>
+        </ion-buttons>
+      </ion-navbar>
 
 
      <ion-item>

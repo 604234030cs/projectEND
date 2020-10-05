@@ -37,24 +37,31 @@ export class MainstudentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient
     ,public alertCtrl:AlertController,public loadingCtrl:LoadingController) {
-    this.loaddataclass();
+      this.dorefres();
+
   }
 
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad MainstudentPage');
-
-
-  }
-
-  loaddataclass(){
     let url = Enums.APIURL.URL +'/todoslim3/public/index.php/class';
     this.http.get(url).subscribe(data=>{
       this.dataclass = data;
       console.log(data);
 
     })
+
+
   }
+
+  // loaddataclass(){
+  //   let url = Enums.APIURL.URL +'/todoslim3/public/index.php/class';
+  //   this.http.get(url).subscribe(data=>{
+  //     this.dataclass = data;
+  //     console.log(data);
+
+  //   })
+  // }
   editclass(class_id){
     this.navCtrl.push(EditclassPage,{
       class_id:class_id
@@ -105,11 +112,7 @@ export class MainstudentPage {
     this.navCtrl.push(StudentDetailPage,student);
   }
 
-  refrese(){
-    setInterval(()=>{
-      this.ionViewDidLoad();
-    },500)
-    }
+
 
     classroom(){
       this.navCtrl.push(AddclassPage)
@@ -140,6 +143,12 @@ export class MainstudentPage {
   goallcheckname(){
     this.navCtrl.push(AllchecknamePage);
   }
+
+  dorefres(){
+    setTimeout(()=>{
+    this.ionViewWillEnter();
+  },500)
+}
 
 
 }

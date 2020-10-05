@@ -18,10 +18,16 @@
 
 
   <div style="margin-top: 20px;">
-    <button block ion-button  color="secondary" (click)="mainteacher()">จัดการข้อมูลตัวเอง</button>
+    <button block ion-button  color="light" (click)="mainteacher()">จัดการข้อมูลตัวเอง</button>
+  </div>
+  <div style="margin-top: 20px;">
+    <button block ion-button  color="primary" (click)="goparent()">ผู้ปกครอง</button>
   </div>
   <div style="margin-top: 10px;">
-    <button block ion-button  color="primary" (click)="toteacher()">ชั้นเรียน</button>
+    <button block ion-button  color="secondary" (click)="toteacher()">ชั้นเรียน</button>
+  </div>
+  <div style="margin-top: 20px;">
+    <button block ion-button  color="tertiary" (click)="goallcheckname()">ประวัติการเช็คชื่อ</button>
   </div>
   <ion-fab right bottom>
     <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>

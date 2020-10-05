@@ -1,10 +1,12 @@
+import { MainstudentPage } from './../mainstudent/mainstudent';
+import { AddparentPage } from './../addparent/addparent';
 import { ClassPage } from './../class/class';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController,ModalController,ViewController} from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import * as Enums from '../enums/enums';
-import { MainstudentPage } from '../mainstudent/mainstudent';
+
 /**
  * Generated class for the TestaddstudentPage page.
  *
@@ -26,6 +28,7 @@ export class TestaddstudentPage {
   year: number;
 
 
+
   user:FormGroup;
   classid;
   nameclass:string='';
@@ -34,9 +37,11 @@ export class TestaddstudentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public http: HttpClient,public formBuilder: FormBuilder,
-              public alertCtrl:AlertController,public loadingCtrl:LoadingController)
+              public alertCtrl:AlertController,public loadingCtrl:LoadingController,
+              private modal: ModalController)
               {
-                this.loaddata();
+                this.dorefres();
+                // this.loaddata();
                 this.classid = this.navParams.get('clsss_id');
                 this.nameclass = this.navParams.get('class_name');
                 this.alert = {
@@ -44,20 +49,40 @@ export class TestaddstudentPage {
                   subTitle: 'เลือกรายชื่อผู้ปกครอง'
                 };
 
+                // this.loaddata();
+
               }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TestaddstudentPage');
-  }
-
-  loaddata(){
+ionViewWillEnter() {
+    console.log('ionViewWillEnter TestaddstudentPage');
     let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
     this.http.get(url2).subscribe(dataparent=>{
       this.parent = dataparent;
       console.log(dataparent);
 
     })
+    // this.loaddata();
+    // this.dorefres();
+
+  }
+
+  // loaddata(){
+  //   let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
+  //   this.http.get(url2).subscribe(dataparent=>{
+  //     this.parent = dataparent;
+  //     console.log(dataparent);
+
+  //   })
+  // }
+
+
+
+  addparent(){
+    const myModal = this.modal.create(AddparentPage);
+    // this.navCtrl.push(AddparentPage);
+    myModal.present();
+
   }
 
   stpSelect() {
@@ -80,6 +105,7 @@ export class TestaddstudentPage {
       //     alert.present();
       //   }else if(err['class_name'] != this.user.value.class_name){
           let setdata = JSON.stringify({
+                student_title: this.user.value.student_title,
                 student_name: this.user.value.student_name,
                 student_sname: this.user.value.student_sname,
                 student_nickname: this.user.value.student_nickname,
@@ -144,6 +170,7 @@ export class TestaddstudentPage {
   }
   buildForm(): void{
     this.user = new FormGroup({
+      student_title: new FormControl("",Validators.required),
       student_name: new FormControl("",Validators.required),
       student_sname: new FormControl("",Validators.required),
       student_nickname: new FormControl("",Validators.required),
@@ -153,5 +180,11 @@ export class TestaddstudentPage {
 
     });
   }
+
+  dorefres(){
+    setTimeout(()=>{
+    this.ionViewWillEnter();
+  },500)
+}
 
 }

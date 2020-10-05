@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>testaddstudent</ion-title>
+    <ion-title text-center>ชั้นเรียน {{nameclass}} </ion-title>
   </ion-navbar>
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
@@ -15,10 +15,29 @@
 
 <ion-content padding>
 
+  <ion-navbar >
+    <!-- <ion-title>title</ion-title> -->
+    <p> <b>เพิ่มข้อมูล:</b> นักเรียนชั้น{{nameclass}}</p>
+    <ion-buttons large end>
+      <button ion-button  (click)="addparent()"><ion-icon name="md-person-add" color="primary"> เพิ่มผู้ปกครอง</ion-icon></button>
+    </ion-buttons>
+
+
+
+  </ion-navbar>
+
 
   <form [formGroup]="user" (ngSubmit)="addstudent()">
     <ion-list>
-      <p> <b>เพิ่มข้อมูล:</b> นักเรียนชั้น{{nameclass}}</p>
+
+
+      <ion-item>
+        <ion-label>คำนำหน้า</ion-label>
+        <ion-select formControlName="student_title" >
+          <ion-option value="1">เด็กชาย</ion-option>
+          <ion-option value="2">เด็กหญิง</ion-option>
+        </ion-select>
+      </ion-item>
     <ion-item>
       <ion-label floating>ชื่อ</ion-label>
       <ion-input type="text" formControlName="student_name"></ion-input>
@@ -32,8 +51,11 @@
       <ion-input type="text" formControlName="student_nickname"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>เพศ</ion-label>
-      <ion-input type="text" formControlName="Student_sex"></ion-input>
+      <ion-label>เพศ</ion-label>
+      <ion-select formControlName="Student_sex" >
+        <ion-option value="1">หญิง</ion-option>
+        <ion-option value="2">ชาย</ion-option>
+      </ion-select>
     </ion-item>
     <!-- <ion-item >
       <ion-label floating>ชั้นเรียน {{classname}}</ion-label>
@@ -49,7 +71,6 @@
         <ion-option *ngFor="let data of parent"value="{{data.par_user}}" (select)="stpSelect()">{{data.par_name}} {{data.par_sname}}</ion-option>
       </ion-select>
     </ion-item>
-
 
 
     </ion-list>

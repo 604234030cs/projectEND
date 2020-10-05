@@ -80,6 +80,7 @@ export class CheckreceivePage {
       console.log(data);
       if(this.item3['ck_receive'] == '1'){
         this.text = "ยังไม่ถูกรับ"
+        
       }else if(this.item3['ck_receive']){
         this.text = "รับกลับไปแล้ว"
       }
@@ -121,7 +122,7 @@ export class CheckreceivePage {
         console.log("1");
 
         ckother = "ไม่มี";
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
+        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
         +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
         +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
@@ -140,7 +141,7 @@ export class CheckreceivePage {
 
 
 
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
+        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
         +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
         +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{

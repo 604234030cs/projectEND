@@ -20,8 +20,8 @@ export class EditstudentPage {
 
   user:FormGroup;
 
-  acount: any = ['st_id','student_name','student_sname','student_nickname','Student_sex','class_id',
-                 'par_user','par_id','par_password','par_name','par_sname','par_tel','latitude','longitude',
+  acount: any = ['st_id','student_title','student_name','student_sname','student_nickname','Student_sex','class_id',
+                 'par_user','par_id','par_title','par_password','par_name','par_sname','par_tel','par_address','latitude','longitude',
   ];
   classid:any;
   paruser:any;
@@ -40,7 +40,8 @@ export class EditstudentPage {
   editstatus: boolean=false;
   ck_status: boolean ; //
   ck_receive: boolean ; //
-
+  title;
+  title2;
 
 
 
@@ -113,6 +114,27 @@ export class EditstudentPage {
     let url2 =  Enums.APIURL.URL +'/todoslim3/public/index.php/standparedit/'+this.classid+'&&'+this.paruser+'&&'+this.st_id;
     this.http.get(url2).subscribe(user =>{
       this.acount = user;
+      // console.log(this.acount[0].par_title);
+
+      if(this.acount[0].student_title == '1'){
+        this.title = "เด็กชาย"
+        if(this.acount[0].par_title == '1'){
+          this.title2 = "นาย"
+        }else if(this.acount[0].par_title == '2'){
+          this.title2 = "นาง"
+        }else if(this.acount[0].par_title == '3'){
+          this.title2 = "นางสาว"
+        }
+      }else if(this.acount[0].student_title == '2'){
+        this.title = "เด็กหญิง"
+        if(this.acount[0].par_title == '1'){
+          this.title2 = "นาย"
+        }else if(this.acount[0].par_title == '2'){
+          this.title2 = "นาง"
+        }else if(this.acount[0].par_title == '3'){
+          this.title2 = "นางสาว"
+        }
+      }
     })
   }
   ionViewDidLeave(){
@@ -122,233 +144,11 @@ export class EditstudentPage {
     this.dorefres();
 
   }
-  // status(){
-
-  // }
-
-
-  // loaddata4(){
-  //   let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckstudentname2/';
-  //   this.http.get(url2).subscribe(data=>{
-  //     this.stutus3 = data;
-  //     console.log(this.stutus3);
-
-
-  //   })
-  // }
-
-  statusstudy(id,s,d){
-    console.log("1");
-    // console.log(s);
-    // console.log(d);
-    // console.log(this.settingdate.check_id);
-    if(id != "" && d != ""){
-      let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/addsettingstudent2';
-      let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+id+'&&'+d;
-
-      this.http.get(url5).subscribe((data:any)=>{
-        console.log([data]);
-
-
-        if(data['st_id']==id && data['ck_date']==d){
-          console.log("1");
-
-              let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+data.st_id+'&&'+data.student_name
-            +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-            +'&&'+data.par_user+'&&'+d+'&&'+s+'&&'+data.ck_receive+'&&'+data.ck_other;
-                       this.http.get(url).subscribe((data2:any)=>{
-            this.update = data2;
-            // console.log(this.update);
-           });
-        }else if(data['st_id']!=id && data['ck_date']!=d){   //data== false
-          console.log("2");
-
-          let receive = "false";
-          let other = "false";
-          // console.log(this.acount);
-          // console.log(this.acount[0].student_name);
-          // console.log(this.acount[0].st_id);
-
-          //     console.log(s);
-          //     console.log(d);
-
-          let setdata2 = JSON.stringify({
-            st_id: this.acount[0].st_id,
-            student_name: this.acount[0].student_name,
-            student_sname: this.acount[0].student_sname,
-            student_nickname: this.acount[0].student_nickname,
-            Student_sex: this.acount[0].Student_sex,
-            class_id: this.acount[0].class_id,
-            par_user: this.acount[0].par_user,
-            ck_date: d,
-            ck_status: s,
-            ck_receive:receive,
-            ck_other: other
-
-
-          })
-          let datapost = JSON.parse(setdata2);
-          this.http.post(url,datapost).subscribe((status:any)=>{
-            // console.log(status);
-            this.dorefres();
-          });
-          // this.dorefres();
-
-        }else if(data['st_id']==id && data['ck_date']!=d){   //data== false
-          console.log("3");
-
-          let receive = "false";
-          let other = "false";
-          // console.log(this.acount);
-          // console.log(this.acount[0].student_name);
-          // console.log(this.acount[0].st_id);
-          // console.log(this.acount[0].ck_receive);
-
-          //     console.log(s);
-          //     console.log(d);
-
-          let setdata2 = JSON.stringify({
-            st_id: this.acount[0].st_id,
-            student_name: this.acount[0].student_name,
-            student_sname: this.acount[0].student_sname,
-            student_nickname: this.acount[0].student_nickname,
-            Student_sex: this.acount[0].Student_sex,
-            class_id: this.acount[0].class_id,
-            par_user: this.acount[0].par_user,
-            ck_date: d,
-            ck_status: s,
-            ck_receive:receive,
-            ck_other: other
-
-
-          })
-          let datapost = JSON.parse(setdata2);
-          this.http.post(url,datapost).subscribe((status:any)=>{
-            // console.log(status);
-
-            this.dorefres();
-          });
-          // this.dorefres();
-
-        }
-      });
-    }
-
-
-
-
-  }
-//////////////////////////////////////////////////////////////0...........................................................................................................
-
-// statusreceive(id,ss,d){
-//   console.log("2");
-//   // console.log(s);
-//   // console.log(d);
-//   // console.log(this.settingdate.check_id);
-//   if(id != "" && d != ""){
-//     let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/addsettingstudent2';
-//     let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+id+'&&'+d;
-
-//     this.http.get(url5).subscribe((data:any)=>{
-//       console.log([data]);
-
-
-//       if(data['st_id']==id && data['ck_date']==d){
-//         console.log("1");
-
-//             let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+data.st_id+'&&'+data.student_name
-//           +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-//           +'&&'+data.par_user+'&&'+d+'&&'+data.ck_status+'&&'+ss+'&&'+data.ck_other;
-//                      this.http.get(url).subscribe((data2:any)=>{
-//           this.update = data2;
-//           // console.log(this.update);
-//          });
-//       }else if(data['st_id']!=id && data['ck_date']!=d){   //data== false
-//         console.log("2");
-
-
-//         let other = "false";
-//         // console.log(this.acount);
-//         // console.log(this.acount[0].student_name);
-//         // console.log(this.acount[0].st_id);
-
-//         //     console.log(s);
-//         //     console.log(d);
-
-//         let setdata2 = JSON.stringify({
-//           st_id: this.acount[0].st_id,
-//           student_name: this.acount[0].student_name,
-//           student_sname: this.acount[0].student_sname,
-//           student_nickname: this.acount[0].student_nickname,
-//           Student_sex: this.acount[0].Student_sex,
-//           class_id: this.acount[0].class_id,
-//           par_user: this.acount[0].par_user,
-//           ck_date: d,
-//           ck_status: this.acount[0].ck_status,
-//           ck_receive:ss,
-//           ck_other: other
-
-
-//         })
-//         let datapost = JSON.parse(setdata2);
-//         this.http.post(url,datapost).subscribe((status:any)=>{
-//           // console.log(status);
-//           this.dorefres();
-//         });
-//         // this.dorefres();
-
-//       }else if(data['st_id']==id && data['ck_date']!=d){   //data== false
-//         console.log("3");
-
-
-//         let other = "false";
-//         // console.log(this.acount);
-//         // console.log(this.acount[0].student_name);
-//         // console.log(this.acount[0].st_id);
-//         // console.log(this.acount[0].ck_receive);
-
-//         //     console.log(s);
-//         //     console.log(d);
-
-//         let setdata2 = JSON.stringify({
-//           st_id: this.acount[0].st_id,
-//           student_name: this.acount[0].student_name,
-//           student_sname: this.acount[0].student_sname,
-//           student_nickname: this.acount[0].student_nickname,
-//           Student_sex: this.acount[0].Student_sex,
-//           class_id: this.acount[0].class_id,
-//           par_user: this.acount[0].par_user,
-//           ck_date: d,
-//           ck_status: this.acount[0].ck_status,
-//           ck_receive:ss,
-//           ck_other: other
-
-
-//         })
-//         let datapost = JSON.parse(setdata2);
-//         this.http.post(url,datapost).subscribe((status:any)=>{
-//           // console.log(status);
-
-//           this.dorefres();
-//         });
-//         // this.dorefres();
-
-//       }
-//     });
-//   }
-
-
-
-
-// }
-/////////////////////////////////////////////////////////////
-
-
 
 
 
   editAccountstudent(){
-    let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editstudent2/'+this.acount[0].st_id+'&&'+this.acount[0].student_name+'&&'+this.acount[0].student_sname
+    let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editstudent2/'+this.acount[0].st_id+'&&'+this.acount[0].student_title+'&&'+this.acount[0].student_name+'&&'+this.acount[0].student_sname
                +'&&'+this.acount[0].student_nickname+'&&'+this.acount[0].Student_sex;
 
       this.http.get(url).subscribe(data=>{
@@ -385,8 +185,8 @@ export class EditstudentPage {
 
   }
   editAccountparent(){
-      let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editparent2/'+this.acount[0].par_id+'&&'+this.acount[0].par_user+'&&'+this.acount[0].par_name
-               +'&&'+this.acount[0].par_sname+'&&'+this.acount[0].par_tel;
+      let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editparent2/'+this.acount[0].par_id+'&&'+this.acount[0].par_user+'&&'+this.acount[0].par_title+'&&'+this.acount[0].par_name
+               +'&&'+this.acount[0].par_sname+'&&'+this.acount[0].par_tel+'&&'+this.acount[0].par_address;
 
       this.http.get(url).subscribe(data=>{
       this.acount[0] = data;

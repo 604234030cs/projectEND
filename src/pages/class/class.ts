@@ -26,11 +26,16 @@ import { TeacherPage } from '../teacher/teacher';
 })
 export class ClassPage {
 
-  // ck_date2 = "2020-9-15";
+  // ck_date2 = "2020-10-5";
   ck_date2 ;
 
+  title;
 
-  parentandstudent:any=[];
+
+  parentandstudent:any=['st_id','student_title','student_name','student_sname','student_nickname','Student_sex','class_id',
+                        'par_user','par_id','par_title','par_password','par_name','par_sname','par_tel','par_address','latitude','longitude'];
+
+
   dataclass: any=[];
   idclass;
   nameclass:string='';
@@ -51,6 +56,8 @@ export class ClassPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
               public alertCtrl:AlertController,public loadingCtrl: LoadingController) {
+
+                this.dorefres();
 
 
 
@@ -89,7 +96,7 @@ export class ClassPage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.loaddata();
     // console.log('ionViewDidLoad ClassPage');
     // console.log(this.idclass);
@@ -100,20 +107,15 @@ export class ClassPage {
     // console.log( this.nameclass);
   }
 
-  ionViewWillLoad() {
-    // console.log('ionViewDidLoad EditstudentPage');
-    // console.log(this.classid);
-    // console.log(this.paruser);
-     this.loaddata();
-
-
-  }
 
   loaddata(){
     let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+this.idclass;
     this.http.get(url).subscribe(data=>{
       this.parentandstudent = data;
-      console.log(this.parentandstudent);
+      // console.log(this.parentandstudent);
+
+
+
 
     })
   }
@@ -126,13 +128,13 @@ export class ClassPage {
       class_name:namecl
     });
   }
-  deletestandpar(paruser){
+  deletestandpar(stid){
     const confirm = this.alertCtrl.create({
       title: 'ต้องการลบข้อมูลหรือไม่?',
       buttons:[{
         text: 'ตกลง',
         handler: () =>{
-          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+paruser;
+          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+stid;
           this.http.get(url).subscribe(deletest=>{
             this.parentandstudent = deletest;
             console.log(deletest);
@@ -154,7 +156,7 @@ export class ClassPage {
             // }
           })
 
-          this.navCtrl.push(MainstudentPage);
+          this.navCtrl.setRoot(MainstudentPage);
         }
 
       },
@@ -178,11 +180,10 @@ export class ClassPage {
   }
   editstandpar(idclass,userpar,ck_date,id){
     // console.log(ck_date);
-    let statusstudy;
+    // let statusstudy;
     let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+id+'&&'+ck_date;
 
     this.http.get(url5).subscribe((data:any)=>{
-
 
       if(data == false){
         console.log('1');
@@ -307,6 +308,12 @@ goparent(){
 }
 goallcheckname(){
   this.navCtrl.push(AllchecknamePage);
+}
+
+dorefres(){
+  setTimeout(()=>{
+  this.ionViewWillEnter();
+},500)
 }
 
 

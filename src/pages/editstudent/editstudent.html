@@ -64,7 +64,19 @@
       </ion-item>
 
       <ion-grid *ngIf="editstudent==false">
-        <ion-row>
+<!--
+        <p>นักเรียน: <b>{{acount[0].student_title}} {{acount[0].student_name}} {{acount[0].student_sname}}</b></p>
+        <p>ชื่อเล่น: <b>{{acount[0].student_nickname}}</b> เพศ: <b>{{acount[0].Student_sex}}</b>  </p> -->
+        <ion-item >
+          <ion-label floating>ชื่อนักเรียน</ion-label>
+          <ion-input type="text"  value="{{title}} {{acount[0].student_name}} {{acount[0].student_sname}}" disabled></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label floating>ชื่อเล่น</ion-label>
+          <ion-input type="text"  value=" น้อง{{acount[0].student_nickname}}" disabled></ion-input>
+        </ion-item>
+
+        <!-- <ion-row>
           <ion-col>
              <ion-item >
                <ion-label floating>ชื่อนักเรียน</ion-label>
@@ -92,7 +104,7 @@
                 <ion-input type="text" [(ngModel)]="acount[0].Student_sex" value="{{acount[0].Student_sex}}" disabled></ion-input>
               </ion-item>
            </ion-col>
-        </ion-row>
+        </ion-row> -->
 
 
       </ion-grid>
@@ -101,9 +113,20 @@
 
       <ion-grid *ngIf="editstudent==true">
         <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>คำนำหน้า</ion-label>
+              <ion-select [(ngModel)]="acount[0].student_title" >
+                <ion-option value="1">เด็กชาย</ion-option>
+                <ion-option value="2">เด็กหญิง</ion-option>
+              </ion-select>
+            </ion-item>
+         </ion-col>
+        </ion-row>
+        <ion-row>
            <ion-col>
               <ion-item >
-                <ion-label floating>ชื่อ</ion-label>
+                <ion-label floating>ชื่อนักเรียน</ion-label>
                 <ion-input type="text" [(ngModel)]="acount[0].student_name" value="{{acount[0].student_name}}" ></ion-input>
               </ion-item>
            </ion-col>
@@ -121,11 +144,16 @@
                 <ion-input type="text" [(ngModel)]="acount[0].student_nickname" value="{{acount[0].student_nickname}}" ></ion-input>
               </ion-item>
            </ion-col>
-           <ion-col>
-              <ion-item >
-                <ion-label floating>เพศ</ion-label>
-                <ion-input type="text" [(ngModel)]="acount[0].Student_sex" value="{{acount[0].Student_sex}}" ></ion-input>
-              </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>เพศ</ion-label>
+              <ion-select [(ngModel)]="acount[0].Student_sex" >
+                <ion-option value="1">หญิง</ion-option>
+                <ion-option value="2">ชาย</ion-option>
+              </ion-select>
+            </ion-item>
            </ion-col>
         </ion-row>
 
@@ -152,30 +180,19 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-             <ion-item >
-               <ion-label floating>ชื่อผู้ปกครอง</ion-label>
-               <ion-input type="text" [(ngModel)]="acount[0].par_name" value="{{acount[0].par_name}}" disabled></ion-input>
-             </ion-item>
-          </ion-col>
+        <ion-item >
+          <ion-label floating>ชื่อผู้ปกครอง</ion-label>
+          <ion-input type="text"  value="{{title2}} {{acount[0].par_name}} {{acount[0].par_sname}}" disabled></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label floating>เบอร์โทร</ion-label>
+          <ion-input type="text"  value=" {{acount[0].par_tel}}" disabled></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label floating>ที่อยู่</ion-label>
+          <ion-input type="text"  value=" {{acount[0].par_address}}" disabled></ion-input>
+        </ion-item>
 
-          <ion-col>
-             <ion-item >
-               <ion-label floating>นามสกุล</ion-label>
-               <ion-input type="text" [(ngModel)]="acount[0].par_sname" value="{{acount[0].par_sname}}" disabled></ion-input>
-             </ion-item>
-          </ion-col>
-       </ion-row>
-
-       <ion-row>
-           <ion-col>
-              <ion-item >
-                <ion-label floating>โทรศัพท์</ion-label>
-                <ion-input type="text" [(ngModel)]="acount[0].par_tel" value="{{acount[0].par_tel}}" disabled></ion-input>
-              </ion-item>
-           </ion-col>
-        </ion-row>
 
 
       </ion-grid>
@@ -193,7 +210,18 @@
           </ion-col>
         </ion-row>
         <ion-row>
-
+          <ion-col >
+            <ion-item>
+              <ion-label>คำนำหน้า</ion-label>
+              <ion-select [(ngModel)]="acount[0].par_title" >
+                <ion-option value="1">นาย</ion-option>
+                <ion-option value="2">นาง</ion-option>
+                <ion-option value="3">นางสาว</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
            <ion-col>
               <ion-item >
                 <ion-label floating>ชื่อผู้ปกครอง</ion-label>
@@ -216,6 +244,14 @@
               </ion-item>
            </ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col>
+             <ion-item >
+               <ion-label floating>ที่อยู๋</ion-label>
+               <ion-input type="text" [(ngModel)]="acount[0].par_address" value="{{acount[0].par_address}}" ></ion-input>
+             </ion-item>
+          </ion-col>
+       </ion-row>
 
         <button ion-button *ngIf="editparent==true" (click)="editAccountparent()" block color="primary">ยืนยันการแก้ไข</button>
       </ion-grid>
