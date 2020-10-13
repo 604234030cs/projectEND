@@ -27,30 +27,19 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-             <ion-item >
-               <ion-label floating>ชื่อผู้ปกครอง</ion-label>
-               <ion-input type="text" [(ngModel)]="parent[0].par_name" value="{{parent[0].par_name}}" disabled></ion-input>
-             </ion-item>
-          </ion-col>
+        <ion-item >
+          <ion-label floating>ชื่อผู้ปกครอง</ion-label>
+          <ion-input type="text"  value="{{title2}} {{parent[0].par_name}} {{parent[0].par_sname}}" disabled></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label floating>เบอร์โทร</ion-label>
+          <ion-input type="text"  value=" {{parent[0].par_tel}}" disabled></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label floating>ที่อยู่</ion-label>
+          <ion-input type="text"  value=" {{parent[0].par_address}}" disabled></ion-input>
+        </ion-item>
 
-          <ion-col>
-             <ion-item >
-               <ion-label floating>นามสกุล</ion-label>
-               <ion-input type="text" [(ngModel)]="parent[0].par_sname" value="{{parent[0].par_sname}}" disabled></ion-input>
-             </ion-item>
-          </ion-col>
-       </ion-row>
-
-       <ion-row>
-           <ion-col>
-              <ion-item >
-                <ion-label floating>โทรศัพท์</ion-label>
-                <ion-input type="text" [(ngModel)]="parent[0].par_tel" value="{{parent[0].par_tel}}" disabled></ion-input>
-              </ion-item>
-           </ion-col>
-        </ion-row>
 
 
       </ion-grid>
@@ -68,7 +57,18 @@
           </ion-col>
         </ion-row>
         <ion-row>
-
+          <ion-col >
+            <ion-item>
+              <ion-label>คำนำหน้า</ion-label>
+              <ion-select [(ngModel)]="parent[0].par_title" >
+                <ion-option value="1">นาย</ion-option>
+                <ion-option value="2">นาง</ion-option>
+                <ion-option value="3">นางสาว</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
            <ion-col>
               <ion-item >
                 <ion-label floating>ชื่อผู้ปกครอง</ion-label>
@@ -91,6 +91,14 @@
               </ion-item>
            </ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col>
+             <ion-item >
+               <ion-label floating>ที่อยู๋</ion-label>
+               <ion-input type="text" [(ngModel)]="parent[0].par_address" value="{{parent[0].par_address}}" ></ion-input>
+             </ion-item>
+          </ion-col>
+       </ion-row>
 
         <button ion-button *ngIf="editparent==true" (click)="editAccountparent()" block color="primary">ยืนยันการแก้ไข</button>
       </ion-grid>

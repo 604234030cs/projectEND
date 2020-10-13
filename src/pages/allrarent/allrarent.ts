@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams,AlertController, LoadingController 
 import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
 import { TeacherPage } from '../teacher/teacher';
+import { LoaddataProvider } from '../../providers/loaddata/loaddata';
 
 /**
  * Generated class for the AllrarentPage page.
@@ -25,7 +26,7 @@ export class AllrarentPage {
   par_id;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
-    public alertCtrl:AlertController,public loadingCtrl: LoadingController) {
+    public alertCtrl:AlertController,public loadingCtrl: LoadingController,public parents:LoaddataProvider) {
   }
 
   ionViewDidLoad() {
@@ -76,6 +77,18 @@ export class AllrarentPage {
 
     });
     confirm.present();
+  }
+
+  getItems(ev: any){
+    let val = ev.target.value;
+
+    if (val !=0) {
+      this.parents.searchrooms(val).subscribe(data=>{
+        this.parent = data;
+      });
+    }else {
+     this.ionViewWillLoad();
+  }
   }
 
   dorefres(){

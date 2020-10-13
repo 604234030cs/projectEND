@@ -11,6 +11,7 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-searchbar (ionInput)="getItems($event)" clearInput></ion-searchbar>
   <ion-card *ngFor="let data of parent" >
     <ion-navbar text-center> จัดการข้อมูลผู้ปครอง
       <ion-buttons large end>

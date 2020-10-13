@@ -18,25 +18,23 @@
 
 <ion-content padding>
   <!-- (click)="settingreceive(data.st_id,data.ck_date,data.par_user)" -->
-  <ion-navbar >
-   <button ion-button  round outline color="tertiary">ยังไม่ถูกรับ</button>
+  <ion-navbar  >
+   <ion-item large end>
+    <ion-label>ตรวจสอบระยะทาง</ion-label>
+    <ion-toggle [(ngModel)]="edit" color="primary" (ngModelChange)="mode()"></ion-toggle>
+</ion-item>
   </ion-navbar>
   <ion-item >เช็คชื่อ {{ck_date}}</ion-item>
+  <button style="margin-right: 100px;" ion-button  round outline color="tertiary">ยังไม่ถูกรับ</button>
 
-  <ion-card *ngFor="let data of item3; let i = index; "  >
+  <ion-card *ngFor="let data of arry; let i = index; "  >
     <!-- <form [formGroup]="user" (ngSubmit)="settingreceive(data.st_id,ck_receive,ck_other)"> -->
     <ion-card-header text-center >
-      <ion-navbar >
+      <ion-navbar *ngIf="data.ck_receive == 1" >
         <p><b> นักเรียน: {{data.student_name}} {{data.student_sname}}</b></p>
-        <ion-buttons large end>
-          <button ion-button  (click)="distance(data.st_id,data.par_user)"><ion-icon name="map" color="tertiary" > ระยะทาง</ion-icon></button>
-        </ion-buttons>
       </ion-navbar>
-      <ion-navbar color="tertiary" *ngIf="data.ck_receive ==1"style="opacity: 0.5;">
+      <ion-navbar color="tertiary" *ngIf="data.ck_receive == 2 " style="opacity: 0.5;">
         <p><b> นักเรียน: {{data.student_name}} {{data.student_sname}}</b></p>
-        <ion-buttons large end>
-          <button ion-button  (click)="distance(data.st_id,data.par_user)"><ion-icon name="map" color="tertiary" > ระยะทาง</ion-icon></button>
-        </ion-buttons>
       </ion-navbar>
 
 
@@ -50,6 +48,12 @@
     <ion-item >
       <ion-label  color="danger">*หมายเหตุ</ion-label>
       <ion-input type="text" [(ngModel)]="data.ck_other"  ></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label  color="danger">ระยะทางห่าง: {{data.directions}}</ion-label>
+      <!--  -->
+      <!-- <p></p> -->
+      <!-- <ion-input type="text"   ></ion-input> -->
     </ion-item>
     </ion-card-header>
     <ion-buttons  >

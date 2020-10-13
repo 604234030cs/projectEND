@@ -31,6 +31,7 @@ import { AddstudentPage } from '../pages/addstudent/addstudent';
 import { SettingPage } from '../pages/setting/setting';
 import { Test2Page } from '../pages/test2/test2';
 import { AllchecknamePage } from '../pages/allcheckname/allcheckname';
+import { LoaddataProvider } from '../providers/loaddata/loaddata';
 
 
 
@@ -106,7 +107,8 @@ import { AllchecknamePage } from '../pages/allcheckname/allcheckname';
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LoaddataProvider
   ]
 })
 export class AppModule {}

@@ -11,6 +11,7 @@ import { ClassPage } from '../class/class';
 import * as Enums from '../enums/enums';
 import { TeacherPage } from '../teacher/teacher';
 import { AllrarentPage } from '../allrarent/allrarent';
+import { LoaddataProvider } from '../../providers/loaddata/loaddata';
 // import { I18NHtmlParser } from '@angular/compiler';
 
 
@@ -36,7 +37,7 @@ export class MainstudentPage {
   class_id;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient
-    ,public alertCtrl:AlertController,public loadingCtrl:LoadingController) {
+    ,public alertCtrl:AlertController,public loadingCtrl:LoadingController,public loadclassroom:LoaddataProvider) {
       this.dorefres();
 
   }
@@ -142,6 +143,19 @@ export class MainstudentPage {
   }
   goallcheckname(){
     this.navCtrl.push(AllchecknamePage);
+  }
+
+
+  getItems(ev: any){
+    let val = ev.target.value;
+
+    if (val !=0) {
+      this.loadclassroom.searchclassroom(val).subscribe(data=>{
+        this.dataclass = data;
+      });
+    }else {
+     this.ionViewWillEnter();
+  }
   }
 
   dorefres(){

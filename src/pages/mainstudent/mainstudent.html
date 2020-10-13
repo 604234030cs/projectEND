@@ -16,7 +16,7 @@
       <button ion-button block color="secondary" (click)="classroom()" >เพิ่มเพิ่มชั้นเรียน</button>
     </ion-buttons>
 
-
+    <ion-searchbar (ionInput)="getItems($event)" clearInput></ion-searchbar>
     <ion-card *ngFor="let data of dataclass" >
       <ion-navbar text-center> จัดการชั้นเรียน
         <ion-buttons large end>

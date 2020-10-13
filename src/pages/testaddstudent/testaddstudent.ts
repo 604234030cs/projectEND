@@ -156,7 +156,7 @@ ionViewWillEnter() {
               {
                 text: 'ยกเลิก',
                 handler: ()=>{
-                  this.navCtrl.setRoot(ClassPage)
+                  // this.navCtrl.setRoot(MainstudentPage)
                 }
               }
             ]

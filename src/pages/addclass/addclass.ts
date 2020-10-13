@@ -1,9 +1,8 @@
-import { MainstudentPage } from './../mainstudent/mainstudent';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
-// import { MainstudentPage } from '../mainstudent/mainstudent';
+import { MainstudentPage } from '../mainstudent/mainstudent';
 import * as Enums from '../enums/enums';
 /**
  * Generated class for the AddclassPage page.
@@ -36,10 +35,10 @@ export class AddclassPage {
     console.log(this.user.valid);
     if(this.user.value.class_name != ""){
       let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/addclass';
-      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkclassname/'+this.user.value.class_name;
+      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkclassid/'+this.user.value.class_name;
 
       this.http.get(url2).subscribe((err:any)=>{
-        if(err['class_name'] == this.user.value.class_name){
+        if(err['class_name'] == this.user.value.class_name && err['']){
           const alert = this.alertCtrl.create({
             title: 'เกิดข้อผิดพลาด',
             subTitle: 'ชื่อชั้นนี้ ได้ถูกใช้ไปแล้ว',

@@ -18,8 +18,10 @@ import { HttpClient } from '@angular/common/http';
 export class EditparentPage {
 
   par_id;
+
   parent:any=['par_id','par_user','par_id','par_password','par_name','par_sname','par_tel','latitude','longitude'];
   editparent: boolean=false;
+  title2;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
@@ -37,7 +39,14 @@ export class EditparentPage {
     this.http.get(url).subscribe((data:any)=>{
 
       this.parent = data;
-      console.log(data);
+      if(this.parent[0].par_title == '1'){
+        this.title2 = "นาย"
+      }else if(this.parent[0].par_title == '2'){
+        this.title2 = "นาง"
+      }else if(this.parent[0].par_title == '3'){
+        this.title2 = "นางสาว"
+      }
+      // console.log(data);
 
     })
   }
@@ -53,8 +62,8 @@ export class EditparentPage {
   }
 
   editAccountparent(){
-    let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editparent2/'+this.parent[0].par_id+'&&'+this.parent[0].par_user+'&&'+this.parent[0].par_name
-             +'&&'+this.parent[0].par_sname+'&&'+this.parent[0].par_tel;
+    let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editparent2/'+this.parent[0].par_id+'&&'+this.parent[0].par_user+'&&'+this.parent[0].par_title+'&&'+this.parent[0].par_name
+    +'&&'+this.parent[0].par_sname+'&&'+this.parent[0].par_tel+'&&'+this.parent[0].par_address;
 
     this.http.get(url).subscribe(data=>{
     this.parent[0] = data;
@@ -88,6 +97,9 @@ export class EditparentPage {
 
 
 }
+
+
+
   dorefres(){
     setTimeout(()=>{
     this.ionViewWillLoad();

@@ -69,6 +69,7 @@
       </ion-row>
     </ion-grid>
 
+
     <!--false-->
 
     <ion-grid *ngIf="edit==true">
@@ -125,11 +126,14 @@
        </ion-col>
       </ion-row>
       <button ion-button *ngIf="edit==true" (click)="editAccount()" block color="primary">ยืนยันการแก้ไข</button>
+
     </ion-grid>
-
-
 
   </ion-card-content>
 </ion-card>
+<button ion-button *ngIf="edit==false" (click)="updatecoordinates()" block color="secondary">อัพเดพพิกัดที่อยู่</button>
+
+
+
 
 </ion-content>

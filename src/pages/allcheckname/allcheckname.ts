@@ -22,22 +22,28 @@ export class AllchecknamePage {
   alllistcheckdate:any=['check_id','check_data'];
   alllistclass:any=[];
   listchecknameformdate:any=[];
-  updatecheckname:any[];
+  updatecheckname:any=[];
+  deletechecknamefromdata:any=[];
 
   ck_date;
   class_id;
-  text;
-  title;
+  receive;
+  status;
+  // title;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
     public alertCtrl:AlertController,public loadingCtrl: LoadingController) {
+
+      // this.dorefres()
       this.loaddata();
       this.loaddataclass();
+
   }
 
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad AllchecknamePage');
+
 
   }
 
@@ -63,37 +69,37 @@ export class AllchecknamePage {
     this.http.get(url2).subscribe((data2:any)=>{
       this.listchecknameformdate = data2;
       if(this.listchecknameformdate['ck_receive'] == '1'){
-        this.text = "ยังไม่ถูกรับ"
-        if(this.listchecknameformdate == '1'){
-          this.title = "นาย"
-        }else if(this.listchecknameformdate == '2'){
-          this.title = "นาง"
-        }else if(this.listchecknameformdate == '3'){
-          this.title = "นางสาว"
+        this.receive = "ยังไม่ถูกรับ"
+        if(this.listchecknameformdate['ck_status'] == '1'){
+          this.status = "มาเรียน"
+        }else if(this.listchecknameformdate['ck_status'] == '2'){
+          this.status = "ลาป่วย"
+        }else if(this.listchecknameformdate['ck_status'] == '3'){
+          this.status = "ลากิจ"
+        }else if(this.listchecknameformdate['ck_status'] == '4'){
+          this.status = "ไม่มาเรียน"
         }
       }else if(this.listchecknameformdate['ck_receive']){
-        this.text = "รับกลับไปแล้ว"
-        if(this.listchecknameformdate == '1'){
-          this.title = "นาย"
-        }else if(this.listchecknameformdate == '2'){
-          this.title = "นาง"
-        }else if(this.listchecknameformdate == '3'){
-          this.title = "นางสาว"
+        this.receive = "รับกลับไปแล้ว"
+        if(this.listchecknameformdate['ck_status'] == '1'){
+          this.status = "มาเรียน"
+        }else if(this.listchecknameformdate['ck_status'] == '2'){
+          this.status = "ลาป่วย"
+        }else if(this.listchecknameformdate['ck_status'] == '3'){
+          this.status = "ลากิจ"
+        }else if(this.listchecknameformdate['ck_status'] == '4'){
+          this.status = "ไม่มาเรียน"
         }
       }
+      console.log(data2);
+
     })
 
 
 
   }
 
-  editcheckname(){
-
-  }
-  deletecheckname(){
-
-  }
-  settingreceive(ckid,ckreceive,ckother){
+  settingreceive(ckid,ckstatus,ckreceive,ckother){
 
     console.log(ckid);
     console.log(ckreceive);
@@ -107,9 +113,9 @@ export class AllchecknamePage {
         console.log("1");
 
         ckother = "ไม่มี";
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
+        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
         +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
+        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
                     console.log(url9);
         this.updatecheckname = data2;
@@ -126,9 +132,9 @@ export class AllchecknamePage {
 
 
 
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
+        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
         +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
+        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
                     console.log(url9);
         this.updatecheckname = data2;
@@ -143,6 +149,41 @@ export class AllchecknamePage {
 
   }
 
+  deletecleckname(ckid){
+    const confirm = this.alertCtrl.create({
+      title: 'ต้องการลบข้อมูลหรือไม่?',
+      buttons:[{
+        text: 'ตกลง',
+        handler: () =>{
+          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletecheckname/'+ckid;
+          this.http.get(url).subscribe(data=>{
+            this.deletechecknamefromdata = data;
+            console.log(this.deletechecknamefromdata);
+          })
+
+          this.navCtrl.push(AllchecknamePage);
+        }
+
+      },
+      {
+        text: 'ยกเลิก',
+        handler: () => {}
+      }
+
+      ]
+
+    });
+    confirm.present();
+
+
+  }
+
+//   dorefres(){
+//     setTimeout(()=>{
+//     this.ionViewWillEnter();
+//   },500)
+// }
+
 
 gohome(){
   this.navCtrl.push(TeacherPage);
@@ -150,8 +191,8 @@ gohome(){
 goparent(){
   this.navCtrl.push(AllrarentPage);
 }
-goallcheckname(){
-  this.navCtrl.push(AllchecknamePage);
-}
+// goallcheckname(){
+//   this.navCtrl.push(AllchecknamePage);
+// }
 
 }
