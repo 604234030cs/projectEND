@@ -30,14 +30,21 @@
         <ion-input type="password" formControlName="par_password"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item style="margin-top: 10px;">
+        <ion-label>คำนำหน้า</ion-label>
+        <ion-select formControlName="par_title">
+          <ion-option *ngFor="let title of sex" value="{{title}}">{{title}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- <ion-item>
         <ion-label>คำนำหน้า</ion-label>
         <ion-select formControlName="par_title" >
           <ion-option value="1">นาย</ion-option>
           <ion-option value="2">นาง</ion-option>
           <ion-option value="3">นางสาว</ion-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-label floating>ชื่อ</ion-label>

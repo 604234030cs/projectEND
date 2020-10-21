@@ -24,6 +24,7 @@ export class AddparentPage {
   dataparent:any={};
   idclass;
   nameclass:string='';
+  sex:  any=['นางสาว','นาง','นาย'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public formBuilder: FormBuilder,public http: HttpClient,

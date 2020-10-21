@@ -25,6 +25,7 @@ export class MainteacherPage {
   latitude;
   longitude;
   edit: boolean=false;
+  sex:  any=['นางสาว','นาง','นาย'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,
                     private storage: Storage,public http: HttpClient, public alertCtrl:AlertController,private geolocation: Geolocation)
@@ -51,18 +52,23 @@ export class MainteacherPage {
  //  })
 
  //}
-  loaddata(){
 
-    this.storage.get('accoutuser').then((data)=>{
-      this.accout = data;
-      console.log(data);
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/user='+this.accout.teacher_user+'&&'+'pass='+this.accout.teacher_password;
-      this.http.get(url).subscribe(user =>{
-      this.teacher = user;
-      console.log(user);
+ loaddata(){
 
-     })
-    })
+  this.storage.get('accoutuser').then((data)=>{
+    console.log(data);
+
+    console.log(data.teacher_user);
+    console.log(data.teacher_password);
+
+
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+    this.http.get(url).subscribe(user =>{
+    this.teacher = user;
+    console.log(user);
+
+  });
+  })
 
 }
 

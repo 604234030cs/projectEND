@@ -12,6 +12,7 @@ import { HttpClient} from '@angular/common/http';
 import { MainstudentPage } from '../mainstudent/mainstudent';
 import * as Enums from '../enums/enums';
 import { TeacherPage } from '../teacher/teacher';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the ClassPage page.
  *
@@ -55,7 +56,7 @@ export class ClassPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
-              public alertCtrl:AlertController,public loadingCtrl: LoadingController) {
+              public alertCtrl:AlertController,public loadingCtrl: LoadingController,private storage: Storage) {
 
                 this.dorefres();
 
@@ -290,13 +291,22 @@ checkname(idcl,namecl){
 }
 checkreceive(idcl,namecl){
 
-  console.log(this.ck_date2);
-
-  this.navCtrl.setRoot(CheckreceivePage,{
+  let datarecive = {
     class_id:idcl,
     class_name:namecl,
     ckdate:this.ck_date2
-  });
+  }
+  this.storage.set('setreceive',datarecive);
+  this.navCtrl.setRoot(CheckreceivePage);
+
+  // console.log(this.ck_date2);
+
+  // this.navCtrl.setRoot(CheckreceivePage,{
+
+  //   class_id:idcl,
+  //   class_name:namecl,
+  //   ckdate:this.ck_date2
+  // });
 
 }
 

@@ -191,12 +191,6 @@ export class Test2Page {
 
         setdata2 = JSON.stringify({
           st_id: data[i].st_id,
-          student_name: data[i].student_name,
-          student_sname: data[i].student_sname,
-          student_nickname: data[i].student_nickname,
-          Student_sex: data[i].Student_sex,
-          class_id: data[i].class_id,
-          par_user: data[i].par_user,
           ck_date: ckdate,
           ck_status: "1",
           ck_receive: "1",
@@ -221,12 +215,6 @@ export class Test2Page {
         console.log('2');
         setdata2 = JSON.stringify({
           st_id: data[i].st_id,
-          student_name: data[i].student_name,
-          student_sname: data[i].student_sname,
-          student_nickname: data[i].student_nickname,
-          Student_sex: data[i].Student_sex,
-          class_id: data[i].class_id,
-          par_user: data[i].par_user,
           ck_date: ckdate,
           ck_status: data[i].status,
           ck_receive: "1",

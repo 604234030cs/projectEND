@@ -47,11 +47,19 @@
   </ion-buttons> -->
   <ion-card *ngFor="let data of parentandstudent"  >
     <ion-card-content >
-      <ion-item >
-      <ion-icon item-right color="medium" name="create" (click)="editstandpar(data.class_id,data.par_user,ck_date,data.st_id)"></ion-icon> <ion-icon item-right color="danger" name="trash" (click)="deletestandpar(data.st_id,data.class_id)"></ion-icon>
-      <p>นักเรียน: <b>{{data.student_name}} {{data.student_sname}}</b> ชื่อเล่น: <b>น้อง{{data.student_nickname}}</b>  </p>
-      <p>ผู้ปกครอง: <b>{{data.par_name}} {{data.par_sname}}</b></p>
-      </ion-item>
+      <ion-navbar text-center> จัดการข้อมูล
+        <ion-buttons large end>
+          <button ion-button style="max-width: 30px;"  (click)="editstandpar(data.class_id,data.par_user,ck_date,data.st_id)"><ion-icon name="create" color="medium" ></ion-icon></button>
+        </ion-buttons>
+        <ion-buttons large left>
+          <button ion-button (click)="deletestandpar(data.st_id,data.class_id)" ><ion-icon name="trash" color="danger"></ion-icon></button>
+        </ion-buttons>
+      </ion-navbar>
+      <!-- <ion-icon item-right color="medium" name="create" (click)="editstandpar(data.class_id,data.par_user,ck_date,data.st_id)"></ion-icon> <ion-icon item-right color="danger" name="trash" (click)="deletestandpar(data.st_id,data.class_id)"></ion-icon> -->
+      <p>นักเรียน: <b>{{data.student_title}}{{data.student_name}} {{data.student_sname}}</b> </p>
+      <p>ชื่อเล่น: <b>น้อง{{data.student_nickname}}</b></p>
+      <p>ผู้ปกครอง: <b>{{data.par_title}}{{data.par_name}} {{data.par_sname}}</b></p>
+
     </ion-card-content>
   </ion-card>
   <ion-fab right bottom>

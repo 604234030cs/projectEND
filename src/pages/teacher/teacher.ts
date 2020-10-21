@@ -33,12 +33,12 @@ export class TeacherPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public http: HttpClient,private storage: Storage, public alertCtrl: AlertController,)
               {
-                this.loaddata();
+
               }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad TeacherPage');
-
+    this.loaddata();
   }
   mainteacher(){
     this.navCtrl.push(MainteacherPage);
@@ -56,9 +56,13 @@ export class TeacherPage {
   loaddata(){
 
       this.storage.get('accoutuser').then((data)=>{
-        this.accout = data;
         console.log(data);
-        let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/user='+this.accout.tuser+'&&'+'pass='+this.accout.tpassword;
+
+        console.log(data.teacher_user);
+        console.log(data.teacher_password);
+
+
+        let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
         this.http.get(url).subscribe(user =>{
         this.accout = user;
         console.log(user);

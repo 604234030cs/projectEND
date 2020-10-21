@@ -83,8 +83,8 @@ export class HomePage {
           teacher_id:data['teacher_id'],
           teacher_user:data['teacher_user'],
           teacher_password:data['teacher_password'],
-          teacher_latitude:data['teacher_latitude'],
-          teacher_longitude:data['teacher_longitude']
+          // teacher_latitude:data['teacher_latitude'],
+          // teacher_longitude:data['teacher_longitude']
         }
         if(data != false){
           console.log(data);

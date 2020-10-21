@@ -29,15 +29,14 @@
 
   <form [formGroup]="user" (ngSubmit)="addstudent()">
     <ion-list>
-
-
-      <ion-item>
+      <ion-item style="margin-top: 10px;">
         <ion-label>คำนำหน้า</ion-label>
-        <ion-select formControlName="student_title" >
-          <ion-option value="1">เด็กชาย</ion-option>
-          <ion-option value="2">เด็กหญิง</ion-option>
+        <ion-select formControlName="student_title">
+          <ion-option *ngFor="let title of title" value="{{title}}">{{title}}</ion-option>
         </ion-select>
       </ion-item>
+
+
     <ion-item>
       <ion-label floating>ชื่อ</ion-label>
       <ion-input type="text" formControlName="student_name"></ion-input>
@@ -50,11 +49,10 @@
       <ion-label floating>ชื่อเล่น</ion-label>
       <ion-input type="text" formControlName="student_nickname"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item style="margin-top: 10px;">
       <ion-label>เพศ</ion-label>
-      <ion-select formControlName="Student_sex" >
-        <ion-option value="1">หญิง</ion-option>
-        <ion-option value="2">ชาย</ion-option>
+      <ion-select formControlName="student_sex">
+        <ion-option *ngFor="let sex of sex" value="{{sex}}">{{sex}}</ion-option>
       </ion-select>
     </ion-item>
     <!-- <ion-item >

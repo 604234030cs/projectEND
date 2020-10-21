@@ -40,8 +40,8 @@ export class EditstudentPage {
   editstatus: boolean=false;
   ck_status: boolean ; //
   ck_receive: boolean ; //
-  title;
-  title2;
+
+
 
 
 
@@ -54,6 +54,9 @@ export class EditstudentPage {
   nbMonth: number;
   stMonth: string;
   nbYear: number;
+  sex:  any=['ชาย','หญิง'];
+  title:  any=['เด็กชาย','เด็กหญิง'];
+  title2:  any=['นางสาว','นาง','นาย'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,
               public http: HttpClient, public alertCtrl:AlertController,public formBuilder: FormBuilder)
@@ -116,25 +119,25 @@ export class EditstudentPage {
       this.acount = user;
       // console.log(this.acount[0].par_title);
 
-      if(this.acount[0].student_title == '1'){
-        this.title = "เด็กชาย"
-        if(this.acount[0].par_title == '1'){
-          this.title2 = "นาย"
-        }else if(this.acount[0].par_title == '2'){
-          this.title2 = "นาง"
-        }else if(this.acount[0].par_title == '3'){
-          this.title2 = "นางสาว"
-        }
-      }else if(this.acount[0].student_title == '2'){
-        this.title = "เด็กหญิง"
-        if(this.acount[0].par_title == '1'){
-          this.title2 = "นาย"
-        }else if(this.acount[0].par_title == '2'){
-          this.title2 = "นาง"
-        }else if(this.acount[0].par_title == '3'){
-          this.title2 = "นางสาว"
-        }
-      }
+      // if(this.acount[0].student_title == '1'){
+      //   this.title = "เด็กชาย"
+      //   if(this.acount[0].par_title == '1'){
+      //     this.title2 = "นาย"
+      //   }else if(this.acount[0].par_title == '2'){
+      //     this.title2 = "นาง"
+      //   }else if(this.acount[0].par_title == '3'){
+      //     this.title2 = "นางสาว"
+      //   }
+      // }else if(this.acount[0].student_title == '2'){
+      //   this.title = "เด็กหญิง"
+      //   if(this.acount[0].par_title == '1'){
+      //     this.title2 = "นาย"
+      //   }else if(this.acount[0].par_title == '2'){
+      //     this.title2 = "นาง"
+      //   }else if(this.acount[0].par_title == '3'){
+      //     this.title2 = "นางสาว"
+      //   }
+      // }
     })
   }
   ionViewDidLeave(){
@@ -149,7 +152,8 @@ export class EditstudentPage {
 
   editAccountstudent(){
     let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editstudent2/'+this.acount[0].st_id+'&&'+this.acount[0].student_title+'&&'+this.acount[0].student_name+'&&'+this.acount[0].student_sname
-               +'&&'+this.acount[0].student_nickname+'&&'+this.acount[0].Student_sex;
+               +'&&'+this.acount[0].student_nickname+'&&'+this.acount[0].student_sex;
+    console.log(url);
 
       this.http.get(url).subscribe(data=>{
       this.acount[0] = data;
@@ -181,7 +185,7 @@ export class EditstudentPage {
 
     })
 
-    
+
 
 
   }

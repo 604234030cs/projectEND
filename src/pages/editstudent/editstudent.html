@@ -13,68 +13,35 @@
 <ion-content padding>
 
 
-  <!-- <ion-card>
-    <ion-card-content> -->
-
-
-      <!-- <ion-item text-center>
-          <ion-label>จัดการข้อมูลสถานะ</ion-label>
-          <ion-toggle [(ngModel)]="editstatus" disabled="false" color="primary" ></ion-toggle>
-      </ion-item> -->
-      <!-- <ion-item >
-        <ion-label >วันที่ {{ck_date}} </ion-label>
-      </ion-item> -->
-<!--
-      <ion-grid *ngIf="editstatus==false">
-        <ion-row>
-          <ion-col>
-             <ion-item  >
-               <ion-label >มาเรียน</ion-label>
-
-               <ion-checkbox slot="end" [(ngModel)]="ck_status"    checked="ck_status" disabled></ion-checkbox>
-             </ion-item>
-          </ion-col>
-          <ion-col>
-             <ion-item >
-               <ion-label >รับกลับ</ion-label>
-
-               <ion-checkbox slot="end" [(ngModel)]="ck_receive"  checked="ck_receive" disabled></ion-checkbox>
-             </ion-item>
-          </ion-col>
-       </ion-row>
-
-
-      </ion-grid> -->
-
-      <!--false-->
-
-
-
-
-
-    <!-- </ion-card-content>
-  </ion-card> -->
-
-
   <ion-card>
     <ion-card-content>
       <ion-item text-center>
-          <ion-label>แก้ไขข้อมูลนักเรียน</ion-label>
+          <ion-label color="tertiary">แก้ไขข้อมูลนักเรียน</ion-label>
           <ion-toggle [(ngModel)]="editstudent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
 
       <ion-grid *ngIf="editstudent==false">
-<!--
-        <p>นักเรียน: <b>{{acount[0].student_title}} {{acount[0].student_name}} {{acount[0].student_sname}}</b></p>
-        <p>ชื่อเล่น: <b>{{acount[0].student_nickname}}</b> เพศ: <b>{{acount[0].Student_sex}}</b>  </p> -->
-        <ion-item >
-          <ion-label floating>ชื่อนักเรียน</ion-label>
-          <ion-input type="text"  value="{{title}} {{acount[0].student_name}} {{acount[0].student_sname}}" disabled></ion-input>
+
+        <p>นักเรียน: </p>
+        <b>{{acount[0].student_title}}{{acount[0].student_name}} {{acount[0].student_sname}}</b><br>
+        <ion-row>
+          <p>ชื่อเล่น:</p>
+          <b>{{ acount[0].student_nickname}}</b>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <p>เพศ:</p>
+          <b>{{ acount[0].student_sex}}</b>
+
+        </ion-row>
+
+
+        <!-- <ion-item >
+          <ion-label floating color="tertiary">ชื่อนักเรียน</ion-label>
+          <ion-input type="text" color="" value="{{title}} {{acount[0].student_name}} {{acount[0].student_sname}}" disabled></ion-input>
         </ion-item>
         <ion-item >
-          <ion-label floating>ชื่อเล่น</ion-label>
+          <ion-label floating  color="tertiary">ชื่อเล่น</ion-label>
           <ion-input type="text"  value=" น้อง{{acount[0].student_nickname}}" disabled></ion-input>
-        </ion-item>
+        </ion-item> -->
 
         <!-- <ion-row>
           <ion-col>
@@ -114,13 +81,19 @@
       <ion-grid *ngIf="editstudent==true">
         <ion-row>
           <ion-col>
-            <ion-item>
+            <ion-item style="margin-top: 10px;">
               <ion-label>คำนำหน้า</ion-label>
-              <ion-select [(ngModel)]="acount[0].student_title" >
+              <ion-select [(ngModel)]="acount[0].student_title">
+                <ion-option *ngFor="let title of title" value="{{title}}">{{title}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-label>คำนำหน้า</ion-label>
+              <ion-select  >
                 <ion-option value="1">เด็กชาย</ion-option>
                 <ion-option value="2">เด็กหญิง</ion-option>
               </ion-select>
-            </ion-item>
+            </ion-item> -->
          </ion-col>
         </ion-row>
         <ion-row>
@@ -147,11 +120,10 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-item>
+            <ion-item style="margin-top: 10px;">
               <ion-label>เพศ</ion-label>
-              <ion-select [(ngModel)]="acount[0].Student_sex" >
-                <ion-option value="1">หญิง</ion-option>
-                <ion-option value="2">ชาย</ion-option>
+              <ion-select [(ngModel)]="acount[0].student_sex">
+                <ion-option *ngFor="let sex of sex" value="{{sex}}">{{sex}}</ion-option>
               </ion-select>
             </ion-item>
            </ion-col>
@@ -167,12 +139,27 @@
   <ion-card>
     <ion-card-content>
       <ion-item text-center>
-          <ion-label>แก้ไขข้อมูลผู้ปกครอง</ion-label>
+          <ion-label color="tertiary">แก้ไขข้อมูลผู้ปกครอง</ion-label>
           <ion-toggle [(ngModel)]="editparent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
 
       <ion-grid *ngIf="editparent==false">
-        <ion-row>
+
+        <p>บัญชีผู้ใช้: </p><b> {{acount[0].par_user}}</b>
+        <br>
+        <p>ผู้ปกครอง: </p>
+        <b>{{acount[0].par_title}}{{acount[0].par_name}} {{acount[0].par_sname}}</b>
+        <br>
+        <p>เบอร์โทร: </p><b> {{acount[0].par_tel}}</b>
+        <br>
+        <p>ที่อยู่: </p><b> {{ acount[0].par_address}}</b>
+
+
+
+
+
+
+        <!-- <ion-row>
           <ion-col >
             <ion-item >
               <ion-label floating>บัญชีผู้ใช้</ion-label>
@@ -191,9 +178,7 @@
         <ion-item >
           <ion-label floating>ที่อยู่</ion-label>
           <ion-input type="text"  value=" {{acount[0].par_address}}" disabled></ion-input>
-        </ion-item>
-
-
+        </ion-item> -->
 
       </ion-grid>
 
@@ -211,12 +196,10 @@
         </ion-row>
         <ion-row>
           <ion-col >
-            <ion-item>
+            <ion-item style="margin-top: 10px;">
               <ion-label>คำนำหน้า</ion-label>
-              <ion-select [(ngModel)]="acount[0].par_title" >
-                <ion-option value="1">นาย</ion-option>
-                <ion-option value="2">นาง</ion-option>
-                <ion-option value="3">นางสาว</ion-option>
+              <ion-select [(ngModel)]="acount[0].par_title">
+                <ion-option *ngFor="let title of title2" value="{{title}}">{{title}}</ion-option>
               </ion-select>
             </ion-item>
           </ion-col>

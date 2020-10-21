@@ -83,10 +83,12 @@
       </ion-row>
       <ion-row>
          <ion-col>
-            <ion-item >
-              <ion-label floating>คำนำหน้าชื่อ</ion-label>
-              <ion-input type="text" [(ngModel)]="teacher.teacher_title" value="{{teacher.teacher_title}}" ></ion-input>
-            </ion-item>
+          <ion-item style="margin-top: 10px;">
+            <ion-label>คำนำหน้า</ion-label>
+            <ion-select [(ngModel)]="teacher.teacher_title">
+              <ion-option *ngFor="let title of sex" value="{{title}}">{{title}}</ion-option>
+            </ion-select>
+          </ion-item>
          </ion-col>
       </ion-row>
       <ion-row>

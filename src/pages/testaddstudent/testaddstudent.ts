@@ -27,6 +27,9 @@ export class TestaddstudentPage {
   month: string;
   year: number;
 
+  sex:  any=['ชาย','หญิง'];
+  title:  any=['เด็กชาย','เด็กหญิง'];
+
 
 
   user:FormGroup;
@@ -54,7 +57,7 @@ export class TestaddstudentPage {
               }
 
 
-ionViewWillEnter() {
+  ionViewWillEnter() {
     console.log('ionViewWillEnter TestaddstudentPage');
     let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
     this.http.get(url2).subscribe(dataparent=>{
@@ -109,7 +112,7 @@ ionViewWillEnter() {
                 student_name: this.user.value.student_name,
                 student_sname: this.user.value.student_sname,
                 student_nickname: this.user.value.student_nickname,
-                Student_sex: this.user.value.Student_sex,
+                student_sex: this.user.value.student_sex,
                 class_id: this.classid,
                 par_user: this.user.value.par_user
 
@@ -174,7 +177,7 @@ ionViewWillEnter() {
       student_name: new FormControl("",Validators.required),
       student_sname: new FormControl("",Validators.required),
       student_nickname: new FormControl("",Validators.required),
-      Student_sex: new FormControl("",Validators.required),
+      student_sex: new FormControl("",Validators.required),
       // class_id: new FormControl("",Validators.required),
        par_user: new FormControl("",Validators.required)
 

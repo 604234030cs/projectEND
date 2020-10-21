@@ -1,3 +1,4 @@
+// import { CheckreceivePage } from './checkreceive';
 import { MainstudentPage } from './../mainstudent/mainstudent';
 // import { text } from '@angular/core/src/render3/instructions';
 import { SettingStatusreceivePage } from './../setting-statusreceive/setting-statusreceive';
@@ -8,6 +9,7 @@ import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 /**
  * Generated class for the CheckreceivePage page.
@@ -45,25 +47,28 @@ export class CheckreceivePage {
   ck_other;
   i=0;
   text;
+  interval: number;
 
   accout:any=[];
   teacher:any=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient, public alertCtrl: AlertController,
-              public formBuilder: FormBuilder,private storage: Storage)
+              public formBuilder: FormBuilder,private storage: Storage,public loadingCtrl:LoadingController)
 
   {
 
     this.idclass = this.navParams.get('class_id');
     this.ck_date = this.navParams.get('ckdate');
+    this.dorefres();
     // this.ck_date = this.navParams.get('ckdate');
 
-    this.loaddatareceive();
+
 
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad CheckreceivePage');
+    this.loaddatareceive();
 
 
 
@@ -79,7 +84,52 @@ export class CheckreceivePage {
 
   loaddatareceive(){
 
-    let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+this.ck_date+'&&'+this.idclass+'&&'+this.ck_statuss ;
+
+    this.storage.get('setreceive').then((data)=>{
+      this.ck_date=data.ckdate
+      // console.log(data);
+
+      // console.log(data.teacher_user);
+      // console.log(data.teacher_password);
+
+
+      // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+      let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
+
+      this.http.get(url6).subscribe(data => {
+        this.item3 = data;
+        // this.arry=[];
+        // console.log(this.item3);
+        console.log(data);
+        if(this.item3['ck_receive'] == '1'){
+          this.text = "ยังไม่ถูกรับ"
+
+        }else if(this.item3['ck_receive'] == '2'){
+          this.text = "รับกลับไปแล้ว"
+        }
+
+
+      });
+    })
+
+
+    // let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+this.ck_date+'&&'+this.idclass+'&&'+this.ck_statuss ;
+
+
+
+  }
+  loaddatareceive2(){
+
+
+    this.storage.get('setreceive').then((data)=>{
+      // console.log(data);
+
+      // console.log(data.teacher_user);
+      // console.log(data.teacher_password);
+
+
+      // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+      let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
 
     this.http.get(url6).subscribe(data => {
       this.item3 = data;
@@ -95,18 +145,10 @@ export class CheckreceivePage {
       this.CaculatDirections(this.item3);
 
     });
-
-    // let url7 = Enums.APIURL.URL + '/todoslim3/public/index.php/ckstandckdate/'+this.item3.st_id+'&&'+this.item3.ck_date+'&&'+this.item3.par_user ;
-
-    // this.http.get(url6).subscribe(data2 => {
-    //   this.item4 = data2;
-    //   // console.log(this.item3);
-    //   console.log(url7);
-
-    // });
-
+  })
 
   }
+
 
   gohome(){
     this.navCtrl.push(TeacherPage)
@@ -119,47 +161,70 @@ export class CheckreceivePage {
 
   settingreceive(ckid,ckreceive,ckother){
 
-    console.log(ckid);
-    console.log(ckreceive);
-    console.log(ckother);
 
-    let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
+    // console.log(ckreceive);
+    // console.log(ckother);
+    this.storage.get('setreceive').then((data)=>{
+      console.log(ckid);
+      console.log(data.ckdate);
+    let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+data.ckdate;
     this.http.get(url8).subscribe((data:any)=>{
-      console.log(data);
-
-      if(data['ck_id']==ckid && data['ck_date']==this.ck_date && ckother == false ){
-        console.log("1");
-
-        ckother = "ไม่มี";
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
-        +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
-                   this.http.get(url9).subscribe((data2:any)=>{
-                    console.log(url9);
-        this.updatecheckname = data2;
-
-       });
 
 
 
+      // if(data['ck_id']==ckid && data['ck_date']==this.ck_date && ckother == false ){
+      //   console.log("1");
 
-      }else if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
+      //   ckother = "ไม่มี";
+      //   let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
+      //   +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
+      //   +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
+      //              this.http.get(url9).subscribe((data2:any)=>{
+      //               console.log(url9);
+      //   this.updatecheckname = data2;
+
+      //  });
+
+
+
+
+      // }
+      // else if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
+       if(data['ck_id']==ckid && data['ck_date']==data.ck_date){
         console.log("2");
-        console.log(data.student_name);
-        console.log(data.student_sname);
 
-
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
-        +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
+        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
                     console.log(url9);
         this.updatecheckname = data2;
+        if(this.updatecheckname != null){
+          const alert = this.alertCtrl.create({
+            title: 'เสร็จสิน',
+            subTitle: 'อัพเดคสถานะการรับสำเร็จ',
+            buttons: [{
+              text: 'ตกลง',
+              handler: ()=>{
+                const loader = this.loadingCtrl.create({
+                  content: "Pleas wait...",
+                  duration: 200,
+
+                });
+                loader.present();
+
+              }
+            }]
+          });
+          alert.present();
+        }
 
        });
 
       }
-    })
+      else{
+
+      }
+    });
+  })
 
 
 
@@ -191,24 +256,35 @@ export class CheckreceivePage {
   // ข้าม ทดลองโค้ดเอก
   CaculatDirections(item3){
     this.storage.get('accoutuser').then((position)=>{
-      console.log(item3.length);
-      console.log(position);
+      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+position.teacher_user+'&&'+position.teacher_password;
+      this.http.get(url).subscribe(user =>{
+      this.accout = user;
+      console.log(user);
+
+
+      // console.log(item3.length);
+      // console.log(position);
 
 
 
        for(let i =0;i<item3.length;i++){
        //     // console.log(item3[i].longitude);
           //  var R = 6373; // km
-           var lat1 = position.teacher_latitude * Math.PI/180; //1
+           var lat1 = this.accout.teacher_latitude * Math.PI/180; //1
           //  console.log("1");
 
-           var lng1 = position.teacher_longitude;  //2
+           var lng1 = this.accout.teacher_longitude;  //2
           //  console.log("2");
 
            var lat2= item3[i].latitude * Math.PI/180;
            var lng2 = item3[i].longitude;
           //  var dLat = (lat2 - lat1) * Math.PI/180;
            var dLon = (lng2 - lng1) * Math.PI/180;
+           console.log(lat1);
+           console.log(lat2);
+           console.log(lng1);
+           console.log(lng2);
+
            // var a = Math.pow(Math.sin(dLat/2),2) + Math.pow(Math.sin(dLon/2),2)* Math.cos(lat1) * Math.cos(lat2);
            var a = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(dLon);
            console.log(a);
@@ -270,23 +346,80 @@ export class CheckreceivePage {
      }
      console.log('หลังเรียง');
      console.log(this.arry);
+
+    });
     });
  }
 
 
  mode(){
-  this.storage.get('accoutuser').then((data)=>{
-    this.accout = data;
-    console.log(data);
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/user='+this.accout.teacher_user+'&&'+'pass='+this.accout.teacher_password;
-    this.http.get(url).subscribe(user =>{
-    this.teacher = user;
-    console.log(user);
 
-   })
-  })
+  if(this.edit != false){
+    const alert = this.alertCtrl.create({
+      title: 'ต้องการตรวจสอบระยะทาง',
+      buttons: [{
+        text: 'ตกลง',
+        handler: ()=>{
+          this.interval = setInterval(() => {
+          // this.editparent=false
+
+          this.loaddatareceive2();
+          },3000)
+        }
+      },
+      {
+        text: 'ยกเลิก',
+        handler: () =>{
+          clearInterval(this.interval);
+          setTimeout(() => {
+          this.edit=false
+        },3000)
+        }
+      }
+    ]
+    })
+    alert.present();
+  }else{
+    const confirm = this.alertCtrl.create({
+      title: 'คุณต้องปิดโหมดรับบุตรหรือไม่',
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          clearInterval(this.interval);
+          setTimeout(() => {
+            // this.arry = this.item3;
+            // this.loaddatareceive();
+            this.navCtrl.setRoot(CheckreceivePage);
+          }, 3000)
+        }
+      },
+      {
+        text: 'ยกเลิก',
+        handler: () => {
+          if (this.edit == false) {
+            this.edit = true;
+          } else {
+            this.edit = false;
+          }
+        }
+      }
+      ]
+    });
+    confirm.present();
+
+    //
+  }
+
+
+
 
  }
+
+ dorefres(){
+  setTimeout(()=>{
+  this.ionViewWillEnter();
+},500)
+}
 
 
 

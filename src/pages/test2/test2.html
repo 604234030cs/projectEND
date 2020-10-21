@@ -22,7 +22,7 @@
 
 <ion-content padding>
   <ion-navbar >
-    <button ion-button  round outline color="secondary">ลากิจ</button> <button ion-button  round outline color="tertiary">ลาป่วย</button> <button ion-button  round outline color="danger">ไม่มาเรียน</button>
+    <button ion-button  round outline color="secondary">ลาป่วย</button> <button ion-button  round outline color="tertiary">ลากิจ</button> <button ion-button  round outline color="danger">ไม่มาเรียน</button>
   </ion-navbar>
 
   <ion-item>เช็คชื่อ {{ck_date}}</ion-item>
@@ -46,5 +46,10 @@
 
   </ion-card>
   <button ion-button full (click)="ISNERT_CHECK(item3,ck_date)">บันทึก</button>
+  <ion-navbar >
+    <!-- <ion-title>title</ion-title> -->
+  <p><b>หมายเหตุ :</b> การเช็คชื่อนี้เฉพาะนักเรียนที่(ไม่มาเรียน)</p>
+  <p><b>หมายเหตุ :</b> สถานะเริ่มต้นการเช็คชื่อเท่ากับ (มาเรียน)</p>
+  </ion-navbar>
 
 </ion-content>
