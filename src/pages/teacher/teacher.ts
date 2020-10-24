@@ -1,11 +1,10 @@
+
 import { AllchecknamePage } from './../allcheckname/allcheckname';
 import { AllrarentPage } from './../allrarent/allrarent';
 import { Test2Page } from './../test2/test2';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { MainteacherPage } from '../mainteacher/mainteacher';
-
-
 import { HttpClient} from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
@@ -25,6 +24,7 @@ import * as Enums from '../enums/enums';
   selector: 'page-teacher',
   templateUrl: 'teacher.html',
 })
+
 export class TeacherPage {
 
   accout: any= [];
@@ -35,6 +35,8 @@ export class TeacherPage {
               {
 
               }
+
+
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad TeacherPage');
@@ -105,5 +107,9 @@ export class TeacherPage {
   }
 
 
+  // tap1root= TeacherPage;
+
+
 
 }
+

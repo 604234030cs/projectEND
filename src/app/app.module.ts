@@ -1,3 +1,4 @@
+// import { TapsPage } from './../pages/taps/taps';
 import { EditparentPage } from './../pages/editparent/editparent';
 import { AllrarentPage } from './../pages/allrarent/allrarent';
 import { EditclassPage } from './../pages/editclass/editclass';
@@ -61,7 +62,8 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     EditclassPage,
     AllrarentPage,
     AllchecknamePage,
-    EditparentPage
+    EditparentPage,
+    // TapsPage
 
 
   ],
@@ -70,6 +72,7 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicStorageModule.forRoot()
+
 
 
   ],
@@ -98,7 +101,8 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     EditclassPage,
     AllrarentPage,
     AllchecknamePage,
-    EditparentPage
+    EditparentPage,
+    // TapsPage
 
 
 

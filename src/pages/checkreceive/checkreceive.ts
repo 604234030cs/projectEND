@@ -1,3 +1,4 @@
+import { ClassPage } from './../class/class';
 // import { CheckreceivePage } from './checkreceive';
 import { MainstudentPage } from './../mainstudent/mainstudent';
 // import { text } from '@angular/core/src/render3/instructions';
@@ -156,7 +157,7 @@ export class CheckreceivePage {
 
 
   poppage(){
-    this.navCtrl.push(MainstudentPage);
+    this.navCtrl.push(ClassPage);
   }
 
   settingreceive(ckid,ckreceive,ckother){

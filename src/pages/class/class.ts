@@ -110,15 +110,15 @@ export class ClassPage {
 
 
   loaddata(){
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+this.idclass;
-    this.http.get(url).subscribe(data=>{
-      this.parentandstudent = data;
+
+    this.storage.get('keyclass2').then((data:any)=>{
+
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+data.class_id;
+    this.http.get(url).subscribe(data2=>{
+      this.parentandstudent = data2;
       // console.log(this.parentandstudent);
-
-
-
-
-    })
+    });
+  })
   }
 
 

@@ -16,12 +16,20 @@
 <ion-card>
   <ion-card-content>
     <ion-item>
-        <ion-label>แก้ไขข้อมูล</ion-label>
+        <ion-label color="tertiary">แก้ไขข้อมูล</ion-label>
         <ion-toggle [(ngModel)]="edit" disabled="false" color="primary" ></ion-toggle>
     </ion-item>
 
     <ion-grid *ngIf="edit==false">
-      <ion-row>
+      <p>บัญชีผู้ใช้: </p><b> {{teacher.teacher_user}}</b>
+      <br>
+      <p>ผู้ปกครอง: </p>
+      <b>{{teacher.teacher_title}}{{teacher.teacher_name}} {{teacher.teacher_sname}}</b>
+      <br>
+      <p>เบอร์โทร: </p><b> {{teacher.teacher_tel}}</b>
+      <br>
+      <p>ที่อยู่: </p><b> {{ teacher.teacher_address}}</b>
+      <!-- <ion-row>
         <ion-col>
            <ion-item >
              <ion-label floating>รหัสผู้ใช้</ion-label>
@@ -66,7 +74,7 @@
             <ion-input type="text" [(ngModel)]="teacher.teacher_address" value="{{teacher.teacher_address}}" disabled></ion-input>
           </ion-item>
        </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-grid>
 
 

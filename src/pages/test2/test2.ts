@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController,LoadingController } from 'ionic-angular';
 import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -41,7 +42,8 @@ export class Test2Page {
   c_length = 0;
   c_success = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public alertCtrl: AlertController,public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,
+               public alertCtrl: AlertController,public loadingCtrl:LoadingController,private storage: Storage) {
 
     this.idclass = this.navParams.get('class_id');
     this.ck_date = this.navParams.get('ckdate');
@@ -52,15 +54,17 @@ export class Test2Page {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Test2Page');
+    this.storage.get('keyclass2').then((data)=>{
 
 
 
-    let url = Enums.APIURL.URL + '/todoslim3/public/index.php/parentandstudent/'+this.idclass;
+    let url = Enums.APIURL.URL + '/todoslim3/public/index.php/parentandstudent/'+data.class_id;
     this.http.get(url).subscribe(data => {
       this.item3 = data;
       console.log(this.item3);
 
-    })
+    });
+  })
   }
 
 
@@ -273,7 +277,7 @@ export class Test2Page {
   }
 
   poppage(){
-    this.navCtrl.push(MainstudentPage);
+    this.navCtrl.push(ClassPage);
   }
 
 

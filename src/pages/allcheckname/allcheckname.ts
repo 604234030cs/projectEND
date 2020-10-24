@@ -4,6 +4,7 @@ import { AllrarentPage } from '../allrarent/allrarent';
 import { TeacherPage } from '../teacher/teacher';
 import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the AllchecknamePage page.
@@ -32,7 +33,7 @@ export class AllchecknamePage {
   // title;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
-    public alertCtrl:AlertController,public loadingCtrl: LoadingController) {
+    public alertCtrl:AlertController,public loadingCtrl: LoadingController,private storage: Storage) {
 
       // this.dorefres()
       this.loaddata();
@@ -55,17 +56,30 @@ export class AllchecknamePage {
     });
   }
   loaddataclass(){
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheclass';
+    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckclass';
     this.http.get(url2).subscribe((data:any)=>{
       this.alllistclass = data;
       console.log(this.alllistclass);
     });
   }
+  setkey(ck_date,class_id){
+
+    let key = {
+      ck_date:ck_date,
+      class_id:class_id
+    }
+    this.storage.set('keylistcheckname',key);
+    this.listcheckname();
+  }
 
 
-  listcheckname(ck_date,class_id){
-    console.log(ck_date);
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checknamefromdate/'+ck_date+'&&'+class_id;
+  listcheckname(){
+    this.storage.get('keylistcheckname').then((data:any)=>{
+      console.log(data);
+
+
+
+    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checknamefromdate/'+data.ck_date+'&&'+data.class_id;
     this.http.get(url2).subscribe((data2:any)=>{
       this.listchecknameformdate = data2;
       if(this.listchecknameformdate['ck_receive'] == '1'){
@@ -93,7 +107,8 @@ export class AllchecknamePage {
       }
       console.log(data2);
 
-    })
+    });
+  })
 
 
 
@@ -102,44 +117,48 @@ export class AllchecknamePage {
   settingreceive(ckid,ckstatus,ckreceive,ckother){
 
     console.log(ckid);
+    console.log(ckstatus);
     console.log(ckreceive);
     console.log(ckother);
 
     let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
     this.http.get(url8).subscribe((data:any)=>{
       console.log(data);
-
-      if(data['ck_id']==ckid && data['ck_date']==this.ck_date && ckother == false ){
-        console.log("1");
-
-        ckother = "ไม่มี";
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
-        +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
-                   this.http.get(url9).subscribe((data2:any)=>{
-                    console.log(url9);
-        this.updatecheckname = data2;
-
-       });
-
-
-
-
-      }else if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
+      if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
         console.log("2");
-        console.log(data.student_name);
-        console.log(data.student_sname);
+        // console.log(data.student_name);
+        // console.log(data.student_sname);
 
 
 
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_name
-        +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-        +'&&'+data.par_user+'&&'+this.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
+        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
                     console.log(url9);
         this.updatecheckname = data2;
+        if(this.updatecheckname != null){
+          const alert = this.alertCtrl.create({
+            title: 'เสร็จสิน',
+            subTitle: 'อัพเดคสถานะการรับสำเร็จ',
+            buttons: [{
+              text: 'ตกลง',
+              handler: ()=>{
+                const loader = this.loadingCtrl.create({
+                  content: "Pleas wait...",
+                  duration: 200,
+
+                });
+                loader.present();
+
+              }
+            }]
+          });
+          alert.present();
+        }
 
        });
+
+      }
+      else{
 
       }
     })

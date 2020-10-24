@@ -12,6 +12,7 @@ import * as Enums from '../enums/enums';
 import { TeacherPage } from '../teacher/teacher';
 import { AllrarentPage } from '../allrarent/allrarent';
 import { LoaddataProvider } from '../../providers/loaddata/loaddata';
+import { Storage } from '@ionic/storage';
 // import { I18NHtmlParser } from '@angular/compiler';
 
 
@@ -37,7 +38,8 @@ export class MainstudentPage {
   class_id;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient
-    ,public alertCtrl:AlertController,public loadingCtrl:LoadingController,public loadclassroom:LoaddataProvider) {
+              ,public alertCtrl:AlertController,public loadingCtrl:LoadingController,public loadclassroom:LoaddataProvider,
+              private storage: Storage) {
       this.dorefres();
 
   }
@@ -127,13 +129,16 @@ export class MainstudentPage {
     // }
 
    goClass(id,name){
+
+    let keyclass ={
+      class_id:id,
+      class_name:name
+    }
+    this.storage.set('keyclass2',keyclass)
     //  console.log(id);
     //  console.log(name);
 
-      this.navCtrl.push(ClassPage,{
-        clsss_id:id,
-        class_name:name
-      });
+      this.navCtrl.setRoot(ClassPage);
    }
    gohome(){
     this.navCtrl.push(TeacherPage);

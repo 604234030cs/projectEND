@@ -16,32 +16,52 @@
 
 <ion-content padding>
 
-  <ion-navbar text-center style="opacity: 0.3;" color="tertiary">
+  <ion-navbar text-center >
     <p><b>{{ accout.teacher_title }}{{ accout.teacher_name }} {{ accout.teacher_sname }}</b></p>
   </ion-navbar>
 
+  <!-- <ion-card color="light" (click)="mainteacher()" text-center>
+    <p><b>จัดการข้อมูลตัวเอง</b></p>
+  </ion-card> -->
+  <!-- <div style="margin-top: 20px;">
+    <button block ion-button  >จัดการข้อมูลตัวเอง</button>
+  </div> -->
+  <ion-card>
+    <ion-card-header color="light" (click)="mainteacher()" text-center>
+      <ion-label color="dark">จัดการข้อมูลตัวเอง</ion-label>
+    </ion-card-header>
+  </ion-card>
+  <ion-card color="primary">
+    <ion-card-header color="primary" (click)="goparent()" text-center>
+      <ion-label color="dark">ผู้ปกครอง</ion-label>
+    </ion-card-header>
+  </ion-card>
+  <ion-card color="secondary">
+    <ion-card-header color="secondary" (click)="toteacher()" text-center>
+      <ion-label color="dark">ชั้นเรียน</ion-label>
+    </ion-card-header>
+  </ion-card>
+  <ion-card color="tertiary">
+    <ion-card-header color="tertiary" (click)="goallcheckname()" text-center>
+      <ion-label color="dark">ประวัติการเช็คชื่อ</ion-label>
+    </ion-card-header>
+  </ion-card>
 
-  <div style="margin-top: 20px;">
-    <button block ion-button  color="light" (click)="mainteacher()">จัดการข้อมูลตัวเอง</button>
-  </div>
-  <div style="margin-top: 20px;">
-    <button block ion-button  color="primary" (click)="goparent()">ผู้ปกครอง</button>
-  </div>
-  <div style="margin-top: 10px;">
-    <button block ion-button  color="secondary" (click)="toteacher()">ชั้นเรียน</button>
-  </div>
-  <div style="margin-top: 20px;">
+
+  <!-- <div style="margin-top: 20px;">
     <button block ion-button  color="tertiary" (click)="goallcheckname()">ประวัติการเช็คชื่อ</button>
-  </div>
-  <ion-fab right bottom>
+  </div> -->
+  <!-- <ion-fab right bottom>
     <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
     <ion-fab-list side="left">
       <button ion-fab (click)="goallcheckname()"><ion-icon name="md-clipboard"></ion-icon></button>
       <button ion-fab (click)="goparent()"><ion-icon name="ios-contacts"></ion-icon></button>
       <button ion-fab (click)="gohome()"><ion-icon name="home" ></ion-icon></button>
-      <!-- <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button> -->
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
+  <!-- <ion-tabs>
+    <ion-tab tabTitle="หน้าหลัก" [root]="tap1root" tapIcon="home"></ion-tab>
+  </ion-tabs> -->
 
 
 

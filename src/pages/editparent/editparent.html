@@ -14,12 +14,21 @@
   <ion-card>
     <ion-card-content>
       <ion-item text-center>
-          <ion-label>แก้ไขข้อมูลผู้ปกครอง</ion-label>
+          <ion-label color="tertiary">แก้ไขข้อมูลผู้ปกครอง</ion-label>
           <ion-toggle [(ngModel)]="editparent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
 
       <ion-grid *ngIf="editparent==false">
-        <ion-row>
+
+        <p>บัญชีผู้ใช้: </p><b> {{parent[0].par_user}}</b>
+        <br>
+        <p>ผู้ปกครอง: </p>
+        <b>{{parent[0].par_title}}{{parent[0].par_name}} {{parent[0].par_sname}}</b>
+        <br>
+        <p>เบอร์โทร: </p><b> {{parent[0].par_tel}}</b>
+        <br>
+        <p>ที่อยู่: </p><b> {{ parent[0].par_address}}</b>
+        <!-- <ion-row>
           <ion-col >
             <ion-item >
               <ion-label floating>บัญชีผู้ใช้</ion-label>
@@ -38,7 +47,7 @@
         <ion-item >
           <ion-label floating>ที่อยู่</ion-label>
           <ion-input type="text"  value=" {{parent[0].par_address}}" disabled></ion-input>
-        </ion-item>
+        </ion-item> -->
 
 
 
