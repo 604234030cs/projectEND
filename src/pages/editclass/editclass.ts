@@ -1,3 +1,4 @@
+import { MainstudentPage } from './../mainstudent/mainstudent';
 import { TeacherPage } from './../teacher/teacher';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController  } from 'ionic-angular';
@@ -43,6 +44,9 @@ export class EditclassPage {
 
 
     })
+  }
+  pop(){
+    this.navCtrl.setRoot(MainstudentPage);
   }
   saveclass(class_id,class_name){
 

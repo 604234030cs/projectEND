@@ -124,7 +124,7 @@ export class ClassPage {
 
 
   addparent(idcl,namecl){
-    this.navCtrl.push(AddparentPage,{
+    this.navCtrl.setRoot(AddparentPage,{
       clsss_id:idcl,
       class_name:namecl
     });
@@ -173,8 +173,11 @@ export class ClassPage {
 
 
   }
+  pop(){
+    this.navCtrl.setRoot(MainstudentPage);
+  }
   test(idcl,namecl){
-    this.navCtrl.push(TestaddstudentPage,{
+    this.navCtrl.setRoot(TestaddstudentPage,{
       clsss_id:idcl,
       class_name:namecl
     });
@@ -189,7 +192,7 @@ export class ClassPage {
       if(data == false){
         console.log('1');
 
-        this.navCtrl.push(EditstudentPage,{
+        this.navCtrl.setRoot(EditstudentPage,{
           class_id:idclass,
           par_user:userpar,
           ckdate:ck_date,
@@ -207,7 +210,7 @@ export class ClassPage {
         // console.log(data.ck_receive);
 
 
-        this.navCtrl.push(EditstudentPage,{
+        this.navCtrl.setRoot(EditstudentPage,{
           class_id:idclass,
           par_user:userpar,
           ckdate:ck_date,
@@ -240,7 +243,7 @@ export class ClassPage {
 /////////
 //////////
 /////////
-          this.navCtrl.push(SettingPage,{
+          this.navCtrl.setRoot(SettingPage,{
             class_id:idcl,
             class_name:namecl,
             check_data:setting
@@ -311,13 +314,13 @@ checkreceive(idcl,namecl){
 }
 
 gohome(){
-  this.navCtrl.push(TeacherPage);
+  this.navCtrl.setRoot(TeacherPage);
 }
 goparent(){
-  this.navCtrl.push(AllrarentPage);
+  this.navCtrl.setRoot(AllrarentPage);
 }
 goallcheckname(){
-  this.navCtrl.push(AllchecknamePage);
+  this.navCtrl.setRoot(AllchecknamePage);
 }
 
 dorefres(){

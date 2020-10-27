@@ -123,7 +123,7 @@ export class AddparentPage {
                      console.log('Error getting location', error);
                    });
 
-                   this.navCtrl.push(TestaddstudentPage,{
+                   this.navCtrl.setRoot(TestaddstudentPage,{
 
                     class_id:id,
                     class_name:classname,
@@ -150,6 +150,10 @@ export class AddparentPage {
       alert.present();
     }
   }
+
+pop(){
+  this.navCtrl.setRoot(TestaddstudentPage);
+}
 
   ngOnInit(){
     this.buildForm();

@@ -351,6 +351,9 @@ export class CheckreceivePage {
     });
     });
  }
+ pop(){
+  this.navCtrl.setRoot(ClassPage);
+}
 
 
  mode(){
@@ -365,7 +368,7 @@ export class CheckreceivePage {
           // this.editparent=false
 
           this.loaddatareceive2();
-          },3000)
+          },5000)
         }
       },
       {
@@ -374,7 +377,7 @@ export class CheckreceivePage {
           clearInterval(this.interval);
           setTimeout(() => {
           this.edit=false
-        },3000)
+        },5000)
         }
       }
     ]
@@ -391,7 +394,7 @@ export class CheckreceivePage {
             // this.arry = this.item3;
             // this.loaddatareceive();
             this.navCtrl.setRoot(CheckreceivePage);
-          }, 3000)
+          },5000)
         }
       },
       {

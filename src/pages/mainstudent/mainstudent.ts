@@ -66,7 +66,7 @@ export class MainstudentPage {
   //   })
   // }
   editclass(class_id){
-    this.navCtrl.push(EditclassPage,{
+    this.navCtrl.setRoot(EditclassPage,{
       class_id:class_id
     })
     // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/classid/'+class_id;
@@ -90,7 +90,7 @@ export class MainstudentPage {
             console.log(this.class);
           })
 
-          this.navCtrl.push(MainstudentPage);
+          this.navCtrl.setRoot(MainstudentPage);
         }
 
       },
@@ -112,20 +112,20 @@ export class MainstudentPage {
 
 
   detail(student){
-    this.navCtrl.push(StudentDetailPage,student);
+    this.navCtrl.setRoot(StudentDetailPage,student);
   }
 
 
 
     classroom(){
-      this.navCtrl.push(AddclassPage)
+      this.navCtrl.setRoot(AddclassPage)
     }
 
     // classdata(class_id,class_name){
     //   console.log(this.dataclass.class_id);
     //   console.log(this.dataclass.class_name);
 
-    //   this.navCtrl.push(ClassPage,class_id,class_name)
+    //   this.navCtrl.setRoot(ClassPage,class_id,class_name)
     // }
 
    goClass(id,name){
@@ -141,13 +141,17 @@ export class MainstudentPage {
       this.navCtrl.setRoot(ClassPage);
    }
    gohome(){
-    this.navCtrl.push(TeacherPage);
+    this.navCtrl.setRoot(TeacherPage);
   }
   goparent(){
-    this.navCtrl.push(AllrarentPage);
+    this.navCtrl.setRoot(AllrarentPage);
   }
   goallcheckname(){
-    this.navCtrl.push(AllchecknamePage);
+    this.navCtrl.setRoot(AllchecknamePage);
+  }
+
+  pop(){
+    this.navCtrl.setRoot(TeacherPage);
   }
 
 

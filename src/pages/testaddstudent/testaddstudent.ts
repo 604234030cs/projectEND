@@ -79,6 +79,10 @@ export class TestaddstudentPage {
   //   })
   // }
 
+  pop(){
+    this.navCtrl.setRoot(ClassPage);
+  }
+
 
 
   addparent(){

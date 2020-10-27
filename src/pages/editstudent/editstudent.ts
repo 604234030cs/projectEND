@@ -1,3 +1,4 @@
+import { ClassPage } from './../class/class';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
@@ -110,6 +111,10 @@ export class EditstudentPage {
      this.loaddata();
 
 
+  }
+
+  pop(){
+    this.navCtrl.setRoot(ClassPage);
   }
 
   loaddata(){

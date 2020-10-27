@@ -5,8 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title text-center>จัดการข้อมูล </ion-title>
+  <ion-navbar text-center>จัดการข้อมูล
+    <ion-buttons large left>
+      <button ion-button style="max-width: 30px;"  (click)="pop()"><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +18,7 @@
   <ion-card>
     <ion-card-content>
       <ion-item text-center>
-          <ion-label color="tertiary">แก้ไขข้อมูลนักเรียน</ion-label>
+          <ion-label color="pink2">แก้ไขข้อมูลนักเรียน</ion-label>
           <ion-toggle [(ngModel)]="editstudent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
 
@@ -139,7 +141,7 @@
   <ion-card>
     <ion-card-content>
       <ion-item text-center>
-          <ion-label color="tertiary">แก้ไขข้อมูลผู้ปกครอง</ion-label>
+          <ion-label color="pink2">แก้ไขข้อมูลผู้ปกครอง</ion-label>
           <ion-toggle [(ngModel)]="editparent" disabled="false" color="primary" ></ion-toggle>
       </ion-item>
 

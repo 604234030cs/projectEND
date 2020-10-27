@@ -46,11 +46,15 @@ export class AllrarentPage {
   }
 
   editparent(par_id){
-    this.navCtrl.push(EditparentPage,{
+    this.navCtrl.setRoot(EditparentPage,{
       par_id:par_id
     })
 
   }
+  pop(){
+    this.navCtrl.setRoot(TeacherPage);
+  }
+
 
   deleteparent(par_id){
     const confirm = this.alertCtrl.create({
@@ -98,13 +102,13 @@ export class AllrarentPage {
 }
 
 gohome(){
-  this.navCtrl.push(TeacherPage);
+  this.navCtrl.setRoot(TeacherPage);
 }
 goparent(){
-  this.navCtrl.push(AllrarentPage);
+  this.navCtrl.setRoot(AllrarentPage);
 }
 goallcheckname(){
-  this.navCtrl.push(AllchecknamePage);
+  this.navCtrl.setRoot(AllchecknamePage);
 }
 
 

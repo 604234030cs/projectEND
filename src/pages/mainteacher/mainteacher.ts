@@ -1,3 +1,4 @@
+import { TeacherPage } from './../teacher/teacher';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
@@ -201,6 +202,10 @@ export class MainteacherPage {
     setTimeout(()=>{
     this.ionViewWillLoad();
   },500)
+}
+
+pop(){
+  this.navCtrl.setRoot(TeacherPage);
 }
 
 

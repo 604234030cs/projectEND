@@ -1,7 +1,7 @@
+import { TeacherPage } from './../teacher/teacher';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
 import { AllrarentPage } from '../allrarent/allrarent';
-import { TeacherPage } from '../teacher/teacher';
 import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
@@ -112,6 +112,10 @@ export class AllchecknamePage {
 
 
 
+  }
+
+  pop(){
+    this.navCtrl.setRoot(TeacherPage);
   }
 
   settingreceive(ckid,ckstatus,ckreceive,ckother){

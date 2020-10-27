@@ -43,15 +43,15 @@ export class TeacherPage {
     this.loaddata();
   }
   mainteacher(){
-    this.navCtrl.push(MainteacherPage);
+    this.navCtrl.setRoot(MainteacherPage);
   }
 
   toteacher(){
-    this.navCtrl.push(MainstudentPage);
+    this.navCtrl.setRoot(MainstudentPage);
   }
 
   test(){
-    this.navCtrl.push(Test2Page)
+    this.navCtrl.setRoot(Test2Page)
   }
 
 
@@ -100,10 +100,10 @@ export class TeacherPage {
     this.navCtrl.push(TeacherPage);
   }
   goparent(){
-    this.navCtrl.push(AllrarentPage);
+    this.navCtrl.setRoot(AllrarentPage);
   }
   goallcheckname(){
-    this.navCtrl.push(AllchecknamePage);
+    this.navCtrl.setRoot(AllchecknamePage);
   }
 
 

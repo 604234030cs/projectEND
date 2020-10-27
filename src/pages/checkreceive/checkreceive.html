@@ -5,15 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title text-center>เช็คชื่อกลับบ้าน</ion-title>
-    <ion-buttons large end>
-      <button ion-button (click)="gohome()" ><ion-icon name="home" color="primary"></ion-icon></button>
-    </ion-buttons>
-    <ion-buttons >
-      <button ion-button (click)="poppage()" ><ion-icon name="ios-arrow-back-outline" color="primary"> Back</ion-icon></button>
+  <ion-navbar text-center>เช็คชื่อกลับบ้าน
+    <ion-buttons large left>
+      <button ion-button style="max-width: 30px;"  (click)="pop()"><ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
@@ -64,7 +61,7 @@
     </ion-item>
     </ion-card-header>
     <ion-buttons  >
-      <button ion-button block color="secondary"    (click)="settingreceive(data.ck_id,data.ck_receive,data.ck_other)">บันทึก</button>
+      <button ion-button block color="pink2"    (click)="settingreceive(data.ck_id,data.ck_receive,data.ck_other)">บันทึก</button>
     </ion-buttons>
 
   </ion-card>
@@ -103,7 +100,7 @@
     </ion-item>
     </ion-card-header>
     <ion-buttons  >
-      <button ion-button block color="secondary"    (click)="settingreceive(data2.ck_id,data2.ck_receive,data2.ck_other)">บันทึก</button>
+      <button ion-button block color="pink2"    (click)="settingreceive(data2.ck_id,data2.ck_receive,data2.ck_other)">บันทึก</button>
     </ion-buttons>
 
   </ion-card>

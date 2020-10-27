@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
 import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
+import { AllrarentPage } from '../allrarent/allrarent';
 
 /**
  * Generated class for the EditparentPage page.
@@ -96,6 +97,10 @@ export class EditparentPage {
   })
 
 
+}
+
+pop(){
+  this.navCtrl.setRoot(AllrarentPage);
 }
 
 

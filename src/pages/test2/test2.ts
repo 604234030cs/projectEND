@@ -163,7 +163,7 @@ export class Test2Page {
           {
           text: 'ตกลง',
           handler: ()=>{
-            this.navCtrl.push(MainstudentPage)
+            this.navCtrl.setRoot(ClassPage)
           }
 
         }
@@ -233,7 +233,7 @@ export class Test2Page {
 
 
 
-          this.navCtrl.push(ClassPage)
+          this.navCtrl.setRoot(ClassPage)
 
           // if(data != "have" && this.c_success == this.c_length){}
         });
@@ -264,7 +264,7 @@ export class Test2Page {
       }]
     });
     alert.present();
-    this.navCtrl.push(MainstudentPage)
+    this.navCtrl.setRoot(ClassPage)
       }
 
     });
@@ -273,11 +273,11 @@ export class Test2Page {
 
 
   gohome(){
-    this.navCtrl.push(TeacherPage)
+    this.navCtrl.setRoot(TeacherPage)
   }
 
   poppage(){
-    this.navCtrl.push(ClassPage);
+    this.navCtrl.setRoot(ClassPage);
   }
 
 
