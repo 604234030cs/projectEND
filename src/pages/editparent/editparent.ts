@@ -22,7 +22,7 @@ export class EditparentPage {
 
   parent:any=['par_id','par_user','par_id','par_password','par_name','par_sname','par_tel','latitude','longitude'];
   editparent: boolean=false;
-  title2;
+  title2:  any=['นางสาว','นาง','นาย'];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
@@ -40,13 +40,13 @@ export class EditparentPage {
     this.http.get(url).subscribe((data:any)=>{
 
       this.parent = data;
-      if(this.parent[0].par_title == '1'){
-        this.title2 = "นาย"
-      }else if(this.parent[0].par_title == '2'){
-        this.title2 = "นาง"
-      }else if(this.parent[0].par_title == '3'){
-        this.title2 = "นางสาว"
-      }
+      // if(this.parent[0].par_title == '1'){
+      //   this.title2 = "นาย"
+      // }else if(this.parent[0].par_title == '2'){
+      //   this.title2 = "นาง"
+      // }else if(this.parent[0].par_title == '3'){
+      //   this.title2 = "นางสาว"
+      // }
       // console.log(data);
 
     })

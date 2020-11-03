@@ -69,12 +69,10 @@
         </ion-row>
         <ion-row>
           <ion-col >
-            <ion-item>
+            <ion-item style="margin-top: 10px;">
               <ion-label>คำนำหน้า</ion-label>
-              <ion-select [(ngModel)]="parent[0].par_title" >
-                <ion-option value="1">นาย</ion-option>
-                <ion-option value="2">นาง</ion-option>
-                <ion-option value="3">นางสาว</ion-option>
+              <ion-select [(ngModel)]="parent[0].par_title">
+                <ion-option *ngFor="let title of title2" value="{{title}}">{{title}}</ion-option>
               </ion-select>
             </ion-item>
           </ion-col>
