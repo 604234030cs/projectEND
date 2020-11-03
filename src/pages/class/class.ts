@@ -294,15 +294,27 @@ checkname(idcl,namecl){
 }
 checkreceive(idcl,namecl){
 
+  this.storage.get('keyclass2').then((data:any)=>{
+
+    // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+data.class_id;
+    // this.http.get(url).subscribe(data2=>{
+    //   this.parentandstudent = data2;
+    //   console.log(this.parentandstudent);
+    // });
+
+  console.log(data.class_id);
+  console.log(namecl);
+
   let datarecive = {
-    class_id:idcl,
+    class_id:data.class_id,
     class_name:namecl,
     ckdate:this.ck_date2
   }
   this.storage.set('setreceive',datarecive);
   this.navCtrl.setRoot(CheckreceivePage);
+})
 
-  // console.log(this.ck_date2);
+  // console.log(this.ck_date2);d
 
   // this.navCtrl.setRoot(CheckreceivePage,{
 

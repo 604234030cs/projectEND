@@ -87,9 +87,13 @@ export class AllrarentPage {
     let val = ev.target.value;
 
     if (val !=0) {
-      this.parents.searchrooms(val).subscribe(data=>{
+      let url  = Enums.APIURL.URL +'/todoslim3/public/index.php/search/'+val;
+      this.http.get(url).subscribe((data:any)=>{
         this.parent = data;
-      });
+      })
+      // this.parents.searchrooms(val).subscribe(data=>{
+      //   this.parent = data;
+      // });
     }else {
      this.ionViewWillLoad();
   }

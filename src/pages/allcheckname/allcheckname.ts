@@ -1,3 +1,4 @@
+import { text } from '@angular/core/src/render3/instructions';
 import { TeacherPage } from './../teacher/teacher';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
@@ -44,6 +45,7 @@ export class AllchecknamePage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad AllchecknamePage');
+
 
 
   }
@@ -173,49 +175,110 @@ export class AllchecknamePage {
   }
 
   deletecleckname(ckid){
-    const confirm = this.alertCtrl.create({
-      title: 'ต้องการลบข้อมูลหรือไม่?',
-      buttons:[{
-        text: 'ตกลง',
-        handler: () =>{
-          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletecheckname/'+ckid;
-          this.http.get(url).subscribe(data=>{
-            this.deletechecknamefromdata = data;
-            console.log(this.deletechecknamefromdata);
-          })
 
-          this.navCtrl.push(AllchecknamePage);
-        }
+    let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
+    this.http.get(url8).subscribe((data:any)=>{
+      console.log(data);
+      if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
+        console.log("2");
+        // console.log(data.student_name);
+        // console.log(data.student_sname);
+        const confirm = this.alertCtrl.create({
+          title: 'ต้องการลบข้อมูลหรือไม่?',
+          buttons:[{
+            text: 'ตกลง',
+            handler: ()=>{
+              let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletecheckname/'+ckid;
+              this.http.get(url9).subscribe((data2:any)=>{
+              this.updatecheckname = data2;
+              if(this.updatecheckname != null){
+                const alert = this.alertCtrl.create({
+                  title: 'เสร็จสิน',
+                  subTitle: 'ลบข้อมูลรายการเช็คชื่อสำเร็จ',
+                  buttons: [{
+                    text: 'ตกลง',
+                    handler: ()=>{
+                      const loader = this.loadingCtrl.create({
+                        content: "Pleas wait...",
+                        duration: 200,
 
-      },
-      {
-        text: 'ยกเลิก',
-        handler: () => {}
+                      });
+                      loader.present();
+
+                    }
+                  }]
+                });
+                alert.present();
+                this.listcheckname();
+                // this.dorefres
+              }
+
+
+              })
+            }
+          },
+          {
+            text: 'ยกเลิก',
+            handler:()=>{}
+
+          }]
+
+        })
+        confirm.present();
+
       }
+      else{
 
-      ]
+      }
+    })
 
-    });
-    confirm.present();
+
+
+    // const confirm = this.alertCtrl.create({
+    //   title: 'ต้องการลบข้อมูลหรือไม่?',
+    //   buttons:[{
+    //     text: 'ตกลง',
+    //     handler: () =>{
+    //       let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletecheckname/'+ckid;
+    //       this.http.get(url).subscribe(data=>{
+    //         this.deletechecknamefromdata = data;
+    //         console.log(this.deletechecknamefromdata);
+    //       })
+
+    //       this.navCtrl.setRoot(AllchecknamePage);
+
+    //     }
+
+    //   },
+    //   {
+    //     text: 'ยกเลิก',
+    //     handler: () => {}
+    //   }
+
+    //   ]
+
+    // });
+    // confirm.present();
 
 
   }
 
-//   dorefres(){
-//     setTimeout(()=>{
-//     this.ionViewWillEnter();
-//   },500)
-// }
+  dorefres(){
+    setTimeout(()=>{
+    this.listcheckname();
+  },500)
+}
 
 
 gohome(){
-  this.navCtrl.push(TeacherPage);
+  this.navCtrl.setRoot(TeacherPage);
 }
 goparent(){
-  this.navCtrl.push(AllrarentPage);
+  this.navCtrl.setRoot(AllrarentPage);
 }
 // goallcheckname(){
 //   this.navCtrl.push(AllchecknamePage);
 // }
+
 
 }

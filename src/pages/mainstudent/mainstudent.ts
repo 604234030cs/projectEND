@@ -159,9 +159,13 @@ export class MainstudentPage {
     let val = ev.target.value;
 
     if (val !=0) {
-      this.loadclassroom.searchclassroom(val).subscribe(data=>{
+      let url  = 'http://localhost/todoslim3/public/index.php/searchclassroom/'+val;
+      this.http.get(url).subscribe((data)=>{
         this.dataclass = data;
-      });
+      })
+      // this.loadclassroom.searchclassroom(val).subscribe(data=>{
+      //   this.dataclass = data;
+      // });
     }else {
      this.ionViewWillEnter();
   }
