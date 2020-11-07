@@ -65,8 +65,7 @@ export class ClassPage {
     // this.loaddata();
     this.idclass = this.navParams.get('clsss_id');
     this.nameclass = this.navParams.get('class_name');
-    console.log(this.idclass);
-    console.log(this.idclass);
+
 
 
 

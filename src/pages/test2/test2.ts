@@ -45,9 +45,7 @@ export class Test2Page {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,
                public alertCtrl: AlertController,public loadingCtrl:LoadingController,private storage: Storage) {
 
-    this.idclass = this.navParams.get('class_id');
-    this.ck_date = this.navParams.get('ckdate');
-    console.log(this.idclass);
+
 
 
   }
@@ -66,6 +64,8 @@ export class Test2Page {
     });
   })
   }
+
+
 
 
   check(res) {
@@ -144,6 +144,8 @@ export class Test2Page {
     let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkdate2/'+ckdate;
     this.http.get(url5).subscribe((checkdate:any)=>{
 
+      console.log(checkdate);
+
 
 
     this.c_length = data.length;
@@ -154,7 +156,7 @@ export class Test2Page {
     let setdata2;
 
 
-    if(checkdate['check_data'] == ckdate){
+    if(checkdate['check_data'] == ckdate   ){
 
       const alert = this.alertCtrl.create({
         title: 'แจ้งเตือน',

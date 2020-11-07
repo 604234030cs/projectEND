@@ -58,7 +58,7 @@ export class AllchecknamePage {
     });
   }
   loaddataclass(){
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckclass';
+    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allclass';
     this.http.get(url2).subscribe((data:any)=>{
       this.alllistclass = data;
       console.log(this.alllistclass);

@@ -6,6 +6,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import * as Enums from '../enums/enums';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the TestaddstudentPage page.
@@ -34,17 +35,18 @@ export class TestaddstudentPage {
 
   user:FormGroup;
   classid;
-  nameclass:string='';
+  nameclass:any = ['class_id','class_name'];
 
   alert: { title: string, subTitle: string };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public http: HttpClient,public formBuilder: FormBuilder,
               public alertCtrl:AlertController,public loadingCtrl:LoadingController,
-              private modal: ModalController)
+              private modal: ModalController,private storage: Storage)
               {
                 this.dorefres();
-                // this.loaddata();
+
+
                 this.classid = this.navParams.get('clsss_id');
                 this.nameclass = this.navParams.get('class_name');
                 this.alert = {
@@ -70,14 +72,8 @@ export class TestaddstudentPage {
 
   }
 
-  // loaddata(){
-  //   let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
-  //   this.http.get(url2).subscribe(dataparent=>{
-  //     this.parent = dataparent;
-  //     console.log(dataparent);
 
-  //   })
-  // }
+
 
   pop(){
     this.navCtrl.setRoot(ClassPage);
@@ -96,8 +92,13 @@ export class TestaddstudentPage {
     console.log('STP selected');
   }
   addstudent(){
+
+    this.storage.get("keyclass2").then((data)=>{
+
+
     console.log(this.user.value);
     console.log(this.user.valid);
+    console.log(data.class_id);
     // if(this.user.value.class_name != ""){
       let url = Enums.APIURL.URL +'/todoslim3/public/index.php/addstudent2';
 
@@ -117,7 +118,7 @@ export class TestaddstudentPage {
                 student_sname: this.user.value.student_sname,
                 student_nickname: this.user.value.student_nickname,
                 student_sex: this.user.value.student_sex,
-                class_id: this.classid,
+                class_id: data.class_id,
                 par_user: this.user.value.par_user
 
 
@@ -169,6 +170,8 @@ export class TestaddstudentPage {
             ]
           });
           confirm.present();
+
+        })
         }
 
 

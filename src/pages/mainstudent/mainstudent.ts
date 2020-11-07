@@ -47,7 +47,7 @@ export class MainstudentPage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad MainstudentPage');
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/class';
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/allclass';
     this.http.get(url).subscribe(data=>{
       this.dataclass = data;
       console.log(data);
