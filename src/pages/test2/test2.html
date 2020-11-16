@@ -17,9 +17,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-navbar >
-    <button ion-button  round outline color="secondary">ลาป่วย</button> <button ion-button  round outline color="tertiary">ลากิจ</button> <button ion-button  round outline color="danger">ไม่มาเรียน</button>
-  </ion-navbar>
+
+    <button ion-button  round outline color="pink2">ลาป่วย</button> <button ion-button  round outline color="gray">ลากิจ</button> <button ion-button  round outline color="danger">ไม่มาเรียน</button>
+
 
   <ion-item>เช็คชื่อ {{ck_date}}</ion-item>
 
@@ -30,10 +30,13 @@
     <button ion-item (click)="check(res)" *ngIf="res.status ==null">
       นักเรียน: {{res.student_name}}: {{res.student_sname}} ชื่อเล่น:{{res.student_nickname}}
     </button>
-    <button ion-item (click)="check(res)" color="secondary" *ngIf="res.status ==2" style="opacity: 0.3;">
+    <button ion-item (click)="check(res)" color="light2" *ngIf="res.status ==1" style="opacity: 0.3;">
       นักเรียน: {{res.student_name}}: {{res.student_sname}} ชื่อเล่น:{{res.student_nickname}}
     </button>
-    <button ion-item (click)="check(res)" color="tertiary" *ngIf="res.status ==3" style="opacity: 0.3;">
+    <button ion-item (click)="check(res)" color="pink2" *ngIf="res.status ==2" style="opacity: 0.3;">
+      นักเรียน: {{res.student_name}}: {{res.student_sname}} ชื่อเล่น:{{res.student_nickname}}
+    </button>
+    <button ion-item (click)="check(res)" color="gray" *ngIf="res.status ==3" style="opacity: 0.3;">
       นักเรียน: {{res.student_name}}: {{res.student_sname}} ชื่อเล่น:{{res.student_nickname}}
     </button>
     <button ion-item (click)="check(res)" color="danger" *ngIf="res.status ==4" style="opacity: 0.3;">
@@ -41,7 +44,7 @@
     </button>
 
   </ion-card>
-  <button ion-button full (click)="ISNERT_CHECK(item3,ck_date)" color="pink2">บันทึก</button>
+  <button ion-button full (click)="ISNERT_CHECK(item3,ck_date)" color="secondary">บันทึก</button>
   <ion-navbar >
     <!-- <ion-title>title</ion-title> -->
   <p><b>หมายเหตุ :</b> การเช็คชื่อนี้เฉพาะนักเรียนที่(ไม่มาเรียน)</p>

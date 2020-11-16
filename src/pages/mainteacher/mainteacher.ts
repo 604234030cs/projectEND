@@ -123,7 +123,7 @@ export class MainteacherPage {
     this.storage.get('accoutuser').then((data)=>{
       this.accout = data;
       console.log(data);
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/user='+this.accout.teacher_user+'&&'+'pass='+this.accout.teacher_password;
+      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
       this.http.get(url).subscribe(user =>{
       this.teacher = user;
       console.log(user);
@@ -132,7 +132,7 @@ export class MainteacherPage {
 
       if(user != null ){
         console.log("3");
-
+        console.log(this.teacher.teacher_id);
 
         const confirm = this.alertCtrl.create({
           title: 'อัพเดตพิกัดที่อยู่',
@@ -146,8 +146,11 @@ export class MainteacherPage {
                 resp.coords.longitude
                 this.latitude = resp.coords.latitude;
                 this.longitude = resp.coords.longitude;
-                let url = Enums.APIURL.URL + '/todoslim3/public/index.php/editteacherlatlong/' + this.teacher.teacher_id + '&&' + this.latitude + '&&' + this.longitude;
-                this.http.get(url).subscribe((data3:any)=>{
+                console.log(this.latitude);
+                console.log(this.longitude);
+
+                let url2 = Enums.APIURL.URL + '/todoslim3/public/index.php/editteacherlatlong/'+this.teacher.teacher_id +'&&'+this.latitude+'&&'+this.longitude;
+                this.http.get(url2).subscribe((data3:any)=>{
                   console.log(data3);
                   if(data3.status != null){
                     const alert = this.alertCtrl.create({
@@ -167,12 +170,97 @@ export class MainteacherPage {
                       }]
                     });
                     alert.present();
-                  }
 
+                  }
+                  this.loaddata();
                 });
               })
 
-              this.dorefres();
+
+            }
+          },
+          {
+            text: 'ยกเลิก',
+            handler:()=>{
+
+            }
+          }
+        ]
+        });
+        confirm.present();
+      }else{
+
+      }
+
+
+     })
+    })
+
+
+
+
+    this.loaddata();
+
+  }
+  updatecoordinates3(){
+    console.log("22");
+
+
+    this.storage.get('accoutuser').then((data)=>{
+      this.accout = data;
+      console.log(data);
+      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+      this.http.get(url).subscribe(user =>{
+      this.teacher = user;
+      console.log(user);
+
+
+
+      if(user != null ){
+        console.log("3");
+        console.log(this.teacher.teacher_id);
+
+        const confirm = this.alertCtrl.create({
+          title: 'ต้องการล้างพิกัดที่อยู่',
+          subTitle: 'กดปุ่มยืนยันเพื่อล้างพิกัด',
+          buttons:[
+            {
+            text: 'ยืนยัน',
+            handler: ()=>{
+              // this.geolocation.getCurrentPosition().then((resp) => {
+
+                this.latitude = "null"
+                this.longitude = "null"
+                console.log(this.latitude);
+                console.log(this.longitude);
+
+                let url2 = Enums.APIURL.URL + '/todoslim3/public/index.php/editteacherlatlong/'+this.teacher.teacher_id +'&&'+this.latitude+'&&'+this.longitude;
+                this.http.get(url2).subscribe((data3:any)=>{
+                  console.log(data3);
+                  if(data3.status != null){
+                    const alert = this.alertCtrl.create({
+                      title: 'สำเร็จ',
+                      subTitle: 'ล้างพิกัดที่อยู่เรียบร้อย',
+                      buttons: [{
+                        text: 'ตกลง',
+                        handler: ()=>{
+                          const loader = this.loadingCtrl.create({
+                            content: "Pleas wait...",
+                            duration: 500,
+
+                          });
+                          loader.present();
+
+                        }
+                      }]
+                    });
+                    alert.present();
+                  }
+                  this.loaddata();
+                });
+              // })
+
+
             }
           },
           {

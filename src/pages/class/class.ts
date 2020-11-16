@@ -81,9 +81,6 @@ export class ClassPage {
     this.stMonth = this.monthNames[date.getMonth()];
     this.nbYear = date.getFullYear();
 
-    // this.ck_date2 = [date.getFullYear(),date.getMonth() + 1,date.getDate()];
-
-
     this.ck_date2 = this.nbYear+'-'+this.nbMonth +'-'+this.nbDate;
 
     console.log("this.nbDate: ", this.nbDate);

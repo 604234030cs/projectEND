@@ -29,10 +29,12 @@ export class CheckreceivePage {
 
   user:FormGroup;
   item3: any = [];
-  item4: any = [];
+  item4: Array<{}>=[];
   checkname:any = [];
   updatecheckname:any = [];
   arry:any=[];
+
+  interval: number;
 
   edit: boolean = false;
 
@@ -46,9 +48,12 @@ export class CheckreceivePage {
   par_user;
   ck_receive;
   ck_other;
-  i=0;
+
   text;
-  interval: number;
+  i = 0;
+  c_length = 0;
+  c_success = 0;
+
 
   accout:any=[];
   teacher:any=[];
@@ -60,27 +65,37 @@ export class CheckreceivePage {
 
     this.idclass = this.navParams.get('class_id');
     this.ck_date = this.navParams.get('ckdate');
-    this.dorefres();
-    // this.ck_date = this.navParams.get('ckdate');
+
+    storage.ready().then(()=>{
+      storage.get('edit').then((val)=>{
+        this.edit = val;
+        console.log(val);
+
+        if(val==true){
+
+
+          // this.status="กำลังเปิดสถานะ"
+        }
+        else if (val==false){
+
+
+          // this.status=null
+        }
+        else{
+
+        }
+      })
+    });
 
 
 
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad(){
     console.log('ionViewDidLoad CheckreceivePage');
     this.loaddatareceive();
 
 
-
-    // let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+this.ck_date+'&&'+this.idclass+'&&'+this.ck_statuss ;
-
-    // this.http.get(url6).subscribe(data => {
-    //   this.item3 = data;
-    //   console.log(this.item3);
-    //   // console.log(url6);
-
-    // });
   }
 
   loaddatareceive(){
@@ -88,13 +103,7 @@ export class CheckreceivePage {
 
     this.storage.get('setreceive').then((data)=>{
       this.ck_date=data.ckdate
-      // console.log(data);
 
-      // console.log(data.teacher_user);
-      // console.log(data.teacher_password);
-
-
-      // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
       let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
 
       this.http.get(url6).subscribe(data => {
@@ -113,12 +122,8 @@ export class CheckreceivePage {
       });
     })
 
-
-    // let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+this.ck_date+'&&'+this.idclass+'&&'+this.ck_statuss ;
-
-
-
   }
+
   loaddatareceive2(){
 
 
@@ -151,6 +156,7 @@ export class CheckreceivePage {
   }
 
 
+
   gohome(){
     this.navCtrl.push(TeacherPage)
   }
@@ -163,8 +169,6 @@ export class CheckreceivePage {
   settingreceive(ckid,ckreceive,ckother){
 
 
-    // console.log(ckreceive);
-    // console.log(ckother);
     this.storage.get('setreceive').then((data)=>{
       console.log(ckid);
       console.log(data.ckdate);
@@ -172,25 +176,6 @@ export class CheckreceivePage {
     this.http.get(url8).subscribe((data:any)=>{
 
 
-
-      // if(data['ck_id']==ckid && data['ck_date']==this.ck_date && ckother == false ){
-      //   console.log("1");
-
-      //   ckother = "ไม่มี";
-      //   let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.student_title+'&&'+data.student_name
-      //   +'&&'+data.student_sname+'&&'+data.student_nickname+'&&'+data.Student_sex+'&&'+data.class_id
-      //   +'&&'+data.par_user+'&&'+this.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
-      //              this.http.get(url9).subscribe((data2:any)=>{
-      //               console.log(url9);
-      //   this.updatecheckname = data2;
-
-      //  });
-
-
-
-
-      // }
-      // else if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
        if(data['ck_id']==ckid && data['ck_date']==data.ck_date){
         console.log("2");
 
@@ -254,147 +239,52 @@ export class CheckreceivePage {
 
 
 
-  // ข้าม ทดลองโค้ดเอก
-  CaculatDirections(item3){
-    this.storage.get('accoutuser').then((position)=>{
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+position.teacher_user+'&&'+position.teacher_password;
-      this.http.get(url).subscribe(user =>{
-      this.accout = user;
-      console.log(user);
 
-
-      // console.log(item3.length);
-      // console.log(position);
-
-
-
-       for(let i =0;i<item3.length;i++){
-       //     // console.log(item3[i].longitude);
-          //  var R = 6373; // km
-           var lat1 = this.accout.teacher_latitude * Math.PI/180; //1
-          //  console.log("1");
-
-           var lng1 = this.accout.teacher_longitude;  //2
-          //  console.log("2");
-
-           var lat2= item3[i].latitude * Math.PI/180;
-           var lng2 = item3[i].longitude;
-          //  var dLat = (lat2 - lat1) * Math.PI/180;
-           var dLon = (lng2 - lng1) * Math.PI/180;
-           console.log(lat1);
-           console.log(lat2);
-           console.log(lng1);
-           console.log(lng2);
-
-           // var a = Math.pow(Math.sin(dLat/2),2) + Math.pow(Math.sin(dLon/2),2)* Math.cos(lat1) * Math.cos(lat2);
-           var a = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(dLon);
-           console.log(a);
-
-           if (a > 1) {
-               a = 1;
-             }
-               a = Math.acos(a);
-               a = a * 180/Math.PI;
-               a = a * 60 * 1.1515;
-              var valuedirec = a * 1.609344
-              var directions = valuedirec.toFixed(1);
-           // var c =  2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));s
-           // var d = R  * c;
-           // console.log("1ระยะทางได้ผลลัพธ์ = " + valuedirec);
-            this.arry.push({
-              ck_id:item3[i]['ck_id'],
-              st_id:item3[i]['st_id'],
-              student_name:item3[i]['student_name'],
-              student_sname:item3[i]['student_sname'],
-              student_nickname:item3[i]['student_nickname'],
-              Student_sex:item3[i]['Student_sex'],
-              class_id:item3[i]['class_id'],
-              par_user:item3[i]['par_user'],
-              ck_date:item3[i]['ck_date'],
-              ck_status:item3[i]['ck_status'],
-              ck_receive:item3[i]['ck_receive'],
-              ck_other:item3[i]['ck_other'],
-               latitude:item3[i]['latitude'],
-               longitude:item3[i]['longitude'],
-               directions:directions + ' ' +'กม.',
-               valuedirec:valuedirec
-             });
-
-       }
-
-       // console.log(this.arry);
-       let temp;
-       let j:number;
-       let k:number;
-       // console.log(this.arry.length);
-         for( k=0; k < this.arry.length-1; k++){
-           // console.log(k);
-
-             for( j = 0 ; j < this.arry.length-1; j++){
-               // console.log(j);
-               let index = j + 1;
-               // console.log(this.arry[index]['valuedirec']);
-
-                if(this.arry[j]['valuedirec'] > this.arry[j+1]['valuedirec']){
-                 temp =this.arry[j];
-                 this.arry[j]=this.arry[j+1];
-              this.arry[j+1]=temp;
-             }
-
-             // console.log(this.arry[j]['directionscaculat']);
-
-        }
-     }
-     console.log('หลังเรียง');
-     console.log(this.arry);
-
-    });
-    });
- }
  pop(){
   this.navCtrl.setRoot(ClassPage);
 }
 
+mode() {
 
- mode(){
 
-  if(this.edit != false){
-    const alert = this.alertCtrl.create({
-      title: 'ต้องการตรวจสอบระยะทาง',
+  if (this.edit == true) {
+    const confirm = this.alertCtrl.create({
+      title: 'คุณต้องเปิดโหมดรับบุตรหรือไม่',
       buttons: [{
         text: 'ตกลง',
-        handler: ()=>{
+        handler: () => {
           this.interval = setInterval(() => {
-          // this.editparent=false
-
-          this.loaddatareceive2();
-          },5000)
+            this.loaddatareceive2();
+          }
+          , 10000)
         }
       },
       {
         text: 'ยกเลิก',
-        handler: () =>{
-          clearInterval(this.interval);
-          setTimeout(() => {
-          this.edit=false
-        },5000)
+        handler: () => {
+          if (this.edit == false) {
+            this.edit = true;
+          } else {
+            this.edit = false;
+          }
         }
       }
-    ]
-    })
-    alert.present();
-  }else{
+      ]
+    });
+    confirm.present();
+  } else {
     const confirm = this.alertCtrl.create({
       title: 'คุณต้องปิดโหมดรับบุตรหรือไม่',
       buttons: [{
         text: 'ตกลง',
         handler: () => {
+          // this.status = null
+
           clearInterval(this.interval);
           setTimeout(() => {
-            // this.arry = this.item3;
-            // this.loaddatareceive();
-            this.navCtrl.setRoot(CheckreceivePage);
-          },5000)
+
+          }, 3000)
+          // this.loaddata();
         }
       },
       {
@@ -411,19 +301,107 @@ export class CheckreceivePage {
     });
     confirm.present();
 
-    //
   }
-
-
-
-
- }
-
- dorefres(){
-  setTimeout(()=>{
-  this.ionViewWillEnter();
-},500)
+  this.storage.set('edit',this.edit);
 }
+
+CaculatDirections(item3){
+  this.storage.get('accoutuser').then((position)=>{
+    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+position.teacher_user+'&&'+position.teacher_password;
+    this.http.get(url).subscribe(user =>{
+    this.accout = user;
+    console.log(user);
+
+
+    // console.log(item3.length);
+    // console.log(position);
+
+
+
+     for(let i =0;i<item3.length;i++){
+     //     // console.log(item3[i].longitude);
+        //  var R = 6373; // km
+         var lat1 = this.accout.teacher_latitude * Math.PI/180; //1
+        //  console.log("1");
+
+         var lng1 = this.accout.teacher_longitude;  //2
+        //  console.log("2");
+
+         var lat2= item3[i].latitude * Math.PI/180;
+         var lng2 = item3[i].longitude;
+        //  var dLat = (lat2 - lat1) * Math.PI/180;
+         var dLon = (lng2 - lng1) * Math.PI/180;
+         console.log(lat1);
+         console.log(lat2);
+         console.log(lng1);
+         console.log(lng2);
+
+         // var a = Math.pow(Math.sin(dLat/2),2) + Math.pow(Math.sin(dLon/2),2)* Math.cos(lat1) * Math.cos(lat2);
+         var a = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(dLon);
+         console.log(a);
+
+         if (a > 1) {
+             a = 1;
+           }
+             a = Math.acos(a);
+             a = a * 180/Math.PI;
+             a = a * 60 * 1.1515;
+            var valuedirec = a * 1.609344
+            var directions = valuedirec.toFixed(1);
+         // var c =  2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));s
+         // var d = R  * c;
+         // console.log("1ระยะทางได้ผลลัพธ์ = " + valuedirec);
+          this.arry.push({
+            ck_id:item3[i]['ck_id'],
+            st_id:item3[i]['st_id'],
+            student_name:item3[i]['student_name'],
+            student_sname:item3[i]['student_sname'],
+            student_nickname:item3[i]['student_nickname'],
+            Student_sex:item3[i]['Student_sex'],
+            class_id:item3[i]['class_id'],
+            par_user:item3[i]['par_user'],
+            ck_date:item3[i]['ck_date'],
+            ck_status:item3[i]['ck_status'],
+            ck_receive:item3[i]['ck_receive'],
+            ck_other:item3[i]['ck_other'],
+             latitude:item3[i]['latitude'],
+             longitude:item3[i]['longitude'],
+             directions:directions + ' ' +'กม.',
+             valuedirec:valuedirec
+           });
+
+     }
+
+     // console.log(this.arry);
+     let temp;
+     let j:number;
+     let k:number;
+     // console.log(this.arry.length);
+       for( k=0; k < this.arry.length-1; k++){
+         // console.log(k);
+
+           for( j = 0 ; j < this.arry.length-1; j++){
+             // console.log(j);
+             let index = j + 1;
+             // console.log(this.arry[index]['valuedirec']);
+
+              if(this.arry[j]['valuedirec'] > this.arry[j+1]['valuedirec']){
+               temp =this.arry[j];
+               this.arry[j]=this.arry[j+1];
+            this.arry[j+1]=temp;
+           }
+
+           // console.log(this.arry[j]['directionscaculat']);
+
+      }
+   }
+   console.log('หลังเรียง');
+   console.log(this.arry);
+
+  });
+  });
+}
+
 
 
 
