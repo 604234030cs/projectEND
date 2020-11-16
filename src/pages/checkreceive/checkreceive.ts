@@ -348,6 +348,12 @@ CaculatDirections(item3){
              a = a * 60 * 1.1515;
             var valuedirec = a * 1.609344
             var directions = valuedirec.toFixed(1);
+            console.log(directions);
+            console.log(valuedirec);
+          if(directions => 2.0000000000000000){
+            directions = "2.0"
+          }
+
          // var c =  2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));s
          // var d = R  * c;
          // console.log("1ระยะทางได้ผลลัพธ์ = " + valuedirec);

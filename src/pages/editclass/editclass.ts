@@ -96,7 +96,7 @@ export class EditclassPage {
                 }
 
               });
-              this.navCtrl.push(TeacherPage)
+              this.navCtrl.setRoot(MainstudentPage)
             }
           },
           {
