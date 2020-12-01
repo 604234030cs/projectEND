@@ -122,7 +122,7 @@ export class SettingPage {
 
 
   loaddata(){
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+this.idclass;
+    let url = Enums.APIURL.URL +'/public/index.php/parentandstudent/'+this.idclass;
     this.http.get(url).subscribe(data=>{
       this.setting = data;
       console.log(this.setting);
@@ -132,7 +132,7 @@ export class SettingPage {
     })
   }
   loaddata2(){
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/checks';
+    let url = Enums.APIURL.URL +'/public/index.php/checks';
     this.http.get(url).subscribe(data=>{
       this.setting2 = data;
       console.log(this.setting2);
@@ -149,7 +149,7 @@ export class SettingPage {
     })
   }
   loaddata3(){
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkdate2/'+this.ck_date2;
+    let url2 = Enums.APIURL.URL +'/public/index.php/checkdate2/'+this.ck_date2;
     this.http.get(url2).subscribe(data=>{
       this.setting3 = data;
       console.log(this.setting3);
@@ -168,7 +168,7 @@ export class SettingPage {
   //      checkbox(item,ck_date2,status){
   //         if(item != null){
 
-  //           let url = Enums.APIURL.URL +'/todoslim3/public/index.php/checks';
+  //           let url = Enums.APIURL.URL +'/public/index.php/checks';
   //           this.http.get(url).subscribe((data:any)=>{
   //             if(data['st_id'] != item.st_id && data['ck_date'] != ck_date2 && status == true){
   //               this.selectedArray.push(item);
@@ -186,7 +186,7 @@ export class SettingPage {
   // //     if(item.checked == true){
   // //       this.selectedArray.push(item);
 
-  // //         let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
+  // //         let url = Enums.APIURL.URL +'/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
   // //        +'&&'+this.setting[0].student_sname+'&&'+this.setting[0].student_nickname+'&&'+this.setting[0].Student_sex+'&&'+this.setting[0].class_id
   // //        +'&&'+this.setting[0].par_user+'&&'+this.setting[0].ck_date+'&&'+this.myBooolean;
   // //        this.http.get(url).subscribe((data:any)=>{
@@ -198,7 +198,7 @@ export class SettingPage {
   // //         return el.ck_status != item.ck_status;
   // //       });
   // //       this.selectedArray = newarry;
-  // //       let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
+  // //       let url = Enums.APIURL.URL +'/public/index.php/settingstudent2/'+this.setting[0].st_id+'&&'+this.setting[0].student_name
   // //        +'&&'+this.setting[0].student_sname+'&&'+this.setting[0].student_nickname+'&&'+this.setting[0].Student_sex+'&&'+this.setting[0].class_id
   // //        +'&&'+this.setting[0].par_user+'&&'+this.setting[0].ck_date+'&&'+this.myBooolean;
   // //        this.http.get(url).subscribe((data:any)=>{
@@ -220,9 +220,9 @@ export class SettingPage {
   //       console.log(this.ck_date2);
   //       console.log(this.setting3.check_id);
   //        if(data != ""){
-  //          let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/addsettingstudent2';
-  //          let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckstudentname2';
-  //          let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+data.st_id+'&&'+this.setting3.check_id;
+  //          let url =  Enums.APIURL.URL +'/public/index.php/addsettingstudent2';
+  //          let url1 = Enums.APIURL.URL +'/public/index.php/allcheckstudentname2';
+  //          let url5 = Enums.APIURL.URL +'/public/index.php/checkaddsettingstudent2/'+data.st_id+'&&'+this.setting3.check_id;
   //         this.http.get(url5).subscribe((err:any)=>{
   //           console.log(err);
   //           if(err['st_id'] == data.st_id && err['ck_date'] == this.setting3.check_id){ //err['st_id'] == data.st_id && err['ck_date'] == this.ck_date2
@@ -277,14 +277,14 @@ export class SettingPage {
     // console.log(s);
 
 
-      // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+s.st_id+'&&'+s.student_name
+      // let url = Enums.APIURL.URL +'/public/index.php/settingstudent2/'+s.st_id+'&&'+s.student_name
       //       +'&&'+s.student_sname+'&&'+s.student_nickname+'&&'+s.Student_sex+'&&'+s.class_id
       //       +'&&'+s.par_user+'&&'+s.ck_date+'&&'+this.myBooolean;
       //      this.http.get(url).subscribe((data:any)=>{
       //       this.check = data;
       //       console.log(this.check);
       //      })
-      // let url = "http://localhost/todoslim3/public/index.php/addsettingstudent2";
+      // let url = "http://localhost/public/index.php/addsettingstudent2";
       // let setdata = JSON.stringify({
       //   st_id: this.setting.st_id,
       //   student_name: this.setting.student_name,
@@ -319,8 +319,8 @@ addck(idcl,setting){
   if(setting != ""){
 
 
-    let url = "http://localhost/todoslim3/public/index.php/addsettingstudent2";
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkstudentname2/'+this.ck_date2;
+    let url = Enums.APIURL.URL +'/public/index.php/addsettingstudent2';
+    let url2 = Enums.APIURL.URL +'/public/index.php/checkstudentname2/'+this.ck_date2;
 
     this.http.get(url2).subscribe((err:any)=>{
       if(err['ck_date'] == this.ck_date2){

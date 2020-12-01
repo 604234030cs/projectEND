@@ -119,7 +119,7 @@ export class EditstudentPage {
 
   loaddata(){
 
-    let url2 =  Enums.APIURL.URL +'/todoslim3/public/index.php/standparedit/'+this.classid+'&&'+this.paruser+'&&'+this.st_id;
+    let url2 =  Enums.APIURL.URL +'/public/index.php/standparedit/'+this.classid+'&&'+this.paruser+'&&'+this.st_id;
     this.http.get(url2).subscribe(user =>{
       this.acount = user;
       // console.log(this.acount[0].par_title);
@@ -156,7 +156,7 @@ export class EditstudentPage {
 
 
   editAccountstudent(){
-    let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editstudent2/'+this.acount[0].st_id+'&&'+this.acount[0].student_title+'&&'+this.acount[0].student_name+'&&'+this.acount[0].student_sname
+    let url =  Enums.APIURL.URL +'/public/index.php/editstudent2/'+this.acount[0].st_id+'&&'+this.acount[0].student_title+'&&'+this.acount[0].student_name+'&&'+this.acount[0].student_sname
                +'&&'+this.acount[0].student_nickname+'&&'+this.acount[0].student_sex;
     console.log(url);
 
@@ -195,7 +195,7 @@ export class EditstudentPage {
 
   }
   editAccountparent(){
-      let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editparent2/'+this.acount[0].par_id+'&&'+this.acount[0].par_user+'&&'+this.acount[0].par_title+'&&'+this.acount[0].par_name
+      let url =  Enums.APIURL.URL +'/public/index.php/editparent2/'+this.acount[0].par_id+'&&'+this.acount[0].par_user+'&&'+this.acount[0].par_title+'&&'+this.acount[0].par_name
                +'&&'+this.acount[0].par_sname+'&&'+this.acount[0].par_tel+'&&'+this.acount[0].par_address;
 
       this.http.get(url).subscribe(data=>{

@@ -37,10 +37,10 @@ export class EditteacherPage {
     console.log(this.user.value);
     console.log(this.user.valid);
     if(this.user.value.tuser != ""&&this.user.value.tname != "" &&this.user.value.tlassname){
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editteacher/'+this.user.value.tid+'&&'+this.user.value.title
+      let url = Enums.APIURL.URL +'/public/index.php/editteacher/'+this.user.value.tid+'&&'+this.user.value.title
       +'&&'+this.user.value.tname+'&&'+this.user.value.tlassname+'&&'+this.user.value.tage+'&&'+this.user.value.taddress
       +'&&'+this.user.value.tphone;
-      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkuser/'+this.user.value.tuser;
+      let url2 = Enums.APIURL.URL +'/public/index.php/checkuser/'+this.user.value.tuser;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['tuser'] == this.user.value.tuser){

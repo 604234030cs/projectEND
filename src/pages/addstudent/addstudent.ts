@@ -47,7 +47,7 @@ export class AddstudentPage {
 //     this.storage.get('accoutparent').then((data)=>{
 //       this.parent = data;
 //       console.log(data);
-//       let url ='http://localhost/todoslim3/public/index.php/checkparent2/'+this.parent.par_user;
+//       let url ='http://localhost/public/index.php/checkparent2/'+this.parent.par_user;
 //       this.http.get(url).subscribe(user =>{
 //       this.parent = user;
 //       console.log(user);
@@ -68,7 +68,7 @@ export class AddstudentPage {
     console.log(this.user.value);
     console.log(this.user.valid);
     // if(this.user.value.class_name != ""){
-      let url = Enums.APIURL.URL + '/todoslim3/public/index.php/addstudent2';
+      let url = Enums.APIURL.URL + '/public/index.php/addstudent2';
 
 
       // this.http.get(url2).subscribe((err:any)=>{

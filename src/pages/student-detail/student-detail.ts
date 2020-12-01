@@ -39,7 +39,7 @@ export class StudentDetailPage {
   }
   editstudent(){
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editteacher/'+this.detailstudent.tid+'&&'+this.detailstudent.title+'&&'+this.detailstudent.tname
+    let url = Enums.APIURL.URL +'/public/index.php/editteacher/'+this.detailstudent.tid+'&&'+this.detailstudent.title+'&&'+this.detailstudent.tname
                +'&&'+this.detailstudent.tlassname+'&&'+this.detailstudent.tage+'&&'+this.detailstudent.taddress+'&&'+this.detailstudent.tphone;
 
       this.http.get(url).subscribe(data=>{
@@ -73,7 +73,7 @@ export class StudentDetailPage {
   }
   editparent(){
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editparent/'+this.detailstudent.p_id+'&&'+this.detailstudent.pr_title+'&&'+this.detailstudent.pr_name
+    let url = Enums.APIURL.URL +'/public/index.php/editparent/'+this.detailstudent.p_id+'&&'+this.detailstudent.pr_title+'&&'+this.detailstudent.pr_name
                +'&&'+this.detailstudent.pr_lassname+'&&'+this.detailstudent.pr_address+'&&'+this.detailstudent.pr_phone;
 
       this.http.get(url).subscribe(data=>{
@@ -111,7 +111,7 @@ export class StudentDetailPage {
   },500)
 }
 deletest(){
-  let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+this.detailstudent.s_id;
+  let url = Enums.APIURL.URL +'/public/index.php/deletest/'+this.detailstudent.s_id;
   this.http.get(url).subscribe(dl=>{
     this.detailstudent = dl;
   })

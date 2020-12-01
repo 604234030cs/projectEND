@@ -36,7 +36,7 @@ export class EditclassPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditclassPage');
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/classid/'+this.class_id;
+    let url = Enums.APIURL.URL +'/public/index.php/classid/'+this.class_id;
     this.http.get(url).subscribe((data:any)=>
     {
       this.class = data;
@@ -53,7 +53,7 @@ export class EditclassPage {
     console.log(class_id);
     console.log(class_name);
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/classid/'+class_id;
+    let url = Enums.APIURL.URL +'/public/index.php/classid/'+class_id;
     this.http.get(url).subscribe((data2:any)=>{
       console.log("1");
       console.log(data2[0].class_id);
@@ -72,7 +72,7 @@ export class EditclassPage {
             {
             text: 'ยืนยัน',
             handler: ()=>{
-              let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/saveeditclass/'+class_id+'&&'+class_name;
+              let url2 = Enums.APIURL.URL +'/public/index.php/saveeditclass/'+class_id+'&&'+class_name;
               this.http.get(url2).subscribe((data3:any)=>{
                 console.log(data3);
                 if(data3.status != null){

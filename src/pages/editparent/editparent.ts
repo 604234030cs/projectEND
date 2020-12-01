@@ -36,7 +36,7 @@ export class EditparentPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditparentPage');
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/checkparentparid/'+this.par_id;
+    let url = Enums.APIURL.URL +'/public/index.php/checkparentparid/'+this.par_id;
     this.http.get(url).subscribe((data:any)=>{
 
       this.parent = data;
@@ -63,7 +63,7 @@ export class EditparentPage {
   }
 
   editAccountparent(){
-    let url =  Enums.APIURL.URL +'/todoslim3/public/index.php/editparent2/'+this.parent[0].par_id+'&&'+this.parent[0].par_user+'&&'+this.parent[0].par_title+'&&'+this.parent[0].par_name
+    let url =  Enums.APIURL.URL +'/public/index.php/editparent2/'+this.parent[0].par_id+'&&'+this.parent[0].par_user+'&&'+this.parent[0].par_title+'&&'+this.parent[0].par_name
     +'&&'+this.parent[0].par_sname+'&&'+this.parent[0].par_tel+'&&'+this.parent[0].par_address;
 
     this.http.get(url).subscribe(data=>{

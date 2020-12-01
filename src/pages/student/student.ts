@@ -46,7 +46,7 @@ export class StudentPage {
 
   }
   loaddata(){
-    let url3 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
+    let url3 = Enums.APIURL.URL +'/public/index.php/allparent';
     this.http.get(url3).subscribe(dataparent=>{
       this.perent = dataparent;
       console.log(dataparent);
@@ -61,8 +61,8 @@ export class StudentPage {
 
 
     if(this.user.value.st_id != ""){
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/registerstudent';
-      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkstudent/'+this.user.value.st_id;
+      let url = Enums.APIURL.URL +'/public/index.php/registerstudent';
+      let url2 = Enums.APIURL.URL +'/public/index.php/checkstudent/'+this.user.value.st_id;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['st_id'] == this.user.value.st_id){

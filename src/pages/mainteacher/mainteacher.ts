@@ -45,7 +45,7 @@ export class MainteacherPage {
  //    this.accout = data;
  //    console.log(data);
  //  })
- //  let url ='http://localhost/todoslim3/public/index.php/teacher/user='+this.accout.tuser+'&&'+'pass='+this.accout.tpassword;
+ //  let url ='http://localhost/public/index.php/teacher/user='+this.accout.tuser+'&&'+'pass='+this.accout.tpassword;
  //  this.http.get(url).subscribe(user =>{
  //    this.teacher = user;
  //    console.log(user);
@@ -63,7 +63,7 @@ export class MainteacherPage {
     console.log(data.teacher_password);
 
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+    let url = Enums.APIURL.URL +'/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
     this.http.get(url).subscribe(user =>{
     this.teacher = user;
     console.log(user);
@@ -83,7 +83,7 @@ export class MainteacherPage {
 
   editAccount(){
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/editteacher/'+this.teacher.teacher_id+'&&'+this.teacher.teacher_title+'&&'+this.teacher.teacher_name
+    let url = Enums.APIURL.URL +'/public/index.php/editteacher/'+this.teacher.teacher_id+'&&'+this.teacher.teacher_title+'&&'+this.teacher.teacher_name
                +'&&'+this.teacher.teacher_sname+'&&'+this.teacher.teacher_address+'&&'+this.teacher.teacher_tel;
 
       this.http.get(url).subscribe(data=>{
@@ -123,7 +123,7 @@ export class MainteacherPage {
     this.storage.get('accoutuser').then((data)=>{
       this.accout = data;
       console.log(data);
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+      let url = Enums.APIURL.URL +'/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
       this.http.get(url).subscribe(user =>{
       this.teacher = user;
       console.log(user);
@@ -149,7 +149,7 @@ export class MainteacherPage {
                 console.log(this.latitude);
                 console.log(this.longitude);
 
-                let url2 = Enums.APIURL.URL + '/todoslim3/public/index.php/editteacherlatlong/'+this.teacher.teacher_id +'&&'+this.latitude+'&&'+this.longitude;
+                let url2 = Enums.APIURL.URL + '/public/index.php/editteacherlatlong/'+this.teacher.teacher_id +'&&'+this.latitude+'&&'+this.longitude;
                 this.http.get(url2).subscribe((data3:any)=>{
                   console.log(data3);
                   if(data3.status != null){
@@ -209,7 +209,7 @@ export class MainteacherPage {
     this.storage.get('accoutuser').then((data)=>{
       this.accout = data;
       console.log(data);
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+      let url = Enums.APIURL.URL +'/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
       this.http.get(url).subscribe(user =>{
       this.teacher = user;
       console.log(user);
@@ -234,7 +234,7 @@ export class MainteacherPage {
                 console.log(this.latitude);
                 console.log(this.longitude);
 
-                let url2 = Enums.APIURL.URL + '/todoslim3/public/index.php/editteacherlatlong/'+this.teacher.teacher_id +'&&'+this.latitude+'&&'+this.longitude;
+                let url2 = Enums.APIURL.URL + '/public/index.php/editteacherlatlong/'+this.teacher.teacher_id +'&&'+this.latitude+'&&'+this.longitude;
                 this.http.get(url2).subscribe((data3:any)=>{
                   console.log(data3);
                   if(data3.status != null){

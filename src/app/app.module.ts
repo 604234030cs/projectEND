@@ -1,3 +1,5 @@
+import { ChecknamePage } from './../pages/checkname/checkname';
+import { RegisterPage } from './../pages/register/register';
 // import { TapsPage } from './../pages/taps/taps';
 import { EditparentPage } from './../pages/editparent/editparent';
 import { AllrarentPage } from './../pages/allrarent/allrarent';
@@ -20,7 +22,7 @@ import { MainteacherPage } from '../pages/mainteacher/mainteacher';
 import { StudentPage } from '../pages/student/student';
 
 import { IonicStorageModule } from '@ionic/storage';
-import { TestPage } from '../pages/test/test';
+
 import { StudentDetailPage } from '../pages/student-detail/student-detail';
 import { EditteacherPage } from '../pages/editteacher/editteacher';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -46,7 +48,6 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     MainstudentPage,
     StudentPage,
     SettingPage,
-    TestPage,
     StudentDetailPage,
     EditteacherPage,
     ClassPage,
@@ -63,6 +64,8 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     AllrarentPage,
     AllchecknamePage,
     EditparentPage,
+    RegisterPage,
+    ChecknamePage
     // TapsPage
 
 
@@ -85,7 +88,7 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     StudentPage,
     MainstudentPage,
     SettingPage,
-    TestPage,
+
     StudentDetailPage,
     EditteacherPage,
     ClassPage,
@@ -102,6 +105,8 @@ import { LoaddataProvider } from '../providers/loaddata/loaddata';
     AllrarentPage,
     AllchecknamePage,
     EditparentPage,
+    RegisterPage,
+    ChecknamePage
     // TapsPage
 
 

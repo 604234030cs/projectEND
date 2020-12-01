@@ -64,7 +64,7 @@ export class TeacherPage {
         console.log(data.teacher_password);
 
 
-        let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+        let url = Enums.APIURL.URL +'/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
         this.http.get(url).subscribe(user =>{
         this.accout = user;
         console.log(user);

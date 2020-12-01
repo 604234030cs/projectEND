@@ -1,7 +1,8 @@
+import { ChecknamePage } from './../checkname/checkname';
 import { AllchecknamePage } from './../allcheckname/allcheckname';
 import { AllrarentPage } from './../allrarent/allrarent';
 import { CheckreceivePage } from './../checkreceive/checkreceive';
-import { Test2Page } from './../test2/test2';
+
 import { SettingPage } from './../setting/setting';
 import { EditstudentPage } from './../editstudent/editstudent';
 import { TestaddstudentPage } from './../testaddstudent/testaddstudent';
@@ -109,7 +110,7 @@ export class ClassPage {
 
     this.storage.get('keyclass2').then((data:any)=>{
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+data.class_id;
+    let url = Enums.APIURL.URL +'/public/index.php/parentandstudent/'+data.class_id;
     this.http.get(url).subscribe(data2=>{
       this.parentandstudent = data2;
       // console.log(this.parentandstudent);
@@ -131,13 +132,13 @@ export class ClassPage {
       buttons:[{
         text: 'ตกลง',
         handler: () =>{
-          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletest/'+stid;
+          let url = Enums.APIURL.URL +'/public/index.php/deletest/'+stid;
           this.http.get(url).subscribe(deletest=>{
             this.parentandstudent = deletest;
             console.log(deletest);
 
             // if(deletest == 'Success'){
-            //   let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletepar/'+paruser;
+            //   let url1 = Enums.APIURL.URL +'/public/index.php/deletepar/'+paruser;
             //   this.http.get(url1).subscribe(deletepar=>{
             //   this.parentandstudent = deletepar;
             //   })
@@ -181,7 +182,7 @@ export class ClassPage {
   editstandpar(idclass,userpar,ck_date,id){
     // console.log(ck_date);
     // let statusstudy;
-    let url5 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+id+'&&'+ck_date;
+    let url5 = Enums.APIURL.URL +'/public/index.php/checkaddsettingstudent2/'+id+'&&'+ck_date;
 
     this.http.get(url5).subscribe((data:any)=>{
 
@@ -231,8 +232,8 @@ export class ClassPage {
   setting(idcl,namecl,setting){
     console.log(setting);
     if(setting != ""){
-      let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/adddate2';
-      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkdate2/'+setting;
+      let url =  Enums.APIURL.URL + '/public/index.php/adddate2';
+      let url2 = Enums.APIURL.URL +'/public/index.php/checkdate2/'+setting;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['check_data'] == setting){
@@ -281,7 +282,7 @@ export class ClassPage {
 checkname(idcl,namecl){
   console.log(this.ck_date2);
 
-  this.navCtrl.setRoot(Test2Page,{
+  this.navCtrl.setRoot(ChecknamePage,{
     class_id:idcl,
     class_name:namecl,
     ckdate:this.ck_date2
@@ -292,7 +293,7 @@ checkreceive(idcl,namecl){
 
   this.storage.get('keyclass2').then((data:any)=>{
 
-    // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/parentandstudent/'+data.class_id;
+    // let url = Enums.APIURL.URL +'/public/index.php/parentandstudent/'+data.class_id;
     // this.http.get(url).subscribe(data2=>{
     //   this.parentandstudent = data2;
     //   console.log(this.parentandstudent);

@@ -40,14 +40,17 @@ export class AddparentPage {
     console.log('ionViewDidLoad AddparentPage');
   }
 
-  addparent(classname,id,paruser){
+  addparent(classname,id){
+    console.log(classname);
+    console.log(id);
+
     console.log(this.user.value);
     console.log(this.user.valid);
     console.log("par_user", this.user.value.par_user);
     if(this.user.value.par_user != ""&&this.user.value.par_name != "" &&this.user.value.par_sname){
-      let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/registerparent2';
-      // let url2 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkparent/'+this.user.value.par_user;
-      let url3 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkparent2/'+this.user.value.par_user;
+      let url =  Enums.APIURL.URL + '/public/index.php/registerparent2';
+      // let url2 = Enums.APIURL.URL + '/public/index.php/checkparent/'+this.user.value.par_user;
+      let url3 = Enums.APIURL.URL + '/public/index.php/checkparent2/'+this.user.value.par_user;
 
 
       this.http.get(url3).subscribe((err:any={})=>{
@@ -80,8 +83,8 @@ export class AddparentPage {
                 par_sname: this.user.value.par_sname,
                 par_tel: this.user.value.	par_tel,
                 par_address: this.user.value.	par_address,
-                latitude: this.user.value.latitude,
-                longitude: this.user.value.teacher_longitude
+                latitude: null,
+                longitude: null
 
           });
           let datapost = JSON.parse(setdata);
@@ -92,16 +95,16 @@ export class AddparentPage {
               {
                 text: 'ยืนยัน',
                 handler: () =>{
-                  this.geolocation.getCurrentPosition().then((resp) => {
-                     resp.coords.latitude
-                     resp.coords.longitude
+                  // this.geolocation.getCurrentPosition().then((resp) => {
+                  //    resp.coords.latitude
+                  //    resp.coords.longitude
                     this.http.post(url,datapost).subscribe((status:any)=>{
                       console.log(status);
 
                       if(status.status != null){
                         const alert = this.alertCtrl.create({
                           title: 'สำเร็จ',
-                          subTitle: 'ลงทะเบียนเรียบร้อย',
+                          subTitle: 'เพิ่มข้อมูลเรียบร้อย',
                           buttons: [{
                             text: 'ตกลง',
                             handler: ()=>{
@@ -119,11 +122,12 @@ export class AddparentPage {
                       }
 
                     });
-                   }).catch((error) => {
-                     console.log('Error getting location', error);
-                   });
+                  //  }).catch((error) => {
+                  //    console.log('Error getting location', error);
+                  //  });
 
-                   this.navCtrl.setRoot(TestaddstudentPage,{
+                   this.navCtrl.setRoot(TestaddstudentPage,
+                    {
 
                     class_id:id,
                     class_name:classname,

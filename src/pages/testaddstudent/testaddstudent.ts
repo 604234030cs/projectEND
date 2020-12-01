@@ -59,9 +59,9 @@ export class TestaddstudentPage {
               }
 
 
-  ionViewWillEnter() {
+    ionViewWillLeave() {
     console.log('ionViewWillEnter TestaddstudentPage');
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
+    let url2 = Enums.APIURL.URL +'/public/index.php/allparent';
     this.http.get(url2).subscribe(dataparent=>{
       this.parent = dataparent;
       console.log(dataparent);
@@ -100,7 +100,7 @@ export class TestaddstudentPage {
     console.log(this.user.valid);
     console.log(data.class_id);
     // if(this.user.value.class_name != ""){
-      let url = Enums.APIURL.URL +'/todoslim3/public/index.php/addstudent2';
+      let url = Enums.APIURL.URL +'/public/index.php/addstudent2';
 
 
       // this.http.get(url2).subscribe((err:any)=>{
@@ -193,7 +193,7 @@ export class TestaddstudentPage {
 
   dorefres(){
     setTimeout(()=>{
-    this.ionViewWillEnter();
+    this.ionViewWillLeave();
   },500)
 }
 

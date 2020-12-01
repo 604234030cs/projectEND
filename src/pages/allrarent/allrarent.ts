@@ -32,7 +32,7 @@ export class AllrarentPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllrarentPage');
 
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/allparent';
+    let url = Enums.APIURL.URL +'/public/index.php/allparent';
     this.http.get(url).subscribe((data:any)=>{
       this.parent = data;
       console.log(data);
@@ -62,7 +62,7 @@ export class AllrarentPage {
       buttons:[{
         text: 'ตกลง',
         handler: () =>{
-          let url1 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletepar/'+par_id;
+          let url1 = Enums.APIURL.URL +'/public/index.php/deletepar/'+par_id;
           this.http.get(url1).subscribe(data=>{
             this.datadeleteparent = data;
             console.log(this.datadeleteparent);
@@ -87,7 +87,7 @@ export class AllrarentPage {
     let val = ev.target.value;
 
     if (val !=0) {
-      let url  = Enums.APIURL.URL +'/todoslim3/public/index.php/search/'+val;
+      let url  = Enums.APIURL.URL +'/public/index.php/search/'+val;
       this.http.get(url).subscribe((data:any)=>{
         this.parent = data;
       })

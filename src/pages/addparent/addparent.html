@@ -25,7 +25,7 @@
     <ion-list>
         <p> <b>เพิ่มข้อมูล:</b> ผู้ปกครอง</p>
       <ion-item>
-        <ion-label floating>รหัสผู้ใช้</ion-label>
+        <ion-label floating>บัญชีผู้ใช้</ion-label>
         <ion-input type="text" formControlName="par_user"></ion-input>
       </ion-item>
 
@@ -61,34 +61,7 @@
         <ion-label floating>ที่อยู่</ion-label>
         <ion-input type="text" formControlName="par_address"></ion-input>
       </ion-item>
-      <!-- ส่วนข้อมูลนักเรียน
-      <p> <b>เพิ่มข้อมูล:</b> นักเรียน</p>
 
-      <ion-item>
-        <ion-label floating>ชื่อ</ion-label>
-        <ion-input type="text" formControlName="student_name"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>นามสกุล</ion-label>
-        <ion-input type="text" formControlName="student_sname"></ion-input>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label floating>ชื่อเล่น</ion-label>
-        <ion-input type="text" formControlName="student_nickname"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>เพศ</ion-label>
-        <ion-input type="text" formControlName="Student_sex"></ion-input>
-      </ion-item>
-
-      <ion-item >
-        <ion-label floating>ชั้นเรียน</ion-label>
-        <ion-input type="text" formControlName="class_id" value="{{nameclass}}" disabled></ion-input>
-      </ion-item>
-    </ion-list>-->
     <div>
       <button type="submit" [disabled]="!user.valid" block ion-button color="secondary">ยืนยันการสมัคร</button>
     </div>

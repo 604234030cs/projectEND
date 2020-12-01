@@ -1,3 +1,4 @@
+import { RegisterPage } from './../register/register';
 import { Component, } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController, } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -5,7 +6,7 @@ import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { TeacherPage } from '../teacher/teacher';
 import { Storage } from '@ionic/storage';
-import { TestPage } from '../test/test';
+
 import * as Enums from '../enums/enums';
 
 @Component({
@@ -66,16 +67,17 @@ export class HomePage {
   }
   register(){
 
-    this.navCtrl.push(TestPage);
+    this.navCtrl.push(RegisterPage);
   }
   logincheck(teacher_user,teacher_password){
+    console.log("1");
 
 
-
+    if(this.login.value.teacher_user != null && this.login.value.teacher_password != null){
 
       console.log("teacher_user", this.login.value.teacher_user);
       console.log("teacher_password", this.login.value.teacher_password);
-      let url = Enums.APIURL.URL + '/todoslim3/public/index.php/login/user='+this.login.value.teacher_user+'&&'+'pass='+this.login.value.teacher_password;
+      let url = Enums.APIURL.URL + '/public/index.php/login/user='+this.login.value.teacher_user+'&&'+'pass='+this.login.value.teacher_password;
       this.http.get(url).subscribe((data:any={})=>{
 
 
@@ -114,6 +116,19 @@ export class HomePage {
         }
 
       });
+    }else{
+      const alert = this.alertCtrl.create({
+        message: 'เกิดข้อมูลผิดพลาด',
+        buttons: [{
+          cssClass: 'secondary',
+          text: 'Ok',
+          role: 'OK'
+        }]
+      })
+      alert.present();
+    }
+
+
     }
 
 

@@ -31,6 +31,10 @@ export class AllchecknamePage {
   class_id;
   receive;
   status;
+  i = 0;
+  c_length = 0;
+  c_success = 0;
+  arry:any=[];
   // title;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient,
@@ -51,14 +55,14 @@ export class AllchecknamePage {
   }
 
   loaddata(){
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/allcheckdate';
+    let url = Enums.APIURL.URL +'/public/index.php/allcheckdate';
     this.http.get(url).subscribe((data:any)=>{
       this.alllistcheckdate = data;
       console.log(this.alllistcheckdate);
     });
   }
   loaddataclass(){
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/allclass';
+    let url2 = Enums.APIURL.URL +'/public/index.php/allclass';
     this.http.get(url2).subscribe((data:any)=>{
       this.alllistclass = data;
       console.log(this.alllistclass);
@@ -66,55 +70,125 @@ export class AllchecknamePage {
   }
   setkey(ck_date,class_id){
 
+
     let key = {
       ck_date:ck_date,
       class_id:class_id
     }
     this.storage.set('keylistcheckname',key);
-    this.listcheckname();
+    this.storage.get('keylistcheckname').then((keydata:any)=>{
+      this.arry = null
+      this.listcheckname(keydata);
+    })
+
   }
 
 
-  listcheckname(){
-    this.storage.get('keylistcheckname').then((data:any)=>{
-      console.log(data);
+  listcheckname(data){
 
 
+    // this.storage.get('keylistcheckname').then((data:any)=>{ storage keylistcheckname
 
-    let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checknamefromdate/'+data.ck_date+'&&'+data.class_id;
+
+    let url2 = Enums.APIURL.URL +'/public/index.php/checknamefromdate/'+data.ck_date+'&&'+data.class_id;
     this.http.get(url2).subscribe((data2:any)=>{
-      this.listchecknameformdate = data2;
-      if(this.listchecknameformdate['ck_receive'] == '1'){
-        this.receive = "ยังไม่ถูกรับ"
-        if(this.listchecknameformdate['ck_status'] == '1'){
-          this.status = "มาเรียน"
-        }else if(this.listchecknameformdate['ck_status'] == '2'){
-          this.status = "ลาป่วย"
-        }else if(this.listchecknameformdate['ck_status'] == '3'){
-          this.status = "ลากิจ"
-        }else if(this.listchecknameformdate['ck_status'] == '4'){
-          this.status = "ไม่มาเรียน"
-        }
-      }else if(this.listchecknameformdate['ck_receive']){
-        this.receive = "รับกลับไปแล้ว"
-        if(this.listchecknameformdate['ck_status'] == '1'){
-          this.status = "มาเรียน"
-        }else if(this.listchecknameformdate['ck_status'] == '2'){
-          this.status = "ลาป่วย"
-        }else if(this.listchecknameformdate['ck_status'] == '3'){
-          this.status = "ลากิจ"
-        }else if(this.listchecknameformdate['ck_status'] == '4'){
-          this.status = "ไม่มาเรียน"
-        }
-      }
+      // this.listchecknameformdate = data2;
       console.log(data2);
+      this.arry=[];
+      this.checklistname(data2)
+
+
 
     });
-  })
+
+
+  // })storage keylistcheckname
 
 
 
   }
+
+  checklistname(data3){
+    console.log(data3);
+    console.log(data3.length);
+
+    for(let i = 0;i<data3.length;i++){
+
+    if(data3[i].ck_receive == '1'){
+      this.receive = "ยังไม่ถูกรับ"
+      if(data3[i].ck_status == '1'){
+        this.status = "มาเรียน"
+      }else if(data3[i].ck_status == '2'){
+        this.status = "ลาป่วย"
+      }else if(data3[i].ck_status == '3'){
+        this.status = "ลากิจ"
+      }else if(data3[i].ck_status == '4'){
+        this.status = "ไม่มาเรียน"
+      }
+    }else if(data3[i].ck_receive == '2'){
+      this.receive = "รับกลับแล้ว"
+      if(data3[i].ck_status == '1'){
+        this.status = "มาเรียน"
+      }else if(data3[i].ck_status == '2'){
+        this.status = "ลาป่วย"
+      }else if(data3[i].ck_status == '3'){
+        this.status = "ลากิจ"
+      }else if(data3[i].ck_status == '4'){
+        this.status = "ไม่มาเรียน"
+      }
+    }
+    let receive = data3[i]['ck_other'];
+    console.log();
+
+    this.arry.push({
+      ck_id:data3[i]['ck_id'],
+      st_id:data3[i]['st_id'],
+      student_name:data3[i]['student_name'],
+      student_sname:data3[i]['student_sname'],
+      student_nickname:data3[i]['student_nickname'],
+      Student_sex:data3[i]['student_sex'],
+      class_id:data3[i]['class_id'],
+      par_user:data3[i]['par_user'],
+      ck_date:data3[i]['ck_date'],
+      ck_status:data3[i]=this.status,
+      ck_receive:data3[i]=this.receive,
+      ck_other:receive
+     });
+
+
+  }
+       // console.log(this.arry);
+       let temp;
+       let j:number;
+       let k:number;
+       // console.log(this.arry.length);
+         for( k=0; k < this.arry.length-1; k++){
+           // console.log(k);
+
+             for( j = 0 ; j < this.arry.length-1; j++){
+               // console.log(j);
+               let index = j + 1;
+               // console.log(this.arry[index]['valuedirec']);
+            //     if(this.arry[j]['valuedirec'] > this.arry[j+1]['valuedirec']){
+            //      temp =this.arry[j];
+            //      this.arry[j]=this.arry[j+1];
+            //   this.arry[j+1]=temp;
+            //  }
+
+             // console.log(this.arry[j]['directionscaculat']);
+
+        }
+     }
+     console.log('หลังเรียง');
+     console.log(this.arry);
+
+
+    //  this.return();
+
+  }
+  // return(){
+  //   this.checklistname();
+  // }
 
   pop(){
     this.navCtrl.setRoot(TeacherPage);
@@ -127,7 +201,7 @@ export class AllchecknamePage {
     console.log(ckreceive);
     console.log(ckother);
 
-    let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
+    let url8 = Enums.APIURL.URL +'/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
     this.http.get(url8).subscribe((data:any)=>{
       console.log(data);
       if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
@@ -137,7 +211,7 @@ export class AllchecknamePage {
 
 
 
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
+        let url9 = Enums.APIURL.URL +'/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.ck_date+'&&'+ckstatus+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
                     console.log(url9);
         this.updatecheckname = data2;
@@ -176,7 +250,7 @@ export class AllchecknamePage {
 
   deletecleckname(ckid){
 
-    let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
+    let url8 = Enums.APIURL.URL +'/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+this.ck_date;
     this.http.get(url8).subscribe((data:any)=>{
       console.log(data);
       if(data['ck_id']==ckid && data['ck_date']==this.ck_date){
@@ -188,7 +262,7 @@ export class AllchecknamePage {
           buttons:[{
             text: 'ตกลง',
             handler: ()=>{
-              let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/deletecheckname/'+ckid;
+              let url9 = Enums.APIURL.URL +'/public/index.php/deletecheckname/'+ckid;
               this.http.get(url9).subscribe((data2:any)=>{
               this.updatecheckname = data2;
               if(this.updatecheckname != null){
@@ -209,7 +283,7 @@ export class AllchecknamePage {
                   }]
                 });
                 alert.present();
-                this.listcheckname();
+                this.listcheckname(data);
                 // this.dorefres
               }
 
@@ -239,7 +313,7 @@ export class AllchecknamePage {
     //   buttons:[{
     //     text: 'ตกลง',
     //     handler: () =>{
-    //       let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deletecheckname/'+ckid;
+    //       let url = Enums.APIURL.URL +'/public/index.php/deletecheckname/'+ckid;
     //       this.http.get(url).subscribe(data=>{
     //         this.deletechecknamefromdata = data;
     //         console.log(this.deletechecknamefromdata);
@@ -263,11 +337,11 @@ export class AllchecknamePage {
 
   }
 
-  dorefres(){
-    setTimeout(()=>{
-    this.listcheckname();
-  },500)
-}
+//   dorefres(){
+//     setTimeout(()=>{
+//     this.listcheckname();
+//   },500)
+// }
 
 
 gohome(){

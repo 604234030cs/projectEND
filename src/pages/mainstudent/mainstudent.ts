@@ -47,7 +47,7 @@ export class MainstudentPage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad MainstudentPage');
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/allclass';
+    let url = Enums.APIURL.URL +'/public/index.php/allclass';
     this.http.get(url).subscribe(data=>{
       this.dataclass = data;
       console.log(data);
@@ -58,7 +58,7 @@ export class MainstudentPage {
   }
 
   // loaddataclass(){
-  //   let url = Enums.APIURL.URL +'/todoslim3/public/index.php/class';
+  //   let url = Enums.APIURL.URL +'/public/index.php/class';
   //   this.http.get(url).subscribe(data=>{
   //     this.dataclass = data;
   //     console.log(data);
@@ -69,7 +69,7 @@ export class MainstudentPage {
     this.navCtrl.setRoot(EditclassPage,{
       class_id:class_id
     })
-    // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/classid/'+class_id;
+    // let url = Enums.APIURL.URL +'/public/index.php/classid/'+class_id;
     // this.http.get(url).subscribe((data:any)=>
     // {
     //   console.log(data);
@@ -84,7 +84,7 @@ export class MainstudentPage {
       buttons:[{
         text: 'ตกลง',
         handler: () =>{
-          let url = Enums.APIURL.URL +'/todoslim3/public/index.php/deleteclass/'+class_id;
+          let url = Enums.APIURL.URL +'/public/index.php/deleteclass/'+class_id;
           this.http.get(url).subscribe(data=>{
             this.class = data;
             console.log(this.class);
@@ -159,7 +159,7 @@ export class MainstudentPage {
     let val = ev.target.value;
 
     if (val !=0) {
-      let url  = 'http://localhost/todoslim3/public/index.php/searchclassroom/'+val;
+      let url  = Enums.APIURL.URL +'/public/index.php/searchclassroom/'+val;
       this.http.get(url).subscribe((data)=>{
         this.dataclass = data;
       })

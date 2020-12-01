@@ -104,7 +104,7 @@ export class CheckreceivePage {
     this.storage.get('setreceive').then((data)=>{
       this.ck_date=data.ckdate
 
-      let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
+      let url6 = Enums.APIURL.URL + '/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
 
       this.http.get(url6).subscribe(data => {
         this.item3 = data;
@@ -134,8 +134,8 @@ export class CheckreceivePage {
       // console.log(data.teacher_password);
 
 
-      // let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
-      let url6 = Enums.APIURL.URL + '/todoslim3/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
+      // let url = Enums.APIURL.URL +'/public/index.php/teacherall/'+data.teacher_user+'&&'+data.teacher_password;
+      let url6 = Enums.APIURL.URL + '/public/index.php/checkaddsettingstudent4/'+data.ckdate+'&&'+data.class_id+'&&'+this.ck_statuss ;
 
     this.http.get(url6).subscribe(data => {
       this.item3 = data;
@@ -172,14 +172,14 @@ export class CheckreceivePage {
     this.storage.get('setreceive').then((data)=>{
       console.log(ckid);
       console.log(data.ckdate);
-    let url8 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+data.ckdate;
+    let url8 = Enums.APIURL.URL +'/public/index.php/checkaddsettingstudent2/'+ckid+'&&'+data.ckdate;
     this.http.get(url8).subscribe((data:any)=>{
 
 
        if(data['ck_id']==ckid && data['ck_date']==data.ck_date){
         console.log("2");
 
-        let url9 = Enums.APIURL.URL +'/todoslim3/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
+        let url9 = Enums.APIURL.URL +'/public/index.php/settingstudent2/'+ckid+'&&'+data.st_id+'&&'+data.ck_date+'&&'+data.ck_status+'&&'+ckreceive+'&&'+ckother;
                    this.http.get(url9).subscribe((data2:any)=>{
                     console.log(url9);
         this.updatecheckname = data2;
@@ -245,6 +245,7 @@ export class CheckreceivePage {
 }
 
 mode() {
+  console.log(this.edit);
 
 
   if (this.edit == true) {
@@ -278,6 +279,8 @@ mode() {
       buttons: [{
         text: 'ตกลง',
         handler: () => {
+          this.edit = false;
+          this.arry = null;
           // this.status = null
 
           clearInterval(this.interval);
@@ -307,7 +310,7 @@ mode() {
 
 CaculatDirections(item3){
   this.storage.get('accoutuser').then((position)=>{
-    let url = Enums.APIURL.URL +'/todoslim3/public/index.php/teacherall/'+position.teacher_user+'&&'+position.teacher_password;
+    let url = Enums.APIURL.URL +'/public/index.php/teacherall/'+position.teacher_user+'&&'+position.teacher_password;
     this.http.get(url).subscribe(user =>{
     this.accout = user;
     console.log(user);
@@ -348,9 +351,11 @@ CaculatDirections(item3){
              a = a * 60 * 1.1515;
             var valuedirec = a * 1.609344
             var directions = valuedirec.toFixed(1);
+            let km;
+            km = 2;
             console.log(directions);
             console.log(valuedirec);
-          if(directions => 2.0000000000000000){
+          if(directions >= km){
             directions = "2.0"
           }
 

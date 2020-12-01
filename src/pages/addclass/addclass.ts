@@ -35,8 +35,8 @@ export class AddclassPage {
     console.log(this.user.value);
     console.log(this.user.valid);
     if(this.user.value.class_name != ""){
-      let url =  Enums.APIURL.URL + '/todoslim3/public/index.php/addclass';
-      let url2 = Enums.APIURL.URL +'/todoslim3/public/index.php/checkclassid/'+this.user.value.class_name;
+      let url =  Enums.APIURL.URL + '/public/index.php/addclass';
+      let url2 = Enums.APIURL.URL +'/public/index.php/checkclassid/'+this.user.value.class_name;
 
       this.http.get(url2).subscribe((err:any)=>{
         if(err['class_name'] == this.user.value.class_name && err['']){

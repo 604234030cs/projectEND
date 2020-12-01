@@ -39,7 +39,7 @@ export class SettingStatusreceivePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingStatusreceivePage');
 
-    let url = Enums.APIURL.URL + '/todoslim3/public/index.php/ckstandckdate/'+this.st_id+'&&'+this.par_user
+    let url = Enums.APIURL.URL + '/public/index.php/ckstandckdate/'+this.st_id+'&&'+this.par_user
     this.http.get(url).subscribe((data:any)=>{
       this.students = data;
       console.log(this.students);

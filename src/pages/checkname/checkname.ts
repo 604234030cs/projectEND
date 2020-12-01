@@ -9,12 +9,8 @@ import * as Enums from '../enums/enums';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
-
-
-
-
 /**
- * Generated class for the Test2Page page.
+ * Generated class for the ChecknamePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -22,10 +18,10 @@ import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
-  selector: 'page-test2',
-  templateUrl: 'test2.html',
+  selector: 'page-checkname',
+  templateUrl: 'checkname.html',
 })
-export class Test2Page {
+export class ChecknamePage {
 
   parentandstudent: any = [];
   item3: any = [{
@@ -363,8 +359,6 @@ export class Test2Page {
   poppage(){
     this.navCtrl.setRoot(ClassPage);
   }
-
-
 
 
 }
